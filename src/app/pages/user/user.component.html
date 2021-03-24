@@ -6,159 +6,242 @@
       </div>
       <div class="card-body">
         <div class="author">
-          <a href="#">
+          <a href="#/employee/user">
             <img class="avatar border-gray" src="assets/img/mike.jpg" alt="...">
-            <h5 class="title">Chet Faker</h5>
+            <h5 class="title">Employee Name</h5>
           </a>
-          <p class="description">
-            @chetfaker
-          </p>
-        </div>
-        <p class="description text-center">
-          "I like the way you work it
-          <br> No diggity
-          <br> I wanna bag it up"
-        </p>
-      </div>
-      <div class="card-footer">
-        <hr>
-        <div class="button-container">
-          <div class="row">
-            <div class="col-lg-3 col-md-6 col-6 ml-auto">
-              <h5>12
-                <br>
-                <small>Files</small>
-              </h5>
-            </div>
-            <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-              <h5>2GB
-                <br>
-                <small>Used</small>
-              </h5>
-            </div>
-            <div class="col-lg-3 mr-auto">
-              <h5>24,6$
-                <br>
-                <small>Spent</small>
-              </h5>
-            </div>
-          </div>
         </div>
       </div>
     </div>
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title">Team Members</h4>
+        <h4 class="card-title">Contact Info</h4>
       </div>
       <div class="card-body">
-        <ul class="list-unstyled team-members">
-          <li>
-            <div class="row">
-              <div class="col-md-2 col-2">
-                <div class="avatar">
-                  <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                </div>
-              </div>
-              <div class="col-md-7 col-7">
-                DJ Khaled
-                <br />
-                <span class="text-muted">
-                  <small>Offline</small>
-                </span>
-              </div>
-              <div class="col-md-3 col-3 text-right">
-                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
-              </div>
+        <form [formGroup]="form">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Personal Email</label>
+              <input type="email" class="form-control" [attr.disabled]="disabled1? true : null" placeholder="Email" formControlName="email">
             </div>
-          </li>
-          <li>
-            <div class="row">
-              <div class="col-md-2 col-2">
-                <div class="avatar">
-                  <img src="assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                </div>
-              </div>
-              <div class="col-md-7 col-7">
-                Creative Tim
-                <br />
-                <span class="text-success">
-                  <small>Available</small>
-                </span>
-              </div>
-              <div class="col-md-3 col-3 text-right">
-                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
-              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="exampleInputEmail2">Work Email</label>
+              <input type="email" class="form-control" [attr.disabled]="disabled1? true : null" placeholder="Email">
             </div>
-          </li>
-          <li>
-            <div class="row">
-              <div class="col-md-2 col-2">
-                <div class="avatar">
-                  <img src="assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                </div>
-              </div>
-              <div class="col-ms-7 col-7">
-                Flume
-                <br />
-                <span class="text-danger">
-                  <small>Busy</small>
-                </span>
-              </div>
-              <div class="col-md-3 col-3 text-right">
-                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
-              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="exampleInputPhone1">Cell Phone</label>
+              <input type="text" class="form-control" [attr.disabled]="disabled1? true : null" placeholder="Phone">
             </div>
-          </li>
-        </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="exampleInputPhone2">Work Phone</label>
+              <input type="text" class="form-control" [attr.disabled]="disabled1? true : null" placeholder="Phone">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div *ngIf="disabled1; else elseBlock" class="update ml-auto mr-auto">
+            <button (click)="onChange1()" class="btn btn-primary btn-round">Edit</button>
+          </div>
+          <ng-template #elseBlock>
+            <div class="update ml-auto mr-auto">
+              <button (ngSubmit)="onSubmit()" class="btn btn-success btn-round">Save</button>
+            </div>
+            <div class="update ml-auto mr-auto">
+              <button (click)="clickMethod()" class="btn btn-round">Cancel</button>
+            </div>
+          </ng-template>
+        </div>
+      </form>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Employment</h4>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="form">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="workAuth">Work Authorization</label>
+              <input type="text" class="form-control" [attr.disabled]="disabled2? true : null" placeholder="OPT">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="exampleInputEmail2">Work Authorization Start Date</label>
+              <input type="date" class="form-control" [attr.disabled]="disabled2? true : null" placeholder="">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Work Authorization End Date</label>
+              <input type="date" class="form-control" [attr.disabled]="disabled2? true : null" placeholder="">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="exampleInputEmail2">Employment Start Date</label>
+              <input type="date" class="form-control" [attr.disabled]="disabled2? true : null" placeholder="">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Employment End Date</label>
+              <input type="date" class="form-control" [attr.disabled]="disabled2? true : null" placeholder="">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="exampleInputEmail2">Title</label>
+              <input type="text" class="form-control" [attr.disabled]="disabled2? true : null" placeholder="Java Developer">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div *ngIf="disabled2; else elseBlock2" class="update ml-auto mr-auto">
+            <button (click)="onChange2()" class="btn btn-primary btn-round">Edit</button>
+          </div>
+          <ng-template #elseBlock2>
+            <div class="update ml-auto mr-auto">
+              <button type="submit" class="btn btn-success btn-round">Save</button>
+            </div>
+            <div class="update ml-auto mr-auto">
+              <button (click)="clickMethod()" class="btn btn-round">Cancel</button>
+            </div>
+          </ng-template>
+        </div>
+      </form>
       </div>
     </div>
   </div>
   <div class="col-md-8">
     <div class="card card-user">
       <div class="card-header">
-        <h5 class="card-title">Edit Profile</h5>
+        <h5 class="card-title">Profile</h5>
       </div>
       <div class="card-body">
-        <form>
-          <div class="row">
-            <div class="col-md-5 pr-1">
-              <div class="form-group">
-                <label>Company (disabled)</label>
-                <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-              </div>
-            </div>
-            <div class="col-md-3 px-1">
-              <div class="form-group">
-                <label>Username</label>
-                <input type="text" class="form-control" placeholder="Username" value="michael23">
-              </div>
-            </div>
-            <div class="col-md-4 pl-1">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" placeholder="Email">
-              </div>
-            </div>
-          </div>
-          <div class="row">
+        <form [formGroup]="form">
+          <div *ngIf="!disabled3" class="row">
             <div class="col-md-6 pr-1">
               <div class="form-group">
                 <label>First Name</label>
-                <input type="text" class="form-control" placeholder="Company" value="Chet">
+                <input type="text" class="form-control" placeholder="John" formControlName="firstname">
               </div>
             </div>
             <div class="col-md-6 pl-1">
               <div class="form-group">
                 <label>Last Name</label>
-                <input type="text" class="form-control" placeholder="Last Name" value="Faker">
+                <input type="text" class="form-control" placeholder="Doe" formControlName="lastname">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="disabled3" class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" class="form-control" disabled="" placeholder="John Doe" [value]="this.form.value.firstname + ' ' + this.form.value.lastname">
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label>Address</label>
-                <input type="text" class="form-control" placeholder="Home Address" value="Melbourne, Australia">
+                <label>Preferred Name</label>
+                <input type="text" class="form-control" [attr.disabled]="disabled3? true : null" placeholder="N/A" formControlName="preferredname">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" class="form-control" [attr.disabled]="disabled3? true : null" placeholder="" formControlName="dob">
+              </div>
+            </div>
+            <div class="col-md-4 px-1">
+              <div class="form-group">
+                <label>Age</label>
+                <input type="number" class="form-control" disabled placeholder="2" formControlName="age">
+              </div>
+            </div>
+            <div class="col-md-4 pl-1">
+              <div class="form-group">
+                <label>Gender</label>
+                <select id="cars" name="cars" class="form-control" [attr.disabled]="disabled3? true : null" formControlName="gender">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Non-Binary">Non-Binary</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>SSN(Only last 4 digits)</label>
+                <input type="text" class="form-control" [attr.disabled]="disabled3? true : null" placeholder="***-**-0001" formControlName="ssn">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div *ngIf="disabled3; else elseBlock3" class="update ml-auto mr-auto">
+              <button (click)="onChange3()" class="btn btn-primary btn-round">Edit</button>
+            </div>
+            <ng-template #elseBlock3>
+              <div class="update ml-auto mr-auto">
+                <button type="submit" class="btn btn-success btn-round">Save</button>
+              </div>
+              <div class="update ml-auto mr-auto">
+                <button (click)="clickMethod()" class="btn btn-round">Cancel</button>
+              </div>
+            </ng-template>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="card card-user">
+      <div class="card-header">
+        <h5 class="card-title">Address</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="form">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Address Line 1</label>
+                <input type="text" class="form-control" [attr.disabled]="disabled4? true : null" placeholder="abc st" value="">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Address Line 2</label>
+                <input type="text" class="form-control" [attr.disabled]="disabled4? true : null" placeholder="Apt 123" value="">
               </div>
             </div>
           </div>
@@ -166,33 +249,63 @@
             <div class="col-md-4 pr-1">
               <div class="form-group">
                 <label>City</label>
-                <input type="text" class="form-control" placeholder="City" value="Melbourne">
+                <input type="text" class="form-control" [attr.disabled]="disabled4? true : null" placeholder="East Windsor" value="">
               </div>
             </div>
             <div class="col-md-4 px-1">
               <div class="form-group">
-                <label>Country</label>
-                <input type="text" class="form-control" placeholder="Country" value="Australia">
+                <label>State</label>
+                <input type="text" class="form-control" [attr.disabled]="disabled4? true : null" placeholder="New Jersey" value="">
               </div>
             </div>
             <div class="col-md-4 pl-1">
               <div class="form-group">
-                <label>Postal Code</label>
-                <input type="number" class="form-control" placeholder="ZIP Code">
+                <label>Zip Code</label>
+                <input type="number" class="form-control" [attr.disabled]="disabled4? true : null" placeholder="ZIP Code">
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label>About Me</label>
-                <textarea class="form-control textarea">Oh so, your weak rhyme You doubt I'll bother, reading into it</textarea>
-              </div>
+            <div *ngIf="disabled4; else elseBlock4" class="update ml-auto mr-auto">
+              <button (click)="onChange4()" class="btn btn-primary btn-round">Edit</button>
             </div>
+            <ng-template #elseBlock4>
+              <div class="update ml-auto mr-auto">
+                <button type="submit" class="btn btn-success btn-round">Save</button>
+              </div>
+              <div class="update ml-auto mr-auto">
+                <button (click)="clickMethod()" class="btn btn-round">Cancel</button>
+              </div>
+            </ng-template>
           </div>
+        </form>
+      </div>
+    </div>
+    <div class="card card-user">
+      <div class="card-header">
+        <h5 class="card-title">Emergency Contact</h5>
+      </div>
+      <div class="card-body">
+        <form>
+
           <div class="row">
             <div class="update ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary btn-round">Update Profile</button>
+              <button type="submit" class="btn btn-primary btn-round">Edit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="card card-user">
+      <div class="card-header">
+        <h5 class="card-title">Document Selection</h5>
+      </div>
+      <div class="card-body">
+        <form>
+
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="submit" class="btn btn-primary btn-round">Edit</button>
             </div>
           </div>
         </form>
