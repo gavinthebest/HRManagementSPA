@@ -12,7 +12,6 @@ export const ROUTES: RouteInfo[] = [
     { path: '/employee/dashboard',     title: 'Dashboard',         icon:'nc-bank',       class: '' },
     { path: '/employee/user',          title: 'Personal Info',      icon:'nc-single-02',  class: '' },
     { path: '/employee/table',         title: 'Visa Status Mgmt.',        icon:'nc-tile-56',    class: '' },
-    { path: '/employee/hire',         title: 'Hire',        icon:'nc-badge',    class: '' },
     { path: '/employee/housing',         title: 'Housing',        icon:'nc-istanbul',    class: '' },
 ];
 
