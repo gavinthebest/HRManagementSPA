@@ -11,7 +11,7 @@ import {Observable} from 'rxjs';
 
 export class ApiService {
   private headers: HttpHeaders;
-  constructor(protected http:HttpClient) { 
+  constructor(protected http:HttpClient) {
     this.headers = new HttpHeaders();
     this.headers.append('Content-Type', 'application/json');
   }
@@ -26,6 +26,16 @@ export class ApiService {
     let getUrl: string;
     if (id) {
       getUrl = `${environment.apiUrl}${path}` + '/' + id;
+    } else {
+      getUrl = `${environment.apiUrl}${path}`;
+    }
+    return this.http.get(getUrl).pipe(map((resp) => resp as any));
+  }
+
+  getOneBy(path: string, value?: string): Observable<any> {
+    let getUrl: string;
+    if (value) {
+      getUrl = `${environment.apiUrl}${path}` + '/' + value;
     } else {
       getUrl = `${environment.apiUrl}${path}`;
     }

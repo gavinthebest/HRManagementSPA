@@ -13,8 +13,11 @@ export class RegistrationtokenService {
       return this.apiService.getAll('registrationTokens/all');
    }
   getRegistrationtoken(id: number): Observable<registrationtoken> {
-     return this.apiService.getOne('registrationTokens/all',id);
+     return this.apiService.getOne('registrationTokens/all', id);
    }
+  getRegistrationtokenByToken(token: string): Observable<registrationtoken> {
+    return this.apiService.getOneBy('registrationTokens/find', token);
+  }
   createRegistrationtoken(registrationtoken : any): Observable<registrationtoken> {
      return this.apiService.create('registrationTokens/add', registrationtoken);
    }

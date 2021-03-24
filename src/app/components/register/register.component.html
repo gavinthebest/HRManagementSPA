@@ -12,10 +12,10 @@
 <body class="text-center">
 
 <div *ngIf="!tokenValidated">
-<form class="form-token">
+<form #tokenForm="ngForm" (ngSubmit)="validate(tokenForm)" class="form-token" >
   <h1 class=" mb-3">Token Validation</h1>
-  <input type="text" id="token" class="form-control" placeholder="Token" [(ngModel)]="token" name="token" required>
-  <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="validate()">Check Your Token</button>
+  <input type="text" id="token" class="form-control" placeholder="Token" name="token" ngModel required>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Check Your Token</button>
 </form>
 </div>
 
@@ -23,12 +23,11 @@
 <form class="form-token">
   <h1 class=" mb-3">Please Register</h1>
   <input type="text" id="username" class="form-control" placeholder="Username" [(ngModel)]="username" name="username" required>
-  <input type="password" id="inputPassword" class="form-control" placeholder="Password" [(ngModel)]="password" name="password" required>
-  <input type="password" id="inputPassword2" class="form-control" placeholder="Confirm Password" [(ngModel)]="password2" name="password2" required>
-  <input type="text" id="email" class="form-control" placeholder="Email" [(ngModel)]="email" name="email" required>
-  <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="registerAttempt()">Register</button>
+  <input type="password" id="password" class="form-control" placeholder="Password" [(ngModel)]="password" name="password" required>
+  <input type="password" id="password2" class="form-control" placeholder="Confirm Password" [(ngModel)]="password2" name="password2" required>
+  <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="checkNamePass()">Register</button>
 </form>
 </div>
-<!--<p class="mt-5 mb-3 text-muted">&copy; 2021</p>-->
+
 </body>
 </html>
