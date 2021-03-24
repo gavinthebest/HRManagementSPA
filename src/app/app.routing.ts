@@ -9,7 +9,9 @@ export const AppRoutes: Routes = [
     path: 'employee',
     redirectTo: 'employee/dashboard',
     pathMatch: 'full',
-  }, {
+  }, 
+
+  {
     path: 'employee',
     component: AdminLayoutComponent,
     children: [
@@ -17,11 +19,14 @@ export const AppRoutes: Routes = [
       path: '',
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
   }]},
+
   {
     path: 'hr',
     redirectTo: 'hr/dashboard',
     pathMatch: 'full',
-  }, {
+  }, 
+  
+  {
     path: 'hr',
     component: AdminLayoutHrComponent,
     children: [
@@ -29,6 +34,8 @@ export const AppRoutes: Routes = [
       path: '',
       loadChildren: './layouts/admin-layout-hr/admin-layout-hr.module#AdminLayoutHrModule'
   }]},
+
+  
   {path:'login', component:LoginComponent},
   {
     path: '**',
