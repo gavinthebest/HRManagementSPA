@@ -15,10 +15,9 @@ export class RegisterComponent implements OnInit {
   password = '';
   password2 = '';
   user: user;
-  myDate = new Date();
   users!: user[];
   email: string;
-  thisDate = new Date();
+  thisDate: Date;
   constructor(private userService: UserService) {}
   ngOnInit(): void {
   }
@@ -28,7 +27,7 @@ export class RegisterComponent implements OnInit {
     console.log(this.token);
   }
   registerAttempt(): void {
-    console.log(this.myDate);
+    this.thisDate = new Date();
     if (this.checkNamePass()) {
       this.user = {userID: null, username: this.username,
         password: this.password, email: this.email, createDate: this.thisDate, modificationDate: this.thisDate};
