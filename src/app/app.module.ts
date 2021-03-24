@@ -16,6 +16,8 @@ import { LoginComponent } from "./components/login/login.component";
 import { AdminLayoutHrComponent } from "./layouts/admin-layout-hr/admin-layout-hr.component";
 import { SidebarHrModule } from "./sidebar-hr/sidebar-hr.module";
 import { SidebarHrComponent } from './sidebar-hr/sidebar-hr.component';
+import { HttpClient, HttpClientModule, HttpHandler } from "@angular/common/http";
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import { SidebarHrComponent } from './sidebar-hr/sidebar-hr.component';
     RouterModule.forRoot(AppRoutes,{
       useHash: true
     }),
+    HttpClientModule,
+    ReactiveFormsModule,
     SidebarModule,
     SidebarHrModule,
     NavbarModule,
