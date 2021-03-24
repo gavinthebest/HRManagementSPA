@@ -199,11 +199,19 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <div *ngIf="!disabled3" class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>SSN</label>
+                <input type="text" class="form-control" [attr.disabled]="disabled3? true : null" placeholder="***-**-****" formControlName="ssn">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="disabled3" class="row">
             <div class="col-md-12">
               <div class="form-group">
                 <label>SSN(Only last 4 digits)</label>
-                <input type="text" class="form-control" [attr.disabled]="disabled3? true : null" placeholder="***-**-0001" formControlName="ssn">
+                <input type="text" class="form-control" disabled="" placeholder="" [value]="'***-**-' + this.form.value.ssn.slice(-4)">
               </div>
             </div>
           </div>
