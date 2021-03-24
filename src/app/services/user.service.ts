@@ -14,6 +14,9 @@ export class UserService {
   getUser(id: number): Observable<user> {
     return this.apiService.getOne('users/all', id);
   }
+  getUserByUsername(username: string): Observable<user>{
+    return this.apiService.getOneBy('users/find', username);
+  }
   createUser(user: any): Observable<user> {
     return this.apiService.create('users/add', user);
   }
