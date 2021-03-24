@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="onboarding.component.css">
+</head>
+
+<body>
+
+
+  <form class="form-token">
+    <h1 class=" mb-3">Fill in Your Info</h1>
+    <h3>About You</h3>
+    <div class="form-sameline3">
+      <input type="text" id="firstname" class="form-control" pattern="[A-Z][a-z]{1,}" placeholder="First Name" required>
+      <input type="text" id="lastname" class="form-control" pattern="[A-Z][a-z]{1,}" placeholder="Last Name" required>
+      <input type="text" id="middlename" class="form-control" pattern="[a-zA-Z]{1,}" placeholder="Middle Name">
+    </div>
+      <input type="password" id="ssn" class="form-control" pattern="[0-9]{9}" placeholder="SSN" required>
+
+    <h3>Date of Birth</h3>
+    <input type="date" id="dob" class="form-control" placeholder="Your Date of Birth" required>
+
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Gender
+        <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Male</a></li>
+        <li><a href="#">Female</a></li>
+        <li><a href="#">Prefer Not to Say</a></li>
+      </ul>
+    </div>
+
+    <h3>Upload an Avatar If You Like</h3>
+    <input type="file" id="avatar" class="form-control" placeholder="Upload an Avatar">
+
+    <h3>Your Contact Info</h3>
+    <input type="text" id="addressline1" class="form-control" placeholder="First Line of Your Address" required>
+    <input type="text" id="addressline2" class="form-control" placeholder="Second Line of Your Address">
+    <div class="form-sameline3">
+      <input type="text" id="addresscity" class="form-control" pattern="[a-z]{1,}" placeholder="City" required>
+      <input type="text" id="addressstate" class="form-control" pattern="[A-Z]{2}" placeholder="State Abbreviation" required>
+      <input type="text" id="addresszipcode" class="form-control" pattern="[0-9]{5}" placeholder="Zipcode" required>
+    </div>
+    <input type="tel" id="cellphone" class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Your Phone Number (123-456-7890)" required>
+
+    <h3>Your Car's Info</h3>
+    <div class="form-sameline3">
+      <input type="text" id="carmaker" class="form-control" placeholder="Your Car's Maker">
+      <input type="text" id="carmodel" class="form-control" placeholder="Your Car's Model">
+      <input type="text" id="carcolor" class="form-control" placeholder="Your Car's Color">
+    </div>
+    <h3>Your Email Address</h3>
+    <input type="text" id="email" class="form-control" disabled="disabled" placeholder="NEEDS AUTO FILL NOT EDITABLE">
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+  </form>
+
+
+<!--<p class="mt-5 mb-3 text-muted">&copy; 2021</p>-->
+</body>
+
+<script>
+  $(".dropdown-menu li a").click(function(){
+    $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+    $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+  });
+</script>
+</html>
