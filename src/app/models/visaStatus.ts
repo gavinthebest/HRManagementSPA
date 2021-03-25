@@ -1,6 +1,6 @@
 export interface visaStatus {
-    visastatusID: number;
-    employeeID: number;
+    visastatusid: number;
+    employeeid: number;
     visatype: string;
     active: number;
     modificatoindate: Date;
