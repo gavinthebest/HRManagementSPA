@@ -44,7 +44,28 @@
               </th>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let user of users">
+                <td>{{user.employeeID}}</td>
+                <td>{{user.firstname}} {{user.lastname}}</td>
+                <td>{{user.ssn}}</td>
+                <td>{{user.startdate}}</td>
+                <td>稍后</td>
+                <td>
+                  <div class="update ml-auto mr-auto">
+                    <button type="btn" class="btn btn-primary btn-round">display</button>
+                  </div>
+                </td>
+                <td class="text-right">
+                  <!-- <td> -->
+                    稍后
+                  </td>
+              </tr>
+              <tr *ngIf="!users">
+                  <td colspan="4" class="text-center">
+                      <span class="spinner-border spinner-border-lg align-center"></span>
+                  </td>
+              </tr>
+              <!-- <tr>
                 <td>
                   #001
                 </td>
@@ -66,7 +87,6 @@
                   </div>
                 </td>
                 <td class="text-right">
-                <!-- <td> -->
                   <1/100>
                 </td>
               </tr>
@@ -92,15 +112,15 @@
                   </div>
                 </td>
                 <td class="text-right">
-                <!-- <td> -->
                   <2/100>
                 </td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>
       </div>
     </div>
+
   </div>
  
 </div>
