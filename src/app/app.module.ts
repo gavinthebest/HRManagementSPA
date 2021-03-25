@@ -19,6 +19,7 @@ import { OnboardingComponent } from './components/onboarding/onboarding.componen
 import { RegisterComponent } from './components/register/register.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HousingdetailComponent } from './pages-hr/housingdetail/housingdetail.component';
 
 
 
@@ -31,7 +32,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     LoginComponent,
     SidebarHrComponent,
     OnboardingComponent,
-    RegisterComponent
+    RegisterComponent,
+    HousingdetailComponent
   ],
   imports: [
     BrowserAnimationsModule,
