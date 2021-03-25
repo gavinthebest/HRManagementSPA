@@ -12,7 +12,7 @@
 // }
 
 
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmployeeService } from 'app/services/employee.service';
 import { first } from 'rxjs/operators';
@@ -29,20 +29,20 @@ import { employee } from 'app/models/employee';
 export class UserComponent implements OnInit{
     // id: number = 1; 
     employee: any;
-
+    search: string = "";
+    currentUsers!: employee[];
     users!: employee[];
 
+
     constructor(
-        private employeeService: EmployeeService,
-        private formBuilder: FormBuilder,
-        private route: ActivatedRoute,
-        private router: Router
+        private employeeService: EmployeeService
         ) {}
+
    
     ngOnInit(){
         this.employeeService.getEmployees()
         .pipe(first())
-        .subscribe(users => this.users = users);
+        .subscribe(users => this.currentUsers = this.users = users);
     }
     
    

@@ -13,6 +13,7 @@ import { TableComponent }           from '../../pages-hr/table/table.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HousingComponent } from 'app/pages-hr/housing/housing.component';
 import { HireComponent } from 'app/pages-hr/hire/hire.component';
+import { ShowUsersComponent } from 'app/pages-hr/user/show-users/show-users.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { HireComponent } from 'app/pages-hr/hire/hire.component';
     UserComponent,
     TableComponent,
     HireComponent,
-    HousingComponent
+    HousingComponent,
+    ShowUsersComponent
   ]
 })
 

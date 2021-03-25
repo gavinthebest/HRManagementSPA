@@ -5,120 +5,17 @@
         <h4 class="card-title"> Employee Profiles</h4>
       </div>
       <div class="card-body">
-        <form>
           <div class="input-group no-border">
-            <input type="text" value="" class="form-control" placeholder="Search by Employee ID or Name...">
+            <input type="text" [(ngModel)]="search" class="form-control" placeholder="Search by Employee ID or Name...">
             <div class="input-group-append">
               <div class="input-group-text">
                 <i class="nc-icon nc-zoom-split"></i>
               </div>
             </div>
           </div>
-        </form>
       </div>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table">
-            <thead class=" text-primary">
-              <th>
-                ID
-              </th>
-              <th>
-                Name
-              </th>
-              <th>
-                SSN
-              </th>
-              <th>
-                Starting Date
-              </th>
-              <th>
-                Visa Status
-              </th>
-              <th>
-                Visa Detail
-              </th>
-              <th class="text-right">
-              <!-- <th> -->
-                # of Total
-              </th>
-            </thead>
-            <tbody>
-              <tr *ngFor="let user of users">
-                <td>{{user.employeeID}}</td>
-                <td>{{user.firstname}} {{user.lastname}}</td>
-                <td>{{user.ssn}}</td>
-                <td>{{user.startdate}}</td>
-                <td>稍后</td>
-                <td>
-                  <div class="update ml-auto mr-auto">
-                    <button type="btn" class="btn btn-primary btn-round">display</button>
-                  </div>
-                </td>
-                <td class="text-right">
-                  <!-- <td> -->
-                    稍后
-                  </td>
-              </tr>
-              <tr *ngIf="!users">
-                  <td colspan="4" class="text-center">
-                      <span class="spinner-border spinner-border-lg align-center"></span>
-                  </td>
-              </tr>
-              <!-- <tr>
-                <td>
-                  #001
-                </td>
-                <td>
-                  Barry Yu
-                </td>
-                <td>
-                  123456789
-                </td>
-                <td>
-                  Jan 01, 2021
-                </td>
-                <td>
-                  F1 (CPT/OPT)
-                </td>
-                <td>
-                  <div class="update ml-auto mr-auto">
-                    <button type="btn" class="btn btn-primary btn-round">display</button>
-                  </div>
-                </td>
-                <td class="text-right">
-                  <1/100>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  #002
-                </td>
-                <td>
-                  AAA
-                </td>
-                <td>
-                  123456789
-                </td>
-                <td>
-                  Jan 01, 2020
-                </td>
-                <td>
-                  H1B
-                </td>
-                <td>
-                  <div class="update ml-auto mr-auto">
-                    <button type="btn" class="btn btn-primary btn-round">display</button>
-                  </div>
-                </td>
-                <td class="text-right">
-                  <2/100>
-                </td>
-              </tr> -->
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <app-show-users [search]="search" [users] = "users" [currentUsers] = "currentUsers"></app-show-users>
+      
     </div>
 
   </div>
