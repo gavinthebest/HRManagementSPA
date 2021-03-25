@@ -4,6 +4,8 @@ import { EmployeeService } from 'app/services/employee.service';
 import { first } from 'rxjs/operators';
 import { AddressService } from 'app/services/address.service';
 import { VisaStatusService } from 'app/services/visa-status.service';
+import { ContactService } from 'app/services/contact.service';
+import { contact } from 'app/models/contact';
 
 @Component({
     selector: 'user-cmp',
@@ -13,6 +15,7 @@ import { VisaStatusService } from 'app/services/visa-status.service';
 
 export class UserComponent implements OnInit{
     id: number = 1;
+    contacts: contact[];
     employee: any;
     form: FormGroup;
     form2: FormGroup;
@@ -75,8 +78,11 @@ export class UserComponent implements OnInit{
         this.visaStatusService.getVisaStatus(this.id)
         .pipe(first())
         .subscribe(x => this.form3.patchValue(x));
+        this.contactService.getContactByEmployeeId(this.id)
+        .subscribe(x => this.contacts = x);
     }
     constructor(
+        private contactService: ContactService,
         private employeeService: EmployeeService,
         private addressService: AddressService,
         private visaStatusService: VisaStatusService,
@@ -84,6 +90,7 @@ export class UserComponent implements OnInit{
         ) {}
     onChange1() {
         this.disabled1 = !this.disabled1;
+        console.log(this.contacts);
     }
     onChange2() {
         this.disabled2 = !this.disabled2;
