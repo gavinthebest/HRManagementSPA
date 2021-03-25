@@ -29,98 +29,24 @@
               </th>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let user of users">
+                <td>{{user.employeeID}}</td>
+                <td>{{user.firstname}} {{user.lastname}}</td>
+                <td>（稍后连visa数据）</td>
+                <td>{{user.enddate}}</td>
+                <td>（稍后连visa数据）</td>
                 <td>
-                  #001
-                </td>
-                <td>
-                  Barry Yu
-                </td>
-                <td>
-                  F1/OPT
-                </td>
-                <td>
-                  Sep 01, 2022
-                </td>
-                <td>
-                  360
-                </td>
-                <td> 
                   <div class="update ml-auto mr-auto">
-                    <button type="btn" class="btn btn-primary btn-round">Send Notification</button>
+                    <button type="btn" class="btn btn-primary btn-round">display</button>
                   </div>
                 </td>
-            
               </tr>
-              <tr>
-                <td>
-                  #002
-                </td>
-                <td>
-                  AAA
-                </td>
-                <td>
-                  F1/OPT
-                </td>
-                <td>
-                  Sep 01, 2022
-                </td>
-                <td>
-                  360
-                </td>
-                <td> 
-                  <div class="update ml-auto mr-auto">
-                    <button type="btn" class="btn btn-primary btn-round">Send Notification</button>
-                  </div>
-                </td>
-            
+              <tr *ngIf="!users">
+                  <td colspan="4" class="text-center">
+                      <span class="spinner-border spinner-border-lg align-center"></span>
+                  </td>
               </tr>
-              <tr>
-                <td>
-                  #003
-                </td>
-                <td>
-                  BBB
-                </td>
-                <td>
-                  F1/OPT
-                </td>
-                <td>
-                  Sep 01, 2022
-                </td>
-                <td>
-                  360
-                </td>
-                <td> 
-                  <div class="update ml-auto mr-auto">
-                    <button type="btn" class="btn btn-primary btn-round">Send Notification</button>
-                  </div>
-                </td>
-            
-              </tr>
-              <tr>
-                <td>
-                  #004
-                </td>
-                <td>
-                  CCC
-                </td>
-                <td>
-                  F1/OPT
-                </td>
-                <td>
-                  Sep 01, 2022
-                </td>
-                <td>
-                  360
-                </td>
-                <td> 
-                  <div class="update ml-auto mr-auto">
-                    <button type="btn" class="btn btn-primary btn-round">Send Notification</button>
-                  </div>
-                </td>
-            
-              </tr>
+              
             </tbody>
           </table>
         </div>
@@ -143,5 +69,8 @@
       </div>
     </div>
   </div>
+
+  <br>
+  <br>
  
 </div>
