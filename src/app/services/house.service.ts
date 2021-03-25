@@ -9,19 +9,19 @@ import { house } from '../models/house';
 export class HouseService {
 
   constructor(private apiService: ApiService) { }
-  getHouses(): Observable<house[]> {
+  getHouses(): Observable<any> {
       return this.apiService.getAll('houses/all');
    }
-  getHouse(id: number): Observable<house> {
+  getHouse(id: number): Observable<any> {
      return this.apiService.getOne('houses/all',id);
    }
-  createHouse(house : any): Observable<house> {
+  createHouse(house : any): Observable<any> {
      return this.apiService.create('houses/add', house);
    }
-  updateHouse(house : any): Observable<house> {
+  updateHouse(house : any): Observable<any> {
      return this.apiService.update('houses/update', house);
    }
-  deleteHouse(id: number): Observable<house> {
+  deleteHouse(id: number): Observable<any> {
      return this.apiService.delete('houses/delete',id);
    }
 }
