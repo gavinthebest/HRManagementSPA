@@ -5,6 +5,7 @@ import { UserComponent } from '../../pages-hr/user/user.component';
 import { TableComponent } from '../../pages-hr/table/table.component';
 import { HousingComponent } from 'app/pages-hr/housing/housing.component';
 import { HireComponent } from 'app/pages-hr/hire/hire.component';
+import { HousingdetailComponent } from 'app/pages-hr/housingdetail/housingdetail.component';
 
 
 export const AdminLayoutHrRoutes: Routes = [
@@ -13,4 +14,5 @@ export const AdminLayoutHrRoutes: Routes = [
     { path: 'table',          component: TableComponent },
     { path: 'hire',          component: HireComponent },
     { path: 'housing',          component: HousingComponent },
+    { path: 'housing/housingdetail/:houseID',          component: HousingdetailComponent }
 ];

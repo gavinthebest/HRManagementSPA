@@ -8,13 +8,15 @@
         </div>
         <div class="card-body">
           <div class="author">
-            <a href="#">
+            
               <img class="avatar border-gray" src="assets/img/house1.jpg" alt="...">
-              <h5 class="title">House {{ house.houseID }}</h5>
-            </a>
+              
+              <a routerLink="housingdetail/{{ house.houseID }}" > <h5 class="title">House {{ house.houseID }}</h5> </a>
+            
           </div>
           <p class="text-center">
             Address: {{ house.address }}
+            
             <br> Landlord: {{ house.landlord}}
             <br> phone: {{ house.phone }}
             <br> Email: {{ house.email }}
