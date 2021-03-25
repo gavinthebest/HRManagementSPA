@@ -339,15 +339,15 @@
                 </th>
               </thead>
               <tbody>             
-                <tr>
+                <tr *ngFor="let contact of contacts">
                   <td>
-                    Doris Greene
+                    {{contact.fullname}}
                   </td>
                   <td>
-                    123-234-4009
+                    {{contact.phone}}
                   </td>
                   <td>
-                    123 st
+                    {{contact.address}}
                   </td>
                 </tr>
               </tbody>

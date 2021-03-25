@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
 
 
 export class ApiService {
+
   private headers: HttpHeaders;
   constructor(protected http:HttpClient) {
     this.headers = new HttpHeaders();
@@ -30,6 +31,16 @@ export class ApiService {
       getUrl = `${environment.apiUrl}${path}`;
     }
     return this.http.get(getUrl).pipe(map((resp) => resp as any));
+  }
+
+  getByOtherId(path: string, id: number): Observable<any[]> {
+    let getUrl: string;
+    if (id) {
+      getUrl = `${environment.apiUrl}${path}` + '/' + id;
+    } else {
+      getUrl = `${environment.apiUrl}${path}`;
+    }
+    return this.http.get(getUrl).pipe(map((resp) => resp as any[]));
   }
 
   getOneBy(path: string, value?: string): Observable<any> {
