@@ -19,16 +19,19 @@ declare interface HousingData {
 export class HousingComponent implements OnInit{
     // public housingData1: HousingData;
     // public housingData2: HousingData;
-    
-    houses : house[];
+    id: number = 1;
+    house : house;
+    hide = true;
     constructor(private housingservice : HouseService){}   
 
     ngOnInit() {
-        this.housingservice.getHouses()
+        this.housingservice.getHouse(this.id)
           .subscribe( data => {
-            this.houses = data;
+            this.house = data;
           });
       };
 
-      
+      onChange() {
+        this.hide = !this.hide;
+      }
 }

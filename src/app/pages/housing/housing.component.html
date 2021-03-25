@@ -5,18 +5,34 @@
         <h4 class="card-title"> Housing </h4>
       </div>
       <div class="card-header">
-        <p>
-          <tbody>
-            <tr *ngFor="let house of houses">
-              
-              <td>{{ house.houseID }}</td>
-              <td>{{ house.address }}</td>
-              <td>{{ house.numberofperson }}</td>
-              <td>{{ house.landlord }}</td>
-              
-            </tr>
-          </tbody>
-        </p>
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  House ID
+                </th>             
+                <th>
+                  Address
+                </th>
+                <th>
+                  Number of Person
+                </th>
+                <th>
+                  Landlord
+                </th>
+              </thead>
+              <tbody>
+                <tr>
+                  
+                  <td>{{ house.houseID }}</td>
+                  <td>{{ house.address }}</td>
+                  <td>{{ house.numberofperson }}</td>
+                  <td>{{ house.landlord }}</td>
+                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
       </div>
       
       <div class="card-body">
@@ -63,8 +79,6 @@
     </div>
   </div>
 
-
-  <p>ssss</p>
   <div class="col-md-12">
     <div class="card card-plain">
       <div class="card-header">
@@ -177,45 +191,47 @@
             </tbody>           
           </table>          
         </div>   
-        <p class = "text-center"></p>   
-        <div class="row">
+        <br><br><br>
+ 
+        <div *ngIf="hide" class="row">
           <div class="update ml-auto mr-auto">
-            <a class = "btn btn-primary btn-round" herf = "#" role = "bbutton"> add new report </a>
-            <!-- <button type="submit" class="btn btn-primary btn-round"></button> -->
-          
+            <a class = "btn btn-primary btn-round" (click)="onChange()" role = "bbutton"> add new report </a>
           </div>
         </div>  
 
-
-
-        <form>
-          <!-- 2 column grid layout with text inputs for the first and last names -->
-          <div class="row mb-4">
-            <div class="col">
-              <div class="form-outline">
-                <input type="text" id="form6Example1" class="form-control" />
-                <label class="form-label" for="form6Example1">Title</label>
+        <div *ngIf="!hide" class="card">
+          <div class="card-body">
+            <form>
+              <br><br>
+              <!-- 2 column grid layout with text inputs for the first and last names -->
+              <div class="row mb-4 pl-5 pr-5">
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" id="form6Example1" class="form-control" />
+                    <label class="form-label" for="form6Example1">Title</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" id="form6Example2" class="form-control" />
+                    <label class="form-label" for="form6Example2">Description</label>
+                  </div>
+                </div>
+              </div>      
+            
+              <!-- Message input -->
+              <div class="form-outline mb-4 pl-5 pr-5">
+                <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+                <label class="form-label" for="form6Example7">Additional information</label>
               </div>
-            </div>
-            <div class="col">
-              <div class="form-outline">
-                <input type="text" id="form6Example2" class="form-control" />
-                <label class="form-label" for="form6Example2">Description</label>
+            
+              <!-- Submit button -->
+              <div class="pl-5">
+                <a class = "btn btn-primary btn-round" herf = "#" role = "bbutton"> add </a>
               </div>
-            </div>
-          </div>      
-        
-          <!-- Message input -->
-          <div class="form-outline mb-4">
-            <textarea class="form-control" id="form6Example7" rows="4"></textarea>
-            <label class="form-label" for="form6Example7">Additional information</label>
+            </form>
           </div>
-        
-          
-        
-          <!-- Submit button -->
-          <a class = "btn btn-primary btn-round" herf = "#" role = "bbutton"> add </a>
-        </form>
+        </div>
       </div>
     </div>
   </div>
