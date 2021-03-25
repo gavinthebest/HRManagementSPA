@@ -51,7 +51,7 @@ export class NavbarComponent implements OnInit{
             return this.listTitles2[item].title;
         }
     }
-      return 'Welcome! Please click on the side bar to begin';
+      return '';
     }
     sidebarToggle() {
         if (this.sidebarVisible === false) {
