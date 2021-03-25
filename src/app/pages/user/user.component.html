@@ -8,8 +8,23 @@
         <div class="author">
           <a href="#/employee/user">
             <img class="avatar border-gray" src="assets/img/mike.jpg" alt="...">
-            <h5 class="title">Employee Name</h5>
+            <h5 class="title">{{this.form.value.firstname + ' ' + this.form.value.lastname}}</h5>
           </a>
+        </div>
+        <br>
+        <hr>
+        <div class="row">
+          <div *ngIf="disabled6; else elseBlock6" class="update ml-auto mr-auto">
+            <button (click)="onChange6()" class="btn btn-primary btn-round">Edit Avatar</button>
+          </div>
+          <ng-template #elseBlock6>
+            <div class="update ml-auto mr-auto">
+              <button type="submit" class="btn btn-success btn-round">Upload</button>
+            </div>
+            <div class="update ml-auto mr-auto">
+              <button (click)="onChange6()" class="btn btn-round">Cancel</button>
+            </div>
+          </ng-template>
         </div>
       </div>
     </div>
@@ -18,7 +33,7 @@
         <h4 class="card-title">Contact Info</h4>
       </div>
       <div class="card-body">
-        <form [formGroup]="form">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
@@ -39,7 +54,7 @@
           <div class="col-md-12">
             <div class="form-group">
               <label for="exampleInputPhone1">Cell Phone</label>
-              <input type="text" class="form-control" [attr.disabled]="disabled1? true : null" placeholder="Phone">
+              <input type="text" class="form-control" [attr.disabled]="disabled1? true : null" placeholder="Phone" formControlName="cellphone">
             </div>
           </div>
         </div>
@@ -47,7 +62,7 @@
           <div class="col-md-12">
             <div class="form-group">
               <label for="exampleInputPhone2">Work Phone</label>
-              <input type="text" class="form-control" [attr.disabled]="disabled1? true : null" placeholder="Phone">
+              <input type="text" class="form-control" [attr.disabled]="disabled1? true : null" placeholder="Phone" formControlName="alternatephone">
             </div>
           </div>
         </div>
@@ -57,7 +72,7 @@
           </div>
           <ng-template #elseBlock>
             <div class="update ml-auto mr-auto">
-              <button (ngSubmit)="onSubmit()" class="btn btn-success btn-round">Save</button>
+              <button type="submit" class="btn btn-success btn-round">Save</button>
             </div>
             <div class="update ml-auto mr-auto">
               <button (click)="clickMethod()" class="btn btn-round">Cancel</button>
@@ -72,69 +87,84 @@
         <h4 class="card-title">Employment</h4>
       </div>
       <div class="card-body">
+        <form [formGroup]="form3">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="workAuth">Work Authorization</label>
+                <input type="text" class="form-control" [attr.disabled]="disabled5? true : null" formControlName="visatype">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="workAuthStart">Work Authorization Start Date</label>
+                <input type="date" class="form-control" [attr.disabled]="disabled5? true : null" formControlName="visastartdate">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="workAuthEnd">Work Authorization End Date</label>
+                <input type="date" class="form-control" [attr.disabled]="disabled5? true : null" formControlName="visaenddate">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div *ngIf="disabled5; else elseBlock5" class="update ml-auto mr-auto">
+              <button (click)="onChange5()" class="btn btn-primary btn-round">Edit</button>
+            </div>
+            <ng-template #elseBlock5>
+              <div class="update ml-auto mr-auto">
+                <button type="submit" (click)="onSubmit3()" class="btn btn-success btn-round">Save</button>
+              </div>
+              <div class="update ml-auto mr-auto">
+                <button (click)="clickMethod()" class="btn btn-round">Cancel</button>
+              </div>
+            </ng-template>
+          </div>
+        </form>
         <form [formGroup]="form">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="workAuth">Work Authorization</label>
-              <input type="text" class="form-control" [attr.disabled]="disabled2? true : null" placeholder="OPT">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="employmentStart">Employment Start Date</label>
+                <input type="date" class="form-control" [attr.disabled]="disabled2? true : null" placeholder="" formControlName="startdate">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="exampleInputEmail2">Work Authorization Start Date</label>
-              <input type="date" class="form-control" [attr.disabled]="disabled2? true : null" placeholder="">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="employmentEnd">Employment End Date</label>
+                <input type="date" class="form-control" [attr.disabled]="disabled2? true : null" placeholder="" formControlName="enddate">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Work Authorization End Date</label>
-              <input type="date" class="form-control" [attr.disabled]="disabled2? true : null" placeholder="">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="employeeTitle">Title</label>
+                <input type="text" class="form-control" [attr.disabled]="disabled2? true : null" placeholder="Job Title Here" formControlName="title">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="exampleInputEmail2">Employment Start Date</label>
-              <input type="date" class="form-control" [attr.disabled]="disabled2? true : null" placeholder="">
+          <div class="row">
+            <div *ngIf="disabled2; else elseBlock2" class="update ml-auto mr-auto">
+              <button (click)="onChange2()" class="btn btn-primary btn-round">Edit</button>
             </div>
+            <ng-template #elseBlock2>
+              <div class="update ml-auto mr-auto">
+                <button type="submit" (click)="onSubmit()" class="btn btn-success btn-round">Save</button>
+              </div>
+              <div class="update ml-auto mr-auto">
+                <button (click)="clickMethod()" class="btn btn-round">Cancel</button>
+              </div>
+            </ng-template>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Employment End Date</label>
-              <input type="date" class="form-control" [attr.disabled]="disabled2? true : null" placeholder="">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="exampleInputEmail2">Title</label>
-              <input type="text" class="form-control" [attr.disabled]="disabled2? true : null" placeholder="Java Developer">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div *ngIf="disabled2; else elseBlock2" class="update ml-auto mr-auto">
-            <button (click)="onChange2()" class="btn btn-primary btn-round">Edit</button>
-          </div>
-          <ng-template #elseBlock2>
-            <div class="update ml-auto mr-auto">
-              <button type="submit" class="btn btn-success btn-round">Save</button>
-            </div>
-            <div class="update ml-auto mr-auto">
-              <button (click)="clickMethod()" class="btn btn-round">Cancel</button>
-            </div>
-          </ng-template>
-        </div>
-      </form>
+        </form>
       </div>
     </div>
   </div>
@@ -144,7 +174,7 @@
         <h5 class="card-title">Profile</h5>
       </div>
       <div class="card-body">
-        <form [formGroup]="form">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div *ngIf="!disabled3" class="row">
             <div class="col-md-6 pr-1">
               <div class="form-group">
@@ -185,7 +215,7 @@
             <div class="col-md-4 px-1">
               <div class="form-group">
                 <label>Age</label>
-                <input type="number" class="form-control" disabled placeholder="2" formControlName="age">
+                <input type="number" class="form-control" disabled placeholder="2">
               </div>
             </div>
             <div class="col-md-4 pl-1">
@@ -236,12 +266,12 @@
         <h5 class="card-title">Address</h5>
       </div>
       <div class="card-body">
-        <form [formGroup]="form">
+        <form [formGroup]="form2" (ngSubmit)="onSubmit2()">
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
                 <label>Address Line 1</label>
-                <input type="text" class="form-control" [attr.disabled]="disabled4? true : null" placeholder="abc st" value="">
+                <input type="text" class="form-control" [attr.disabled]="disabled4? true : null" placeholder="Street Name" formControlName="addressLine1">
               </div>
             </div>
           </div>
@@ -249,7 +279,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label>Address Line 2</label>
-                <input type="text" class="form-control" [attr.disabled]="disabled4? true : null" placeholder="Apt 123" value="">
+                <input type="text" class="form-control" [attr.disabled]="disabled4? true : null" placeholder="Apt, Building etc." formControlName="addressLine2">
               </div>
             </div>
           </div>
@@ -257,19 +287,19 @@
             <div class="col-md-4 pr-1">
               <div class="form-group">
                 <label>City</label>
-                <input type="text" class="form-control" [attr.disabled]="disabled4? true : null" placeholder="East Windsor" value="">
+                <input type="text" class="form-control" [attr.disabled]="disabled4? true : null" placeholder="City Name" formControlName="city">
               </div>
             </div>
             <div class="col-md-4 px-1">
               <div class="form-group">
                 <label>State</label>
-                <input type="text" class="form-control" [attr.disabled]="disabled4? true : null" placeholder="New Jersey" value="">
+                <input type="text" class="form-control" [attr.disabled]="disabled4? true : null" placeholder="State Full Name" formControlName="stateName">
               </div>
             </div>
             <div class="col-md-4 pl-1">
               <div class="form-group">
                 <label>Zip Code</label>
-                <input type="number" class="form-control" [attr.disabled]="disabled4? true : null" placeholder="ZIP Code">
+                <input type="text" class="form-control" [attr.disabled]="disabled4? true : null" placeholder="ZIP Code" formControlName="zipcode">
               </div>
             </div>
           </div>
@@ -295,7 +325,34 @@
       </div>
       <div class="card-body">
         <form>
-
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  Full Name
+                </th>             
+                <th>
+                  Phone
+                </th>
+                <th>
+                  Address
+                </th>
+              </thead>
+              <tbody>             
+                <tr>
+                  <td>
+                    Doris Greene
+                  </td>
+                  <td>
+                    123-234-4009
+                  </td>
+                  <td>
+                    123 st
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <div class="row">
             <div class="update ml-auto mr-auto">
               <button type="submit" class="btn btn-primary btn-round">Edit</button>
@@ -310,12 +367,43 @@
       </div>
       <div class="card-body">
         <form>
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  Title
+                </th>             
+                <th>
+                  Created Date
+                </th>
+                <th>
+                  Action
+                </th>
+              </thead>
+              <tbody>             
+                <tr>
+                  <td>
+                    Doris Greene
+                  </td>
+                  <td>
+                    123-234-4009
+                  </td>
+                  <td>
 
-          <div class="row">
-            <div class="update ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary btn-round">Edit</button>
-            </div>
+                    <div class="row">
+                      <div class="update ml-1 mr-1">
+                        <button type="submit" class="btn btn-primary btn-round">Download</button>
+                      </div>
+                      <div class="update ml-1 mr-1">
+                        <button type="submit" class="btn btn-danger btn-round">Delete</button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+
         </form>
       </div>
     </div>
