@@ -25,7 +25,7 @@ export class TableComponent implements OnInit{
 
     employee: any;
     users!: employee[];
-
+    public isCollapsed = false;
     constructor(
         private employeeService: EmployeeService,
         private formBuilder: FormBuilder,

@@ -20,6 +20,7 @@ import { RegisterComponent } from './components/register/register.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HousingdetailComponent } from './pages-hr/housingdetail/housingdetail.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -38,8 +39,9 @@ import { HousingdetailComponent } from './pages-hr/housingdetail/housingdetail.c
   imports: [
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes, {
-      useHash: true
-    }),
+    useHash: true,
+    relativeLinkResolution: 'legacy'
+}),
     HttpClientModule,
     ReactiveFormsModule,
     SidebarModule,
@@ -49,7 +51,8 @@ import { HousingdetailComponent } from './pages-hr/housingdetail/housingdetail.c
     FixedPluginModule,
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
