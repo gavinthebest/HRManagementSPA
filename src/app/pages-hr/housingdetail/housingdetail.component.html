@@ -10,23 +10,29 @@
               <tbody>
                 <tr>
                   <th scope="row">House Address: </th>
-                  <td>123 Ave. Princeton, NJ</td>
+                  <td>{{ house.address }}</td>
                   
                 </tr>
                 <tr>
                   <th scope="row">LandLord: </th>
-                  <td>ABC</td>
+                  <td>{{ house.landlord}}</td>
                   
                 </tr>
                 <tr>
                   <th scope="row">Phone: </th>
-                  <td colspan="2">123-323-4949</td>
+                  <td colspan="2">{{ house.phone }}</td>
                  
                 </tr>
+
+                <tr>
+                    <th scope="row">Email: </th>
+                    <td colspan="2">{{ house.email }}</td>
+                   
+                  </tr>
   
                 <tr>
                   <th scope="row">Number of people: </th>
-                  <td colspan="2">3</td>              
+                  <td colspan="2">{{ house.numberofperson }}</td>              
                 </tr>
               </tbody>
             </table>
@@ -48,7 +54,7 @@
               <tbody>
                 <tr>
                   <th scope="row"># of Mattress: </th>
-                  <td>8</td>
+                  <td>{{ facility.numberofbeds }}</td>
                   
                 </tr>
                 
@@ -143,48 +149,19 @@
               <table class="table table-bordered table-striped mb-0">
                 <thead>
                   <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Phone</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Car</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row"><a>abc</a></th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">bsa</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">ppp</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">iuiu</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">ddd</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">6</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
+                  
+                  <tr *ngFor="let employee of employees">
+                    <th scope="row">{{employee.employeeID}}</th>
+                    <td>{{employee.firstname}}</td>
+                    <td>{{employee.email}}</td>
+                    <td>@{{employee.car}}</td>
                   </tr>
                 </tbody>
               </table>

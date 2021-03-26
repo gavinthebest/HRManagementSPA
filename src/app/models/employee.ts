@@ -18,5 +18,5 @@ export interface employee {
     car: string;
     driverlicense: string;
     driverlicense_ExpirationDate: string;
-    houseID: number; 
+    houseid: number; 
 }
