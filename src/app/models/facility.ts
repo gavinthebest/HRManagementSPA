@@ -1,8 +1,8 @@
 export interface facility {
 
     facilityID: number;
-    houseID: number;
+    houseid: number;
     type: string;
-    quantity: number;
+    numberofbeds: number;
 
 }

@@ -27,4 +27,8 @@ export class EmployeeService {
    return this.apiService.delete('employees/delete',id);
  }
 
+ getEmployeesByHouseID(id: number): Observable<any> {
+  return this.apiService.getOne('employees/employeeByHouseId', id);
+}
+ 
 }
