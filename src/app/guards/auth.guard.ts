@@ -26,6 +26,7 @@ export class AuthGuard implements CanActivate {
             }
             this.employeeService.getEmployeeByUserId(currentUserId).subscribe(employee => {
               alert('Local Token Found, Redirecting....');
+              this.cookieService.set('employeeID', '' + employee.employeeID);
               if (employee.managerID) {
                 this.router.navigate(['/hr']);
               } else {
