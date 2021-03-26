@@ -3,7 +3,7 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 import {CookieService} from 'ngx-cookie-service';
 import {VisitorService} from '../services/visitor.service';
 import {EmployeeService} from '../services/employee.service';
-import {stringify} from '@angular/compiler/src/util';
+
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
         const currentUserId: string = this.cookieService.get('userID');
         if (currentUsername && currentToken && currentUserId) {
           this.visitorService.getVisitorByToken(currentToken).subscribe(visitor => {
-            if (visitor.username !== currentUsername || stringify(visitor.userID) !== currentUserId) {
+            if (visitor.username !== currentUsername || (visitor.userID + '') !== currentUserId) {
               alert('Please login');
               return true;
             }

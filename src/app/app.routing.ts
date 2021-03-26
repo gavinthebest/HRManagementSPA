@@ -11,7 +11,7 @@ export const AppRoutes: Routes = [
     path: 'employee',
     redirectTo: 'employee/dashboard',
     pathMatch: 'full',
-  }, 
+  },
 
   {
     path: 'employee',
@@ -26,8 +26,8 @@ export const AppRoutes: Routes = [
     path: 'hr',
     redirectTo: 'hr/dashboard',
     pathMatch: 'full',
-  }, 
-  
+  },
+
   {
     path: 'hr',
     component: AdminLayoutHrComponent,
@@ -43,5 +43,5 @@ export const AppRoutes: Routes = [
   //   redirectTo: 'login'
   // },
   {path: 'register', component: RegisterComponent},
-  {path: 'onboarding', component: OnboardingComponent},
-
+  {path: 'onboarding', component: OnboardingComponent}
+]
