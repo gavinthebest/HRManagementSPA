@@ -37,12 +37,11 @@ export const AppRoutes: Routes = [
   }]},
   
   {path: 'login', component: LoginComponent},
-  // {
-  //   path: '**',
-  //   redirectTo: 'login'
-  // },
   {path: 'register', component: RegisterComponent},
   {path: 'onboarding', component: OnboardingComponent},
-  {path: '', component: LoginComponent}
+  {
+    path: '**',
+    redirectTo: 'login'
+  }
 
 ]

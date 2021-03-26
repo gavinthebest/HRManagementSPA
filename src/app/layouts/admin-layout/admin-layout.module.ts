@@ -11,6 +11,8 @@ import { TableComponent }           from '../../pages/table/table.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HousingComponent } from 'app/pages/housing/housing.component';
+import { DetailsUploadComponent } from 'app/pages/user/details-upload/details-upload.component';
+import { FormUploadComponent } from 'app/shared/form-upload/form-upload.component';
 
 @NgModule({
   imports: [
@@ -24,7 +26,9 @@ import { HousingComponent } from 'app/pages/housing/housing.component';
     DashboardComponent,
     UserComponent,
     TableComponent,
-    HousingComponent
+    HousingComponent,
+    DetailsUploadComponent,
+    FormUploadComponent
   ]
 })
 
