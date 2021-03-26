@@ -3,6 +3,8 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 import {CookieService} from 'ngx-cookie-service';
 import {VisitorService} from '../services/visitor.service';
 import {EmployeeService} from '../services/employee.service';
+import {UserRoleService} from '../services/userrole.service';
+import {RoleService} from '../services/role.service';
 
 
 @Injectable({ providedIn: 'root' })
@@ -11,7 +13,9 @@ export class AuthGuard implements CanActivate {
         private cookieService: CookieService,
         private router: Router,
         private visitorService: VisitorService,
-        private employeeService: EmployeeService
+        private employeeService: EmployeeService,
+        private userRoleService: UserRoleService,
+        private roleService: RoleService
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -27,7 +31,13 @@ export class AuthGuard implements CanActivate {
             this.employeeService.getEmployeeByUserId(currentUserId).subscribe(employee => {
               alert('Local Token Found, Redirecting....');
               this.cookieService.set('employeeID', '' + employee.employeeID);
-              if (employee.managerID) {
+            });
+            let roleId: number;
+            this.userRoleService.getUserRoleByUserId(currentUserId).subscribe(userRole => {
+              roleId = userRole.roleID;
+            });
+            this.roleService.getRole(roleId).subscribe(role => {
+              if (role.roleName === 'HR') {
                 this.router.navigate(['/hr']);
               } else {
                 this.router.navigate(['/employee']);

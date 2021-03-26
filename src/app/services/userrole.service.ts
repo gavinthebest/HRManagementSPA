@@ -23,5 +23,8 @@ export class UserRoleService {
   deleteUserRole(id: number): Observable<userrole> {
     return this.apiService.delete('userRoles/delete', id);
   }
+  getUserRoleByUserId(userId: string): Observable<userrole> {
+    return this.apiService.getOneBy('userRoles/findByUserId', userId);
+  }
 
 }
