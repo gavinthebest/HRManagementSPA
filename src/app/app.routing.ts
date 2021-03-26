@@ -4,13 +4,14 @@ import {OnboardingComponent} from './components/onboarding/onboarding.component'
 import {RegisterComponent} from './components/register/register.component';
 import { AdminLayoutHrComponent } from './layouts/admin-layout-hr/admin-layout-hr.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import {AuthGuard} from './guards';
 
 export const AppRoutes: Routes = [
   {
     path: 'employee',
     redirectTo: 'employee/dashboard',
     pathMatch: 'full',
-  }, 
+  },
 
   {
     path: 'employee',
@@ -25,8 +26,8 @@ export const AppRoutes: Routes = [
     path: 'hr',
     redirectTo: 'hr/dashboard',
     pathMatch: 'full',
-  }, 
-  
+  },
+
   {
     path: 'hr',
     component: AdminLayoutHrComponent,
@@ -35,14 +36,12 @@ export const AppRoutes: Routes = [
       path: '',
       loadChildren: './layouts/admin-layout-hr/admin-layout-hr.module#AdminLayoutHrModule'
   }]},
-  
-  {path: 'login', component: LoginComponent},
+
+  {path: '', component: LoginComponent, canActivate: [AuthGuard]},
   // {
   //   path: '**',
   //   redirectTo: 'login'
   // },
   {path: 'register', component: RegisterComponent},
-  {path: 'onboarding', component: OnboardingComponent},
-  {path: '', component: LoginComponent}
-
+  {path: 'onboarding', component: OnboardingComponent}
 ]

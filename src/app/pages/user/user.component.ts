@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmployeeService } from 'app/services/employee.service';
-import { first } from 'rxjs/operators';
+import { filter, first, map } from 'rxjs/operators';
 import { AddressService } from 'app/services/address.service';
 import { VisaStatusService } from 'app/services/visa-status.service';
 import { ContactService } from 'app/services/contact.service';
 import { contact } from 'app/models/contact';
+import { UploadFileService } from 'app/services/upload-file.service';
 
 @Component({
     selector: 'user-cmp',
@@ -17,6 +18,7 @@ export class UserComponent implements OnInit{
     id: number = 1;
     contacts: contact[];
     employee: any;
+    fileUploads: string[];
     form: FormGroup;
     form2: FormGroup;
     form3: FormGroup;
@@ -80,8 +82,11 @@ export class UserComponent implements OnInit{
         .subscribe(x => this.form3.patchValue(x));
         this.contactService.getContactByEmployeeId(this.id)
         .subscribe(x => this.contacts = x);
+        this.uploadService.getFilesById(this.id)
+        .subscribe(x => this.fileUploads = x);
     }
     constructor(
+        private uploadService: UploadFileService,
         private contactService: ContactService,
         private employeeService: EmployeeService,
         private addressService: AddressService,
@@ -90,7 +95,6 @@ export class UserComponent implements OnInit{
         ) {}
     onChange1() {
         this.disabled1 = !this.disabled1;
-        console.log(this.contacts);
     }
     onChange2() {
         this.disabled2 = !this.disabled2;
