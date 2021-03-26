@@ -14,6 +14,9 @@ export class EmployeeService {
  getEmployee(id: number): Observable<employee> {
    return this.apiService.getOne('employees/all',id);
  }
+  getEmployeeByUserId(userId: string): Observable<employee> {
+    return this.apiService.getOneBy('employees/all', userId);
+  }
  createEmployee(employee : any): Observable<employee> {
    return this.apiService.create('employees/add', employee);
  }
