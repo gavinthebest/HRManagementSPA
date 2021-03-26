@@ -26,6 +26,9 @@ export class TableComponent implements OnInit{
     employee: any;
     users!: employee[];
     public isCollapsed = false;
+
+    currEmployId:number =111;
+    
     constructor(
         private employeeService: EmployeeService,
         private formBuilder: FormBuilder,
@@ -37,5 +40,10 @@ export class TableComponent implements OnInit{
         this.employeeService.getEmployees()
         .pipe(first())
         .subscribe(users => this.users = users);
+    }
+
+    setCurrEmployId(e){
+        // alert(e);
+        this.currEmployId = e;
     }
 }

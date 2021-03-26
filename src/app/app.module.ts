@@ -23,7 +23,6 @@ import { HousingdetailComponent } from './pages-hr/housingdetail/housingdetail.c
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +33,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SidebarHrComponent,
     OnboardingComponent,
     RegisterComponent,
-    HousingdetailComponent
+    HousingdetailComponent,
   ],
   imports: [
     BrowserAnimationsModule,
