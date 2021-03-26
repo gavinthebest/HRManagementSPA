@@ -15,6 +15,9 @@ getContacts(): Observable<contact[]> {
 getContact(id: number): Observable<contact> {
    return this.apiService.getOne('contacts/all',id);
  }
+getContactByEmployeeId(id: number): Observable<contact[]> {
+  return this.apiService.getByOtherId('contacts/find',id);
+}
 createContact(contact : any): Observable<contact> {
    return this.apiService.create('contacts/add', contact);
  }

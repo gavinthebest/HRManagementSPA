@@ -4,5 +4,8 @@ export interface house {
     houseID: number;
     address: string;
     numberofperson: number;
+    landlord: string;
+    phone: string;
+    email: string;
 
 }

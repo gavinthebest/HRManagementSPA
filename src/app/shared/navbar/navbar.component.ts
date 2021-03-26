@@ -41,7 +41,6 @@ export class NavbarComponent implements OnInit{
       if(titlee.charAt(0) === '#'){
           titlee = titlee.slice( 1 );
       }
-      console.log(titlee);
       for(var item = 0; item < this.listTitles.length; item++){
           if(this.listTitles[item].path === titlee){
               return this.listTitles[item].title;
@@ -52,7 +51,7 @@ export class NavbarComponent implements OnInit{
             return this.listTitles2[item].title;
         }
     }
-      return 'Welcome! Please click on the side bar to begin';
+      return '';
     }
     sidebarToggle() {
         if (this.sidebarVisible === false) {

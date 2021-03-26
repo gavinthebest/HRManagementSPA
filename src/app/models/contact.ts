@@ -7,5 +7,7 @@ export interface contact {
     isreference: number;
     isemergency: number;
     islandlord: number;
-
+    fullname: string;
+    phone: string;
+    address: string;
 }

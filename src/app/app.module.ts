@@ -5,8 +5,8 @@ import { ToastrModule } from "ngx-toastr";
 
 import { SidebarModule } from './sidebar/sidebar.module';
 import { NavbarModule} from './shared/navbar/navbar.module';
-import { FixedPluginModule} from './shared/fixedplugin/fixedplugin.module';
-import {HttpClientModule} from '@angular/common/http';
+import { FixedPluginModule } from './shared/fixedplugin/fixedplugin.module';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
@@ -18,7 +18,10 @@ import { SidebarHrComponent } from './sidebar-hr/sidebar-hr.component';
 import { OnboardingComponent } from './components/onboarding/onboarding.component';
 import { RegisterComponent } from './components/register/register.component';
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HousingdetailComponent } from './pages-hr/housingdetail/housingdetail.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 @NgModule({
@@ -30,13 +33,17 @@ import {FormsModule} from '@angular/forms';
     LoginComponent,
     SidebarHrComponent,
     OnboardingComponent,
-    RegisterComponent
+    RegisterComponent,
+    HousingdetailComponent
   ],
   imports: [
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes, {
-      useHash: true
-    }),
+    useHash: true,
+    relativeLinkResolution: 'legacy'
+}),
+    HttpClientModule,
+    ReactiveFormsModule,
     SidebarModule,
     SidebarHrModule,
     NavbarModule,
@@ -44,7 +51,8 @@ import {FormsModule} from '@angular/forms';
     FixedPluginModule,
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
