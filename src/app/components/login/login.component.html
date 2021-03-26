@@ -13,16 +13,11 @@
     <form class="form-signin">
       <h1 class=" mb-3">User Login</h1>
 
-      <input type="text" id="username" class="form-control" placeholder="Username/Email" required autofocus>
+      <input type="text" id="username" class="form-control" placeholder="Username/Email" [(ngModel)]="username" name="username" required autofocus>
 
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" [(ngModel)]="password" name="password" required>
 
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button><br><br>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="loginAttempt()">Sign in</button><br><br>
       <a class="mt-2 mb-3" href="#">New Employee? Register here.</a>
       <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
     </form>
