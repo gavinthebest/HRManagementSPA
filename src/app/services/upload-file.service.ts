@@ -14,7 +14,7 @@ export class UploadFileService {
   pushFileToStorage(file: File, userID: any, fileType: any): Observable<any> {
     const formdata: FormData = new FormData();
 
-    let fileName:string = 'user' + userID + fileType;
+    let fileName:string = 'user_' + userID + '_' + fileType;
     let fileExtension:string = file.name.split('?')[0].split('.').pop();
     formdata.append('file', file, fileName+'.'+fileExtension);
 
