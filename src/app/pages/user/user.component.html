@@ -7,7 +7,7 @@
       <div class="card-body">
         <div class="author">
           <a href="#/employee/user">
-            <img class="avatar border-gray" src="http://localhost:8080/api/file/user_{{this.form.value.userID}}_avatar.png" alt="No Avatar">
+            <img class="avatar border-gray" src="http://localhost:8080/api/file/user_{{this.userID}}_avatar.png" alt="No Avatar">
             <h5 class="title">{{this.form.value.firstname + ' ' + this.form.value.lastname}}</h5>
           </a>
         </div>
@@ -18,7 +18,7 @@
             <button (click)="onChange6()" class="btn btn-primary btn-round">Edit Avatar</button>
           </div>
           <ng-template #elseBlock6>
-            <form-upload [userID]='this.form.value.userID' fileType='avatar'></form-upload>
+            <form-upload [userID]='this.userID' [employeeID]='this.id' fileType='avatar'></form-upload>
             <div class="update ml-auto mr-auto">
               <button (click)="onChange6()" class="btn btn-round">Cancel</button>
             </div>
