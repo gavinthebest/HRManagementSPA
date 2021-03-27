@@ -1,255 +1,106 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-4">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title"> Simple Table</h4>
+        <h5 class="card-title">Registration Token Generation</h5>
       </div>
       <div class="card-body">
-        <div class="table-responsive">
+        <form (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-md-11 pr-1">
+              <div class="form-group">
+                <label>Employee Email Address</label>
+                <input type="text" class="form-control" placeholder="">
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div *ngIf="disabled" class="update ml-auto mr-auto">
+              <button type="submit" class="btn btn-success btn-round">Generate Token and Send Email</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Application Review</h5>
+      </div>
+      <div class="card-body">
+        <div >
           <table class="table">
             <thead class=" text-primary">
               <th>
-                Name
-              </th>
+                EmployeeID
+              </th>   
               <th>
-                Country
-              </th>
+                Type
+              </th>          
               <th>
-                City
-              </th>
-              <th class="text-right">
-                Salary
+                Show
               </th>
             </thead>
-            <tbody>
-              <tr>
+            <tbody>       
+              <tr *ngFor="let formOrDoc of formOrDocs">
                 <td>
-                  Dakota Rice
-                </td>
-                <td>
-                  Niger
-                </td>
-                <td>
-                  Oud-Turnhout
-                </td>
-                <td class="text-right">
-                  $36,738
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Minerva
+                  <div class="update ml-auto mr-auto">
+                    {{formOrDoc.employeeID}}
+                  </div>
                 </td>
                 <td>
-                  Curaçao
+                  <div *ngIf="formOrDoc.status === 'pending'" class="update ml-auto mr-auto">
+                    Register
+                  </div>
+                  <div *ngIf="formOrDoc.status === 'optpending'" class="update ml-auto mr-auto">
+                    STEM OPT
+                  </div>
                 </td>
                 <td>
-                  Sinaai-Waas
+                    <div *ngIf="formOrDoc.status === 'pending'" class="update ml-auto mr-auto">
+                      <button (click)="showDetailForm(formOrDoc.employeeID)" class="btn btn-info btn-round">Detail</button>
+                    </div>
+                    <div *ngIf="formOrDoc.status === 'optpending'" class="update ml-auto mr-auto">
+                      <button (click)="showDetailDoc(formOrDoc.employeeID)" class="btn btn-info btn-round">Detail</button>
+                    </div>
                 </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Sage Rodriguez
-                </td>
-                <td>
-                  Netherlands
-                </td>
-                <td>
-                  Baileux
-                </td>
-                <td class="text-right">
-                  $56,142
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Philip Chaney
-                </td>
-                <td>
-                  Korea, South
-                </td>
-                <td>
-                  Overland Park
-                </td>
-                <td class="text-right">
-                  $38,735
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Doris Greene
-                </td>
-                <td>
-                  Malawi
-                </td>
-                <td>
-                  Feldkirchen in Kärnten
-                </td>
-                <td class="text-right">
-                  $63,542
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Mason Porter
-                </td>
-                <td>
-                  Chile
-                </td>
-                <td>
-                  Gloucester
-                </td>
-                <td class="text-right">
-                  $78,615
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Jon Porter
-                </td>
-                <td>
-                  Portugal
-                </td>
-                <td>
-                  Gloucester
-                </td>
-                <td class="text-right">
-                  $98,615
-                </td>
-              </tr>
+              </tr>   
             </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-md-12">
-    <div class="card card-plain">
+  <div class="col-md-8">
+    <div class="card">
       <div class="card-header">
-        <h4 class="card-title"> Table on Plain Background</h4>
-        <p class="card-category"> Here is a subtitle for this table</p>
+        <h5 class="card-title">Application Review Detail</h5>
       </div>
       <div class="card-body">
-        <div class="table-responsive">
-          <table class="table">
-            <thead class=" text-primary">
-              <th>
-                Name
-              </th>
-              <th>
-                Country
-              </th>
-              <th>
-                City
-              </th>
-              <th class="text-right">
-                Salary
-              </th>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  Dakota Rice
-                </td>
-                <td>
-                  Niger
-                </td>
-                <td>
-                  Oud-Turnhout
-                </td>
-                <td class="text-right">
-                  $36,738
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Minerva Hooper
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Sage Rodriguez
-                </td>
-                <td>
-                  Netherlands
-                </td>
-                <td>
-                  Baileux
-                </td>
-                <td class="text-right">
-                  $56,142
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Philip Chaney
-                </td>
-                <td>
-                  Korea, South
-                </td>
-                <td>
-                  Overland Park
-                </td>
-                <td class="text-right">
-                  $38,735
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Doris Greene
-                </td>
-                <td>
-                  Malawi
-                </td>
-                <td>
-                  Feldkirchen in Kärnten
-                </td>
-                <td class="text-right">
-                  $63,542
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Mason Porter
-                </td>
-                <td>
-                  Chile
-                </td>
-                <td>
-                  Gloucester
-                </td>
-                <td class="text-right">
-                  $78,615
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Jon Porter
-                </td>
-                <td>
-                  Portugal
-                </td>
-                <td>
-                  Gloucester
-                </td>
-                <td class="text-right">
-                  $98,615
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div *ngIf="!isDocApp && !isFormApp">
+          <p class="card-category">Please click detail button to view.</p>
+        </div>
+        <div *ngIf="isFormApp">
+          <p class="card-category">This is form to show.</p>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button (click)="approve()" class="btn btn-success btn-round">Approve</button>
+            </div>
+            <div class="update ml-auto mr-auto">
+              <button (click)="reject()" class="btn btn-danger btn-round">Reject</button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="isDocApp">
+          <p class="card-category">This is doc to show</p>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button (click)="approve()" class="btn btn-success btn-round">Approve</button>
+            </div>
+            <div class="update ml-auto mr-auto">
+              <button (click)="reject()" class="btn btn-danger btn-round">Reject</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
