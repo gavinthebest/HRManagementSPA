@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
           this.visitorService.deleteVisitorByUsername(user.username).subscribe();
           this.visitorService.createVisitor(this.visitor).subscribe();
           alert('Login Success');
-          window.location.reload();
+          this.router.navigate(['']);
         } else {
           alert('Login failed, please check your password.');
         }

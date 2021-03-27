@@ -4,7 +4,7 @@ import {OnboardingComponent} from './components/onboarding/onboarding.component'
 import {RegisterComponent} from './components/register/register.component';
 import { AdminLayoutHrComponent } from './layouts/admin-layout-hr/admin-layout-hr.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import {AuthGuard} from './guards';
+import {AuthGuard, LogoutGuard} from './guards';
 
 export const AppRoutes: Routes = [
   {
@@ -37,11 +37,12 @@ export const AppRoutes: Routes = [
       loadChildren: './layouts/admin-layout-hr/admin-layout-hr.module#AdminLayoutHrModule'
   }]},
 
-  {path: '', component: LoginComponent, canActivate: [AuthGuard]},
+  {path: '', component: LoginComponent, canActivate: [AuthGuard], pathMatch: 'full'},
   // {
   //   path: '**',
   //   redirectTo: 'login'
   // },
   {path: 'register', component: RegisterComponent},
-  {path: 'onboarding', component: OnboardingComponent}
+  {path: 'onboarding', component: OnboardingComponent},
+  {path: 'logout', canActivate: [LogoutGuard], component: LoginComponent}
 ]
