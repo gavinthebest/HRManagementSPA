@@ -22,6 +22,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HousingdetailComponent } from './pages-hr/housingdetail/housingdetail.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReportcommentComponent } from './pages/reportcomment/reportcomment.component';
+import {AdminLayoutModule} from './layouts/admin-layout/admin-layout.module';
 
 
 @NgModule({
@@ -37,24 +38,25 @@ import { ReportcommentComponent } from './pages/reportcomment/reportcomment.comp
     HousingdetailComponent,
     ReportcommentComponent,
   ],
-  imports: [
-    BrowserAnimationsModule,
-    RouterModule.forRoot(AppRoutes, {
-    useHash: true,
-    relativeLinkResolution: 'legacy'
-}),
-    HttpClientModule,
-    ReactiveFormsModule,
-    SidebarModule,
-    SidebarHrModule,
-    NavbarModule,
-    ToastrModule.forRoot(),
-    FixedPluginModule,
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    NgbModule
-  ],
+    imports: [
+        BrowserAnimationsModule,
+        RouterModule.forRoot(AppRoutes, {
+            useHash: true,
+            relativeLinkResolution: 'legacy'
+        }),
+        HttpClientModule,
+        ReactiveFormsModule,
+        SidebarModule,
+        SidebarHrModule,
+        NavbarModule,
+        ToastrModule.forRoot(),
+        FixedPluginModule,
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        NgbModule,
+        AdminLayoutModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

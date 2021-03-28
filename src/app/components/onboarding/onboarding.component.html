@@ -23,9 +23,12 @@
       <input type="text" id="middlename" class="form-control" pattern="[a-zA-Z]{1,}"
              placeholder="Middle Name" [(ngModel)]="mname" name="mname">
     </div>
+    <div class="form-sameline2">
+      <input type="text" id="preferredname" class="form-control" pattern="[a-zA-Z]{1,}"
+             placeholder="Preferred Name" [(ngModel)]="preferredname" name="preferredname" required>
       <input type="password" id="ssn" class="form-control" pattern="[0-9]{9}"
              placeholder="SSN" [(ngModel)]="ssn" name="ssn" required>
-
+    </div>
     <h3>Date of Birth</h3>
     <input type="date" id="dob" class="form-control"
            placeholder="Your Date of Birth" [(ngModel)]="dob" name="dob" required>
@@ -41,7 +44,13 @@
     </div>
 
     <h3>Upload an Avatar If You Like</h3>
-    <input type="file" id="avatar" class="form-control" placeholder="Upload an Avatar">
+    <div class="card-body">
+      <a href="#/employee/user">
+        <img class="avatar border-gray" src="http://localhost:8080/api/file/user_{{picID}}_avatar.{{fileType}}" alt="No Avatar">
+      </a>
+      <form-upload [userID]='userID' [employeeID]='employeeID' fileType='avatar'></form-upload>
+      <button class="btn btn-primary btn-round" (click)="refresh()">Refresh Image</button>
+    </div>
 
     <h3>Your Contact Info</h3>
     <input type="text" id="addressline1" class="form-control"
@@ -56,9 +65,12 @@
       <input type="text" id="addresszipcode" class="form-control" pattern="[0-9]{5}"
              placeholder="Zipcode" [(ngModel)]="zipcode" name="zipcode" required>
     </div>
+    <div class="form-sameline2">
     <input type="tel" id="cellphone" class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
            placeholder="Your Phone Number (123-456-7890)" [(ngModel)]="phone" name="phone" required>
-
+    <input type="tel" id="alterphone" class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+           placeholder="Your Alternate Phone Number (123-456-7890)" [(ngModel)]="alterphone" name="alterphone" required>
+    </div>
     <h3>Your Car's Info</h3>
     <div class="form-sameline3">
       <input type="text" id="carmaker" class="form-control"

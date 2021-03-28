@@ -11,7 +11,6 @@ export class LogoutGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    alert('Logging out');
     this.cookieService.deleteAll('');
     return true;
   }
