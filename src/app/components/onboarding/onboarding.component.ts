@@ -12,7 +12,6 @@ import {ApplicationWorkFlowService} from '../../services/application-work-flow.s
 })
 
 export class OnboardingComponent implements OnInit {
-  newUserId: string;
   newUserEmail: string;
   gender: string;
   fname: string;
@@ -30,6 +29,13 @@ export class OnboardingComponent implements OnInit {
   carModel: string;
   carColor: string;
   employee: employee;
+  preferredname: string;
+  alterphone: string;
+  employeeID: string;
+  userID: string;
+  picID: string;
+  fileType: string;
+  disableRefresh: boolean;
 
   constructor(private cookieService: CookieService,
               private employeeService: EmployeeService,
@@ -38,23 +44,33 @@ export class OnboardingComponent implements OnInit {
 
   ngOnInit(): void {
     this.newUserEmail = this.cookieService.get('email');
+    this.employeeID = this.cookieService.get('employeeID');
+    this.userID = this.cookieService.get('userID');
+    this.picID = '1';
+    this.fileType = 'png';
+    this.disableRefresh = true;
   }
 
   registerAttempt(): void {
-    let thisDate: Date = new Date();
-    let employeeID: number = Number(this.cookieService.get('employeeID'));
-    let userID: number = Number(this.cookieService.get('userID'));
     let email: string = this.newUserEmail;
-    this.employee = {employeeID: employeeID, userID: userID, firstname: this.fname, lastname: this.lname,
+    this.employee = {employeeID: Number(this.employeeID), userID: Number(this.userID), firstname: this.fname, lastname: this.lname,
       middlename: this.mname, email: email, cellphone: this.phone, gender: this.gender, ssn: this.ssn, dob: this.dob,
-      avatar: 'standby', car: this.carMaker + '_' + this.carModel + '_' + this.carColor, alternatephone: null, preferredname: null,
-      title: null, managerID: null, driverlicense: null, driverlicense_expirationdate: null, startdate: null, enddate: null, houseid: null};
+      avatar: 'standby', car: this.carMaker + '_' + this.carModel + '_' + this.carColor, alternatephone: this.alterphone,
+      preferredname: this.preferredname, title: null, managerID: null, driverlicense: null,
+      driverlicense_expirationdate: null, startdate: null, enddate: null, houseid: null};
+
     this.employeeService.createEmployee(this.employee).subscribe(ob => {
-      this.applicationWorkFlowService.getApplicationWorkFlowByEmployeeId(String(employeeID)).subscribe(ob2 => {
+      this.applicationWorkFlowService.getApplicationWorkFlowByEmployeeId(this.employeeID).subscribe(ob2 => {
         ob2.status = 'pending';
         this.applicationWorkFlowService.updateApplicationWorkFlow(ob2).subscribe();
       });
     });
     this.router.navigate(['']);
+  }
+
+  refresh() {
+    this.picID = this.userID;
+    this.fileType = this.cookieService.get('fileType');
+    this.disableRefresh = false;
   }
 }

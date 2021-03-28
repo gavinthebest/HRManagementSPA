@@ -15,21 +15,24 @@ import { DetailsUploadComponent } from 'app/pages/user/details-upload/details-up
 import { FormUploadComponent } from 'app/shared/form-upload/form-upload.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(AdminLayoutRoutes),
-    FormsModule,
-    ReactiveFormsModule,
-    NgbModule
-  ],
-  declarations: [
-    DashboardComponent,
-    UserComponent,
-    TableComponent,
-    HousingComponent,
-    DetailsUploadComponent,
-    FormUploadComponent
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(AdminLayoutRoutes),
+        FormsModule,
+        ReactiveFormsModule,
+        NgbModule
+    ],
+    exports: [
+        FormUploadComponent
+    ],
+    declarations: [
+        DashboardComponent,
+        UserComponent,
+        TableComponent,
+        HousingComponent,
+        DetailsUploadComponent,
+        FormUploadComponent
+    ]
 })
 
 export class AdminLayoutModule {}

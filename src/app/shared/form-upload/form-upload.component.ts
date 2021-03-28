@@ -4,6 +4,7 @@ import { HttpResponse, HttpEventType } from '@angular/common/http';
 import { PersonalDocumentService } from 'app/services/personal-document.service';
 import { personalDocument } from 'app/models/personalDocument';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'form-upload',
@@ -22,7 +23,8 @@ export class FormUploadComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private uploadService: UploadFileService,
-    private pdService: PersonalDocumentService
+    private pdService: PersonalDocumentService,
+    private cookieService: CookieService
     ) { }
 
   ngOnInit() {
@@ -32,7 +34,7 @@ export class FormUploadComponent implements OnInit {
       path: [''],
       title: [this.fileType],
       comment: [''],
-      createdate: [new Date(Date.now())],    
+      createdate: [new Date(Date.now())],
     });
   }
 
@@ -45,6 +47,8 @@ export class FormUploadComponent implements OnInit {
 
     //File Upload saved by userID
     this.currentFileUpload = this.selectedFiles.item(0);
+    const fileType: string = this.currentFileUpload.name.split('.').pop();
+    this.cookieService.set('fileType', fileType);
     this.uploadService.pushFileToStorage(this.currentFileUpload, this.userID, this.fileType).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
         this.progress.percentage = Math.round(100 * event.loaded / event.total);

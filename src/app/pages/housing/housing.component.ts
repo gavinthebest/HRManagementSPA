@@ -13,7 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
 import { data } from 'jquery';
 
- 
+
 
 declare interface HousingData {
     headerRow: string[];
@@ -27,27 +27,27 @@ declare interface HousingData {
 })
 
 export class HousingComponent implements OnInit{
-    
+
     id: number = 1;
     house : house;
     hide = true;
     eid :number;
     emids :number[];
     employee : employee;
-    employees : employee[];   
+    employees : employee[];
     facilityreports : facilityReport[];
     form: FormGroup;
     employeeID: string;
 
     constructor(
         private cookieService: CookieService,
-        private housingservice : HouseService, 
+        private housingservice : HouseService,
         private employeeservice : EmployeeService,
         private formBuilder: FormBuilder,
         private facilityReportService: FacilityReportService,
-        private route: ActivatedRoute){}   
+        private route: ActivatedRoute){}
 
-    ngOnInit() {     
+    ngOnInit() {
 
         this.employeeID = this.cookieService.get('employeeID');
         this.form = this.formBuilder.group({
@@ -74,9 +74,9 @@ export class HousingComponent implements OnInit{
             this.employeeservice.getEmployeesByHouseID(this.eid)
            .subscribe( data => {
             this.employees = data;
-          });  
-          });  
-        
+          });
+          });
+
         //find facility report by houseID
         this.employeeservice.getEmployee(1)
         .subscribe( data => {
@@ -84,11 +84,11 @@ export class HousingComponent implements OnInit{
             this.facilityReportService.getFacilitiesReportByHouseID(this.eid)
            .subscribe( data => {
             this.facilityreports = data;
-          });  
-          });  
-                         
+          });
+          });
+
         };
-   
+
       onChange() {
         this.hide = !this.hide;
       }
@@ -98,10 +98,10 @@ export class HousingComponent implements OnInit{
             .pipe(first())
             .subscribe(() => {
                 location.reload();
-            });           
+            });
         console.warn('Your info has been updated', this.form.value);
     }
-  
 
-      
+
+
 }
