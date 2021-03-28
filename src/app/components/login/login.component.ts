@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
           this.cookieService.set('username', user.username);
           this.cookieService.set('userID', String(user.userID));
           this.cookieService.set('token', user.username + ' is a token');
+          this.cookieService.set('email', user.email);
           this.visitor = {username: user.username, userID: user.userID,
             token: user.username + ' is a token', visitorID: null};
           this.visitorService.deleteVisitorByUsername(user.username).subscribe();
