@@ -24,4 +24,9 @@ export class FacilityReportDetailService {
   deleteFacilityReportDetail(id: number): Observable<facilityReportDetail> {
     return this.apiService.delete('facilityReportDetails/delete',id);
   }
+
+  getFacilityReportDetailsByFacilityReportID(id: number): Observable<any> {
+    return this.apiService.getOne('facilityReportDetails/facilityReportDetailByFacilityReportId', id);
+  }
+ 
 }

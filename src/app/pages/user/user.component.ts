@@ -9,6 +9,8 @@ import { contact } from 'app/models/contact';
 import { UploadFileService } from 'app/services/upload-file.service';
 import { CookieService } from 'ngx-cookie-service';
 
+
+
 @Component({
     selector: 'user-cmp',
     moduleId: module.id,
