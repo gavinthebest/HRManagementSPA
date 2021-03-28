@@ -11,7 +11,7 @@ export interface employee {
   enddate: Date,
   driverlicense: string,
   driverlicense_expirationdate: Date,
-  houseID: number,
+  houseid: number,
   employeeID: number,
   car: string,
   avatar: string,

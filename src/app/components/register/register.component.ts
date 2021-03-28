@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
         let employee: employee = {employeeID: null, userID: userID, firstname: null, lastname: null,
           middlename: null, email: null, cellphone: null, gender: null, ssn: null, dob: null,
           avatar: null, car: null, alternatephone: null, title: null, managerID: null, preferredname: null,
-          driverlicense: null, driverlicense_expirationdate: null, startdate: null, enddate: null, houseID: null};
+          driverlicense: null, driverlicense_expirationdate: null, startdate: null, enddate: null, houseid: null};
         this.employeeService.createEmployee(employee).subscribe(ob => {
           console.log('uid: ' + userID);
           this.employeeService.getEmployeeByUserId(String(userID)).subscribe(employee2 => {
