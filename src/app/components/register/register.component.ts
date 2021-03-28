@@ -9,6 +9,8 @@ import {EmployeeService} from '../../services/employee.service';
 import {ApplicationWorkFlowService} from '../../services/application-work-flow.service';
 import {employee} from '../../models/employee';
 import {applicationWorkFlow} from '../../models/applicationWorkFlow';
+import {Observable} from 'rxjs';
+import {registrationtoken} from '../../models/registrationtoken';
 
 @Component({
   selector: 'app-register',
@@ -33,13 +35,21 @@ export class RegisterComponent implements OnInit {
   }
   validate(form: NgForm): void {
     this.token = form.controls['token'].value;
-    console.log(this.token);
-    this.registrationtokenService.getRegistrationtokenByToken(this.token).subscribe(reg => {
-      this.tokenValidated = (reg != null);
+    let getToken: Observable<registrationtoken> = this.registrationtokenService.getRegistrationtokenByToken(this.token);
+    getToken.subscribe(reg => {
+      if (reg == null) {
+        alert('Invalid Token');
+        this.tokenValidated = false;
+      } else if (new Date() < new Date(reg.validduration)) {
+        this.tokenValidated = true;
+        alert('Registration Token Found');
+      } else {
+        this.tokenValidated = false;
+        alert('This Registration Token Has Expired');
+      }
       if (this.tokenValidated) {
         this.email = reg.email;
       }
-      console.log(reg);
     });
   }
   registerAttempt(): void {

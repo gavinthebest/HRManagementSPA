@@ -4,7 +4,7 @@ import {OnboardingComponent} from './components/onboarding/onboarding.component'
 import {RegisterComponent} from './components/register/register.component';
 import { AdminLayoutHrComponent } from './layouts/admin-layout-hr/admin-layout-hr.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import {AuthGuard, LogoutGuard} from './guards';
+import {AdminGuard, AuthGuard, LoginGuard, LogoutGuard} from './guards';
 
 export const AppRoutes: Routes = [
   {
@@ -16,6 +16,7 @@ export const AppRoutes: Routes = [
   {
     path: 'employee',
     component: AdminLayoutComponent,
+    canActivate: [LoginGuard],
     children: [
         {
       path: '',
@@ -31,12 +32,13 @@ export const AppRoutes: Routes = [
   {
     path: 'hr',
     component: AdminLayoutHrComponent,
+    canActivate: [LoginGuard, AdminGuard],
     children: [
         {
       path: '',
       loadChildren: './layouts/admin-layout-hr/admin-layout-hr.module#AdminLayoutHrModule'
   }]},
-  {path: 'onboarding', component: OnboardingComponent},
+  {path: 'onboarding', component: OnboardingComponent, canActivate: [LoginGuard]},
   {path: '', component: LoginComponent, canActivate: [AuthGuard], pathMatch: 'full'},
   // {
   //   path: '**',
