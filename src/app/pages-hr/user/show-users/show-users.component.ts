@@ -30,8 +30,7 @@ export class ShowUsersComponent implements OnInit, DoCheck {
             this.currentUsers = this.users;
         } else {
             this.currentUsers = this.users.filter(x => x.employeeID.toString().includes(this.search)
-                                                    || x.firstname.toLowerCase().includes(this.search.toLowerCase())
-                                                    || x.lastname.toLowerCase().includes(this.search.toLowerCase()));
+                                                    || (x.firstname.toLowerCase() + ' ' + x.lastname.toLowerCase()).includes(this.search.toLowerCase()));
         }
         this.oldSearch = this.search;
     }

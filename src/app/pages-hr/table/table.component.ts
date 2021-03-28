@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { employee } from 'app/models/employee';
 import { VisaStatusService } from "app/services/visa-status.service";
 import { visaStatus } from "app/models/visaStatus";
+import { RegistrationtokenService } from 'app/services/registrationtoken.service';
 
 declare interface TableData {
     headerRow: string[];
@@ -37,8 +38,7 @@ export class TableComponent implements OnInit{
     constructor(
         private employeeService: EmployeeService,
         private formBuilder: FormBuilder,
-        private route: ActivatedRoute,
-        private router: Router,
+        private registrationTokenService: RegistrationtokenService,
         private visaStatusService: VisaStatusService
         // private httpClient: HttpClient
         ) {}
@@ -89,8 +89,23 @@ export class TableComponent implements OnInit{
         this.picUrl = "https://www.paydaypayroll.com/wp-content/uploads/2019/11/Restricted-SS-Card.jpg"
     }
 
+    notify(email:string) {
+        this.registrationTokenService.notifyEmail(email)
+        .subscribe(            
+            response => {
+            alert(response);
+        },
+        error => {
+          console.log(error);
+        });
+    }
+
     trExpand(e){
-        this.expand_employeeId = e;
+        if (e == this.expand_employeeId) {
+            this.expand_employeeId = null;
+        } else {
+            this.expand_employeeId = e;
+        }
         // this.visaStatusService.getVisaStatusByEmployeeID(1));
     }
     

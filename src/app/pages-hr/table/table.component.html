@@ -79,7 +79,7 @@
                       </td>
                       <td *ngIf="visa.employeeid == user.employeeID" >
                         <tr><td><b>Next Step:</b></td></tr>
-                        <tr><td>未接上 S3 数据库&nbsp;&nbsp;</td><button type="btn" class="btn btn-primary btn-round">Send Notification</button></tr>
+                        <tr><td>未接上 S3 数据库&nbsp;&nbsp;</td><button type="btn" (click)="notify(user.email)" class="btn btn-primary btn-round">Send Notification</button></tr>
                       </td>  
                       
                     </tr>
