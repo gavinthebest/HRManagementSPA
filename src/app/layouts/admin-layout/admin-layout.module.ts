@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
@@ -29,9 +29,6 @@ import { FormUploadComponent } from 'app/shared/form-upload/form-upload.componen
     HousingComponent,
     DetailsUploadComponent,
     FormUploadComponent
-  ],
-  providers: [
-    DatePipe,
   ]
 })
 

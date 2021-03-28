@@ -70,5 +70,10 @@ export class ApiService {
         .delete(`${environment.apiUrl}${path}` + '/' + id, { headers: this.headers })
         .pipe(map((response) => response));
   }
+  deleteByString(path: string, content: string): Observable<any> {
+    return this.http
+      .delete(`${environment.apiUrl}${path}` + '/' + content, { headers: this.headers })
+      .pipe(map((response) => response));
+}
 
 }
