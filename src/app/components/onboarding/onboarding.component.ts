@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {RouteInfo} from '../../sidebar-hr/sidebar-hr.component';
 import {CookieService} from 'ngx-cookie-service';
 import {EmployeeService} from '../../services/employee.service';
 import {employee} from '../../models/employee';
@@ -49,7 +48,7 @@ export class OnboardingComponent implements OnInit {
     this.employee = {employeeID: employeeID, userID: userID, firstname: this.fname, lastname: this.lname,
       middlename: this.mname, email: email, cellphone: this.phone, gender: this.gender, ssn: this.ssn, dob: this.dob,
       avatar: 'standby', car: this.carMaker + '_' + this.carModel + '_' + this.carColor, alternatephone: null, preferredname: null,
-      title: null, managerID: null, driverlicense: null, driverlicense_expirationdate: null, startdate: null, enddate: null, houseID: null};
+      title: null, managerID: null, driverlicense: null, driverlicense_expirationdate: null, startdate: null, enddate: null, houseid: null};
     this.employeeService.createEmployee(this.employee).subscribe(ob => {
       this.applicationWorkFlowService.getApplicationWorkFlowByEmployeeId(String(employeeID)).subscribe(ob2 => {
         ob2.status = 'pending';
