@@ -58,6 +58,7 @@ export class OnboardingComponent implements OnInit {
       avatar: 'standby', car: this.carMaker + '_' + this.carModel + '_' + this.carColor, alternatephone: this.alterphone,
       preferredname: this.preferredname, title: null, managerID: null, driverlicense: null,
       driverlicense_expirationdate: null, startdate: null, enddate: null, houseid: null};
+
     this.employeeService.createEmployee(this.employee).subscribe(ob => {
       this.applicationWorkFlowService.getApplicationWorkFlowByEmployeeId(this.employeeID).subscribe(ob2 => {
         ob2.status = 'pending';
