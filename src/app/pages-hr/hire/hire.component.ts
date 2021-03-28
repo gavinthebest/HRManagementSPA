@@ -5,6 +5,7 @@ import { employee } from 'app/models/employee';
 import { ApplicationWorkFlowService } from 'app/services/application-work-flow.service';
 import { EmployeeService } from 'app/services/employee.service';
 import { PersonalDocumentService } from 'app/services/personal-document.service';
+import { RegistrationtokenService } from 'app/services/registrationtoken.service';
 
 @Component({
     selector: 'hire-cmp',
@@ -35,7 +36,8 @@ export class HireComponent implements OnInit{
         private fb: FormBuilder,
         private employeeService: EmployeeService,
         private awfService: ApplicationWorkFlowService,
-        private pdService: PersonalDocumentService
+        private pdService: PersonalDocumentService,
+        private registrationTokenService: RegistrationtokenService
         ) {}
 
     ngOnInit(){
@@ -70,7 +72,14 @@ export class HireComponent implements OnInit{
         });
     }
     onSubmit(): void {
-        this.emailFB.value.email;
+        this.registrationTokenService.verifyEmail(this.emailFB.value.email)
+        .subscribe(            
+            response => {
+            alert(response);
+        },
+        error => {
+          console.log(error);
+        });
     }
 
     approve(): void {
