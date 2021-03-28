@@ -18,6 +18,9 @@ export class RegistrationtokenService {
   getRegistrationtokenByToken(token: string): Observable<registrationtoken> {
     return this.apiService.getOneBy('registrationTokens/find', token);
   }
+  verifyEmail(email: string): Observable<string> {
+    return this.apiService.getOneByEmail('registrationTokens/verify', email);
+  }
   createRegistrationtoken(registrationtoken : any): Observable<registrationtoken> {
      return this.apiService.create('registrationTokens/add', registrationtoken);
    }
