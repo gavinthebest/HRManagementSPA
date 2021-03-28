@@ -21,6 +21,9 @@ export class ApplicationWorkFlowService {
   updateApplicationWorkFlow(applicationWorkFlow : any): Observable<applicationWorkFlow> {
     return this.apiService.update('applicationWorkFlows/update', applicationWorkFlow);
   }
+  getApplicationWorkFlowByEmployeeId(id: string): Observable<applicationWorkFlow> {
+    return this.apiService.getOneBy('applicationWorkFlows/getByEmployeeID', id);
+  }
   deleteApplicationWorkFlow(id: number): Observable<applicationWorkFlow> {
     return this.apiService.delete('applicationWorkFlows/delete',id);
   }

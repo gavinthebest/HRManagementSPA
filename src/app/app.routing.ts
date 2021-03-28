@@ -36,13 +36,12 @@ export const AppRoutes: Routes = [
       path: '',
       loadChildren: './layouts/admin-layout-hr/admin-layout-hr.module#AdminLayoutHrModule'
   }]},
-
+  {path: 'onboarding', component: OnboardingComponent},
   {path: '', component: LoginComponent, canActivate: [AuthGuard], pathMatch: 'full'},
   // {
   //   path: '**',
   //   redirectTo: 'login'
   // },
   {path: 'register', component: RegisterComponent},
-  {path: 'onboarding', component: OnboardingComponent},
   {path: 'logout', canActivate: [LogoutGuard], component: LoginComponent}
 ]
