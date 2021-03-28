@@ -21,6 +21,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HousingdetailComponent } from './pages-hr/housingdetail/housingdetail.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReportcommentComponent } from './pages/reportcomment/reportcomment.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     OnboardingComponent,
     RegisterComponent,
     HousingdetailComponent,
+    ReportcommentComponent,
   ],
   imports: [
     BrowserAnimationsModule,

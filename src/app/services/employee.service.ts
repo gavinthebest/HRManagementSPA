@@ -31,6 +31,4 @@ export class EmployeeService {
   return this.apiService.getOne('employees/employeeByHouseId', id);
 }
  
-
-
 }

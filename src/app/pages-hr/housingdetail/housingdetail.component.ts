@@ -22,8 +22,11 @@ export class HousingdetailComponent implements OnInit {
   employees: employee[];
   facilityreports: facilityReport[];
   
-  constructor(private housingservice : HouseService, private facilityservice : FacilityService, 
-              private facilityreportservice : FacilityReportService, private employeeservice : EmployeeService,private route: ActivatedRoute){}   
+  constructor(private housingservice : HouseService, 
+              private facilityservice : FacilityService, 
+              private facilityreportservice : FacilityReportService, 
+              private employeeservice : EmployeeService, 
+              private route: ActivatedRoute){}   
 
   ngOnInit() {
 
@@ -36,6 +39,7 @@ export class HousingdetailComponent implements OnInit {
         .subscribe( data => {
           this.facility = data;
         });
+
 
         this.employeeservice.getEmployeesByHouseID(this.route.snapshot.params['houseID'])
         .subscribe( data => {

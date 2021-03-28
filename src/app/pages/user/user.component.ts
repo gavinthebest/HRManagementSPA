@@ -8,6 +8,8 @@ import { ContactService } from 'app/services/contact.service';
 import { contact } from 'app/models/contact';
 import { UploadFileService } from 'app/services/upload-file.service';
 
+
+
 @Component({
     selector: 'user-cmp',
     moduleId: module.id,

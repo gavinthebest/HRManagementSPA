@@ -1,7 +1,7 @@
 export interface house {
 
     contactID: number;
-    houseID: number;
+    houseid: number;
     address: string;
     numberofperson: number;
     landlord: string;

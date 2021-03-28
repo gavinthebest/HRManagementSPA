@@ -24,6 +24,7 @@
               <tbody>
                 <tr>
                   
+                  
                   <td>{{ house.houseID }}</td>
                   <td>{{ house.address }}</td>
                   <td>{{ house.numberofperson }}</td>
@@ -47,28 +48,13 @@
               </th>
             </thead>
             <tbody>             
-              <tr>
+                           
+              <tr *ngFor="let employee of employees">
                 <td>
-                  Doris Greene
+                  {{ employee.firstname }}
                 </td>
                 <td>
-                  123-234-4009
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Ken Black
-                </td>
-                <td>
-                  898-292-2929
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Sisley Amber
-                </td>
-                <td>
-                  123-234-4009
+                  {{ employee.cellphone }}
                 </td>
               </tr>
              
@@ -108,86 +94,29 @@
                 Comment
               </th>
             </thead>
-            <tbody>                             
-              <tr>                
-              </tr>
-              <tr>                
-              <tr>
+            <tbody>                                           
+              <tr *ngFor="let facilityreport of facilityreports">
                 <td>
-                 Pipe Issue
+                 {{facilityreport.title}}
                 </td>
                 <td>
-                 Water leak
+                  {{facilityreport.description}}
                 </td>
                 <td>
-                  abc
+                  {{facilityreport.reportdate}}
                 </td>
                  <td>
-                  09/01/2021
+                  {{facilityreport.status}}
                 </td>
                 <td>
-                  In progress
+                  {{facilityreport.title}}
                 </td>
                  <td class="text-right">
                   <p>Solved by bcd on 09/01/2021</p>
-                  <a class = "btn btn-primary btn-sm" herf = "#" role = "bbutton"> Detail </a>
-                 </td>  
-              </tr>     
-              
-              
-              <tr>                
-              </tr>
-              <tr>                
-              <tr>
-                <td>
-                 Pipe Issue
-                </td>
-                <td>
-                 Water leak
-                </td>
-                <td>
-                  abc
-                </td>
-                 <td>
-                  09/01/2021
-                </td>
-                <td>
-                  In progress
-                </td>
-                 <td class="text-right">
-                  <p>Solved by bcd on 09/01/2021</p>
-                  <a class = "btn btn-primary btn-sm" herf = "#" role = "bbutton"> Detail </a>
+                  <!-- <a routerLink="housingdetail/{{ house.houseID }}" > <h5 class="title">House {{ house.houseID }}</h5> </a> -->
+                  <a routerLink="reportcomment/{{ facilityreport.facilityreportid }}" class = "btn btn-primary btn-sm" role = "button">Details</a>
                  </td>  
               </tr>    
-
-
-              <tr>                
-              </tr>
-              <tr>                
-              <tr>
-                <td>
-                 Pipe Issue
-                </td>
-                <td>
-                 Water leak
-                </td>
-                <td>
-                  abc
-                </td>
-                 <td>
-                  09/01/2021
-                </td>
-                <td>
-                  In progress
-                </td>
-                 <td class="text-right">
-                  <p>Solved by bcd on 09/01/2021</p>
-                  <a class = "btn btn-primary btn-sm" herf = "#" role = "bbutton"> Detail </a>
-                 </td>  
-              </tr>    
-
-
-
             </tbody>           
           </table>          
         </div>   
@@ -195,39 +124,41 @@
  
         <div *ngIf="hide" class="row">
           <div class="update ml-auto mr-auto">
+            
             <a class = "btn btn-primary btn-round" (click)="onChange()" role = "bbutton"> add new report </a>
           </div>
         </div>  
 
         <div *ngIf="!hide" class="card">
           <div class="card-body">
-            <form>
+            <form [formGroup]="form">
               <br><br>
               <!-- 2 column grid layout with text inputs for the first and last names -->
               <div class="row mb-4 pl-5 pr-5">
                 <div class="col">
                   <div class="form-outline">
-                    <input type="text" id="form6Example1" class="form-control" />
+                    <input type="text" id="form6Example1" class="form-control" formControlName="title"/>
                     <label class="form-label" for="form6Example1">Title</label>
                   </div>
                 </div>
+                
                 <div class="col">
-                  <div class="form-outline">
-                    <input type="text" id="form6Example2" class="form-control" />
-                    <label class="form-label" for="form6Example2">Description</label>
+                  <div class="form-outline">                   
+                    <label class="form-label" for="form6Example2"></label>
                   </div>
                 </div>
               </div>      
             
               <!-- Message input -->
               <div class="form-outline mb-4 pl-5 pr-5">
-                <textarea class="form-control" id="form6Example7" rows="4"></textarea>
-                <label class="form-label" for="form6Example7">Additional information</label>
+                <input type="text" id="form6Example2" class="form-control" formControlName="description"/>               
+                <label class="form-label" for="form6Example7">Description</label>
               </div>
             
               <!-- Submit button -->
               <div class="pl-5">
-                <a class = "btn btn-primary btn-round" herf = "#" role = "bbutton"> add </a>
+                <button (click)="onSubmit()" class="btn btn-primary btn-round">add</button>
+                
               </div>
             </form>
           </div>
