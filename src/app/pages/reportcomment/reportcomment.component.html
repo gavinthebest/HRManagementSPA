@@ -1,0 +1,118 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-plain">
+            <div class="card-header">
+                <h4 class="card-title"> Comment</h4>
+                <p class="card-category"> </p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-primary">
+                            <th>
+                                Title
+                            </th>
+                            <th>
+                                CreatedBy
+                            </th>
+                            <th>
+                                Report Date
+                            </th>
+                            <th>
+                                Status
+                            </th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                            </tr>
+                            <tr>
+                            <tr>
+                                <td>
+                                    {{facilityreport.title}}
+                                </td>
+                                <td>
+                                    {{facilityreport.employeeid}}
+                                </td>
+                                <td>
+                                    {{facilityreport.reportdate}}
+                                </td>
+                                <td>
+                                    {{facilityreport.status}}
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <p>Detail Description</p>
+                <p>{{facilityreport.description}}</p>
+
+                <div *ngIf="hide" class="card">
+                    <div class="card-body">
+                        <form [formGroup]="form">
+                            <br><br>
+
+                            <!-- Message input -->
+                            <div class="form-outline mb-4 pl-5 pr-5">
+                                <input type="text" id="form6Example2" class="form-control" formControlName="comments" />
+                                <label class="form-label" for="form6Example7">Comment</label>
+                            </div>
+
+                            <!-- Submit button -->
+                            <div class="pl-5">
+                                <button (click)="onSubmit()" class="btn btn-primary btn-round">add comment </button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body" *ngFor="let facilityreportdetail of facilityreportdetails">                             
+
+                                <section class="post-heading">
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading">User1</h4>
+                                                    
+                                                    <p>{{facilityreportdetail.createddate}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section class="post-body" >
+                                    
+                                    <p> {{facilityreportdetail.comments}} </p>
+                                    <button type="submit" class="btn btn-primary btn-round"> update comment </button>
+                                </section>
+
+
+                                
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="update ml-auto mr-auto">
+
+
+
+        </div>
+
+    </div>

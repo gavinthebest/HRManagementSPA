@@ -15,6 +15,9 @@ export class ApplicationWorkFlowService {
   getApplicationWorkFlow(id: number): Observable<applicationWorkFlow> {
     return this.apiService.getOne('applicationWorkFlows/all',id);
   }
+  getApplicationWorkFlowByForm(): Observable<applicationWorkFlow[]> {
+    return this.apiService.getAll('applicationWorkFlows/find/form');
+  }
   createApplicationWorkFlow(applicationWorkFlow : any): Observable<applicationWorkFlow> {
     return this.apiService.create('applicationWorkFlows/add', applicationWorkFlow);
   }

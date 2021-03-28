@@ -1,8 +1,8 @@
 export interface facilityReportDetail {
-    facilityreportdetailID: number;
-    facilityreportID: number;
-    employeeID: number;
+    facilityreportdetailid: number;
+    facilityreportid: number;
+    employeeid: number;
     comments: string;
-    createdate: Date;
+    createddate: Date;
     lastmodificationdate: Date;
 }

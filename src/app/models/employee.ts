@@ -1,4 +1,5 @@
 export interface employee {
+
   userID: number,
   firstname: string,
   lastname: string,
@@ -20,4 +21,5 @@ export interface employee {
   email: string,
   ssn: string,
   title: string
+
 }

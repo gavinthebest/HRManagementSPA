@@ -1,7 +1,7 @@
 export interface facilityReport {
-    facilityreportID: number;
+    facilityreportid: number;
     title:string;
-    employeeID: number;
+    employeeid: number;
     reportdate: Date;
     description:string;
     status: string;

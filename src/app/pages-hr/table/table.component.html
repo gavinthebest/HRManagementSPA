@@ -1,120 +1,237 @@
 <div class="row">
 
-  <div class="row">
-    <div class="col-md-7">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">Status Update</h4>
+  <!-- Visa Staus 部分 -->
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Visa Status</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3 pr-1">
+            <div class="form-group">
+              <label>Employee ID</label>
+              <input type="text" class="form-control" disabled="" placeholder="Company" value={{currEmployId}}>
+            </div>
+          </div>
+          <div class="col-md-5 px-1">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" class="form-control" disabled="" placeholder="Username" value="Barry Yu">
+            </div>
+          </div>
+          <div class="col-md-4 pl-1">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Visa Type</label>
+              <input type="email" class="form-control" disabled="" placeholder="F1 (OPT)">
+            </div>
+          </div>
         </div>
-        <div class="card-body">
-          <ul class="list-unstyled team-members">
-            <li>
-              <div class="row">
-                <div class="col-md-2 col-2">
-                  <div class="avatar">
-                    <img src="https://pbs.twimg.com/profile_images/875744467147476995/5alCAGHr_400x400.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                  </div>
-                </div>
-                <div class="col-md-7 col-7">
-                  Step 1: OPT Receipt
-                  <br />
-                  <span class="text-muted">
-                    <small>No file</small>
-                  </span>
-                </div>
-                <div class="update">
-                  <button type="submit" class="btn btn-primary btn-round">查看</button>
+        <hr>
+        <ul class="list-unstyled team-members">
+          <li>
+            <div class="row">
+              <div class="col-md-2 col-2">
+                <div class="avatar">
+                  <img src="https://pbs.twimg.com/profile_images/875744467147476995/5alCAGHr_400x400.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                 </div>
               </div>
-            </li>
-            <li>
-              <div class="row">
-                <div class="col-md-2 col-2">
-                  <div class="avatar">
-                    <img src="https://pbs.twimg.com/profile_images/875744467147476995/5alCAGHr_400x400.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                  </div>
-                </div>
-                <div class="col-md-7 col-7">
-                  STEP 2: OPT EAD
-                  <br />
-                  <span class="text-success">
-                    <small>PASS</small>
-                  </span>
-                </div>
-                <div class="update">
-                  <button type="submit" class="btn btn-primary btn-round">查看</button>
+              <div class="col-md-7 col-7">
+                Step 1: OPT Receipt
+                <br />
+                <span class="text-muted">
+                  <small>No file</small>
+                </span>
+              </div>
+              <div class="update">
+                <button type="submit" class="btn btn-primary btn-round">Select</button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+              <div class="col-md-2 col-2">
+                <div class="avatar">
+                  <img src="https://pbs.twimg.com/profile_images/875744467147476995/5alCAGHr_400x400.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                 </div>
               </div>
-            </li>
-            <li>
-              <div class="row">
-                <div class="col-md-2 col-2">
-                  <div class="avatar">
-                    <img src="https://pbs.twimg.com/profile_images/875744467147476995/5alCAGHr_400x400.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                  </div>
-                </div>
-                <div class="col-ms-7 col-7">
-                  STEP 3: I-983
-                  <br />
-                  <span class="text-danger">
-                    <small>Fail</small>
-                  </span>
-                </div>
-                <div class="update">
-                  <button type="submit" class="btn btn-primary btn-round">查看</button>
+              <div class="col-md-7 col-7">
+                STEP 2: OPT EAD
+                <br />
+                <span class="text-success">
+                  <small>PASS</small>
+                </span>
+              </div>
+              <div class="update">
+                <button type="submit" class="btn btn-primary btn-round">{{currEmployId}}</button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+              <div class="col-md-2 col-2">
+                <div class="avatar">
+                  <img src="https://pbs.twimg.com/profile_images/875744467147476995/5alCAGHr_400x400.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                 </div>
               </div>
-            </li>
-          </ul>
-        </div>
+              <div class="col-ms-7 col-7">
+                STEP 3: I-983
+                <br />
+                <span class="text-danger">
+                  <small>Rejected</small>
+                </span>
+              </div>
+              <div class="update">
+                <!-- <button type="submit" class="btn btn-primary btn-round">Select</button> -->
+                <button type="submit" class="btn btn-primary btn-round">{{currEmployId}}</button>  
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+              <div class="col-md-2 col-2">
+                <div class="avatar">
+                  <img src="https://pbs.twimg.com/profile_images/875744467147476995/5alCAGHr_400x400.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                </div>
+              </div>
+              <div class="col-ms-7 col-7">
+                STEP 4: I-20
+                <br />
+                <span class="text-danger">
+                  <small>Rejected</small>
+                </span>
+              </div>
+              <div class="update">
+                <button type="submit" class="btn btn-primary btn-round">Select</button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+              <div class="col-md-2 col-2">
+                <div class="avatar">
+                  <img src="https://pbs.twimg.com/profile_images/875744467147476995/5alCAGHr_400x400.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                </div>
+              </div>
+              <div class="col-ms-7 col-7">
+                STEP 5: OPT STEM Receipt
+                <br />
+                <span class="text-success">
+                  <small>Completed</small>
+                </span>
+              </div>
+              <div class="update">
+                <button type="submit" class="btn btn-primary btn-round">Select</button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+              <div class="col-md-2 col-2">
+                <div class="avatar">
+                  <img src="https://pbs.twimg.com/profile_images/875744467147476995/5alCAGHr_400x400.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                </div>
+              </div>
+              <div class="col-ms-7 col-7">
+                STEP 6: OPT STEM EAD
+                <br />
+                <span class="text-success">
+                  <small>Pending</small>
+                </span>
+              </div>
+              <div class="update">
+                <button type="submit" class="btn btn-primary btn-round">Select</button>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
+  </div>
 
-    <div class="col-md-5">
-      <div class="card card-user">
-        <div class="card-header">
-          <h5 class="card-title">My Files</h5>
+  <!-- ----- Document 查看部分  ---- -->
+  <div class="col-md-6">
+    <div class="card card-user">
+
+      <div class="card-header">
+        <h4 class="card-title">Document Viewer</h4>
+      </div>
+      <div class="card-body">
+        <div >
+          <img src="https://www.uis.edu/internationalstudentservices/wp-content/uploads/sites/95/2019/11/EAD.png" alt="...">
         </div>
-        <div class="card-body">
-          <form>
-            <div class="row">
-             
-              <div class="col-md-6 pr-1">
-                <div class="form-group">
-                  <label>First Name</label>
-                  <input type="text" class="form-control" placeholder="Company" value="Chet">
-                </div>
-              </div>
-              <div class="col-md-6 pl-1">
-                <div class="update">
-                  <button type="submit" class="btn btn-primary btn-round">下载</button>
-                </div>
+      </div>
+      <div class="card-footer">
+        <form>
+          <hr>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                Comment
+                <textarea class="form-control textarea">Oh so, your weak rhyme You doubt I'll bother, reading into it</textarea>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label>Comment
-                  </label>
-                  <textarea class="form-control textarea">Oh so, your weak rhyme You doubt I'll bother, reading into it</textarea>
-                </div>
-              </div>
+          </div>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="submit" class="btn btn-primary btn-round">Sumbit</button>
             </div>
-            <div class="row">
-              <div class="update ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary btn-round">Sumbit</button>
-              </div>
-            </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
 
   </div>
+
+  <!-- ------- 原来的设计  --------- -->
+  <!-- <div class="col-md-6">
+    <div class="card card-user">
+      <div class="card-header">
+        <h5 class="card-title">My Files</h5>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="row">
+           
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>File Name</label>
+                <input type="text" class="form-control" placeholder="Company" value="Chet">
+              </div>
+            </div>
+            <div class="col-md-6 pl-1">
+              <div class="update">
+                <button type="submit" class="btn btn-primary btn-round">下载</button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Comment
+                </label>
+                <textarea class="form-control textarea">Oh so, your weak rhyme You doubt I'll bother, reading into it</textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="submit" class="btn btn-primary btn-round">Sumbit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> -->
+  <!-- ------- 原来的设计  --------- -->
+</div>
+
+<!-- Employee List 部分 -->
+<div class="row">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title"> Visa Status Management</h4>
+        <h4 class="card-title"> Employee List</h4>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -147,9 +264,16 @@
                 <td>（稍后连visa数据）</td>
                 <td>{{user.enddate}}</td>
                 <td>（稍后连visa数据）</td>
-                <td>
+                <td class="text-right">
                   <div class="update ml-auto mr-auto">
-                    <button type="btn" class="btn btn-primary btn-round">display</button>
+                    <!-- <button type="btn" class="btn btn-primary btn-round">Select</button> -->
+                    <!-- <a routerLink="housingdetail/{{ house.houseID }}" >Se</a> -->
+                    <!-- <a routerLink="visadetail/{{ user.employeeID }}" class="btn btn-primary btn-round">Select</a> -->
+                    <button type="btn" class="btn btn-primary btn-round" (click)="setCurrEmployId(user.employeeID)">Select</button>
+
+                    
+                    <input type="test" [(ngModel)]="currEmployId"/>
+
                   </div>
                 </td>
               </tr>
@@ -167,7 +291,9 @@
 
     <hr>
     <h4>以下是测试内容</h4>
-    <p>
+
+    <h3>{{currEmployId}}</h3>
+    <!-- <p>
       <button type="button" class="btn btn-outline-primary" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
         aria-controls="collapseExample">
         Toggle
@@ -179,7 +305,7 @@
           You can collapse this card by clicking Toggle
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <br>

@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmployeeService } from 'app/services/employee.service';
-import { filter, first, map } from 'rxjs/operators';
+import { first} from 'rxjs/operators';
 import { AddressService } from 'app/services/address.service';
 import { VisaStatusService } from 'app/services/visa-status.service';
 import { ContactService } from 'app/services/contact.service';
 import { contact } from 'app/models/contact';
 import { UploadFileService } from 'app/services/upload-file.service';
+import { CookieService } from 'ngx-cookie-service';
+
+
 
 @Component({
     selector: 'user-cmp',
@@ -15,7 +18,8 @@ import { UploadFileService } from 'app/services/upload-file.service';
 })
 
 export class UserComponent implements OnInit{
-    id: number = 1;
+    id: number;
+    userID:number;
     contacts: contact[];
     employee: any;
     fileUploads: string[];
@@ -29,6 +33,8 @@ export class UserComponent implements OnInit{
     disabled5: boolean = true;
     disabled6: boolean = true;
     ngOnInit(){
+        this.id = +this.cookieService.get('employeeID');
+        this.userID = +this.cookieService.get('userID');
         this.form = this.formBuilder.group({
             firstname: [''],
             lastname: [''],
@@ -86,6 +92,7 @@ export class UserComponent implements OnInit{
         .subscribe(x => this.fileUploads = x);
     }
     constructor(
+        private cookieService: CookieService,
         private uploadService: UploadFileService,
         private contactService: ContactService,
         private employeeService: EmployeeService,

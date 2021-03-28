@@ -6,6 +6,8 @@ import { FacilityService } from 'app/services/facility.service';
 import { facility } from 'app/models/facility';
 import { EmployeeService } from 'app/services/employee.service';
 import { employee } from 'app/models/employee';
+import { FacilityReportService } from 'app/services/facility-report.service';
+import { facilityReport } from 'app/models/facilityReport';
 
 @Component({
   selector: 'app-housingdetail',
@@ -18,8 +20,13 @@ export class HousingdetailComponent implements OnInit {
   house : house;
   facility: facility;
   employees: employee[];
+  facilityreports: facilityReport[];
   
-  constructor(private housingservice : HouseService, private facilityservice : FacilityService, private employeeservice : EmployeeService,private route: ActivatedRoute){}   
+  constructor(private housingservice : HouseService, 
+              private facilityservice : FacilityService, 
+              private facilityreportservice : FacilityReportService, 
+              private employeeservice : EmployeeService, 
+              private route: ActivatedRoute){}   
 
   ngOnInit() {
 
@@ -32,16 +39,19 @@ export class HousingdetailComponent implements OnInit {
         .subscribe( data => {
           this.facility = data;
         });
-    
-      this.facilityservice.getFacilitiesByHouseID(this.route.snapshot.params['houseID'])
-        .subscribe( data => {
-          this.facility = data;
-        });
+
 
         this.employeeservice.getEmployeesByHouseID(this.route.snapshot.params['houseID'])
         .subscribe( data => {
           this.employees = data;
         });
+
+        this.facilityreportservice.getFacilitiesReportByHouseID(this.route.snapshot.params['houseID'])
+        .subscribe( data => {
+          this.facilityreports = data;
+        });
+        
+        console.log(this.facilityreportservice.getFacilitiesReportByHouseID(this.route.snapshot.params['houseID']));
         
 }
 }
