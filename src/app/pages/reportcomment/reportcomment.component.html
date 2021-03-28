@@ -32,7 +32,7 @@
                                     {{facilityreport.title}}
                                 </td>
                                 <td>
-                                    {{facilityreport.employeeid}}
+                                    {{facilityreport.username}}
                                 </td>
                                 <td>
                                     {{facilityreport.reportdate}}
@@ -42,11 +42,17 @@
                                 </td>
                             </tr>
 
+                            <tr>
+
+                                <h4 class=" text-primary">Detail Description</h4>
+                                <p>{{facilityreport.description}}</p>
+
+
+                            </tr>
                         </tbody>
                     </table>
                 </div>
-                <p>Detail Description</p>
-                <p>{{facilityreport.description}}</p>
+                
 
                 <div *ngIf="hide" class="card">
                     <div class="card-body">
@@ -68,7 +74,7 @@
                     </div>
                 </div>
 
-                <div class="container">
+                <!-- <div class="container">
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-body" *ngFor="let facilityreportdetail of facilityreportdetails">                             
@@ -80,7 +86,7 @@
                                                 <div class="media-left">
                                                 </div>
                                                 <div class="media-body">
-                                                    <h4 class="media-heading">User1</h4>
+                                                    <h4 class="media-heading">User:  {{facilityreportdetail.username}}</h4>
                                                     
                                                     <p>{{facilityreportdetail.createddate}}</p>
                                                 </div>
@@ -102,7 +108,79 @@
                             </div>
                         </div>
                     </div>
+                </div> -->
+
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body" *ngFor="let formx of forms; let i = index">
+
+                                <section class="post-heading">
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading">User:
+                                                        {{facilityreportdetails[i].username}}
+                                                    </h4>
+
+                                                    <p>{{facilityreportdetails[i].createddate}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section class="post-body">
+
+                                    <p> {{form.comment}} </p>
+                                    <form [formGroup]="formx">
+                                        <input type="text" class="form-control" formControlName="comments"
+                                            [attr.disabled]="disableUpdate2[i]? true : null">
+                                        <!-- <button type="submit" (click)="onChangex(i)" class="btn btn-primary btn-round"> update comment </button>
+                                    <button type="submit" (click)="onChangeUpdate(i)" class="btn btn-primary btn-round"> Edit </button> -->
+
+                                        <div class="row">
+                                            <div *ngIf="employeeID == facilityreportdetails[i].employeeid"
+                                                class="update ml-auto mr-auto">
+                                                <div *ngIf="disableUpdate2[i]" class="update ml-auto mr-auto">
+                                                    <button (click)="onChangeUpdate(i)"
+                                                        class="btn btn-primary btn-round">Edit</button>
+                                                </div>
+
+                                                <div *ngIf="!disableUpdate2[i]" class="update ml-auto mr-auto">
+                                                    <button type="submit" (click)="onChangex(i)"
+                                                        class="btn btn-success btn-round">Update</button>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </form>
+
+                                </section>
+                            </div>
+
+
+                        </div>
+                    </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             </div>
         </div>
