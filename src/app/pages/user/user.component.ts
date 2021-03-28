@@ -147,4 +147,5 @@ export class UserComponent implements OnInit{
             location.reload();
         }
       }
+      
 }

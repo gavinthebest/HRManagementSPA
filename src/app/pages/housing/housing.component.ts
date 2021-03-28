@@ -61,14 +61,12 @@ export class HousingComponent implements OnInit{
 
         //find house by employee id
         //get employee id from cookie later
-        this.housingservice.getHouse(this.id)
-          .subscribe( data => {
-            this.house = data;
-          });
+        
+        
 
         //find employees by house id
         //sychronous running for service method
-        this.employeeservice.getEmployee(1)
+        this.employeeservice.getEmployee(+this.employeeID)
         .subscribe( data => {
             this.eid = data.houseid;
             this.employeeservice.getEmployeesByHouseID(this.eid)
@@ -78,9 +76,16 @@ export class HousingComponent implements OnInit{
           });
 
         //find facility report by houseID
-        this.employeeservice.getEmployee(1)
+        this.employeeservice.getEmployee(+this.employeeID)
         .subscribe( data => {
             this.eid = data.houseid;
+            // console.log("house id:" + this.eid);
+            // console.log("house id:" + this.employeeID); 
+            this.housingservice.getHouse(this.eid)
+          .subscribe( data => {
+            this.house = data;
+          });
+
             this.facilityReportService.getFacilitiesReportByHouseID(this.eid)
            .subscribe( data => {
             this.facilityreports = data;
