@@ -1,0 +1,204 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-plain">
+            <div class="card-header">
+                <h4 class="card-title"> Comment</h4>
+                <p class="card-category"> </p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-primary">
+                            <th>
+                                Title
+                            </th>
+                            <th>
+                                CreatedBy
+                            </th>
+                            <th>
+                                Report Date
+                            </th>
+                            <th>
+                                Status
+                            </th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                            </tr>
+                            <tr>
+                            <tr>
+                                <td>
+                                    {{facilityreport.title}}
+                                </td>
+                                <td>
+                                    {{facilityreport.username}}
+                                </td>
+                                <td>
+                                    {{facilityreport.reportdate}}
+                                </td>
+                                <td>
+                                    <form [formGroup]="form2">
+                                        <select value="{{facilityreport.status}}" formControlName="status"
+                                            class='form-control'>
+                                            <option value="open">Open</option>
+                                            <option value="processing">In Progress</option>
+                                            <option value="closed">Closed</option>
+                                        </select>
+
+                                        <button (click)="onChange1()" class="btn btn-primary btn-round">update
+                                            status</button>
+
+                                    </form>
+
+                                </td>
+                            </tr>
+
+                            <tr>
+
+                                <h4 class=" text-primary">Detail Description</h4>
+                                <p>{{facilityreport.description}}</p>
+
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                
+                
+
+                <div *ngIf="hide" class="card">
+                    <div class="card-body">
+                        <form [formGroup]="form">
+                            <br><br>
+
+                            <!-- Message input -->
+                            <div class="form-outline mb-4 pl-5 pr-5">
+                                <input type="text" id="form6Example2" class="form-control" formControlName="comments" />
+                                <label class="form-label" for="form6Example7">Comment</label>
+                            </div>
+
+                            <!-- Submit button -->
+                            <div class="pl-5">
+                                <button (click)="onSubmit()" class="btn btn-primary btn-round">add comment </button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- <div class="container">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body" *ngFor="let facilityreportdetail of facilityreportdetails">
+
+                                <section class="post-heading">
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading">User: {{facilityreportdetail.username}}
+                                                    </h4>
+
+                                                    <p>{{facilityreportdetail.createddate}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section class="post-body">
+
+                                    <p> {{facilityreportdetail.comments}} </p>
+                                    <button type="submit" class="btn btn-primary btn-round"> update comment </button>
+                                </section>
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body" *ngFor="let formx of forms; let i = index">
+
+                                <section class="post-heading">
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading">User:
+                                                        {{facilityreportdetails[i].username}}
+                                                    </h4>
+
+                                                    <p>{{facilityreportdetails[i].createddate}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section class="post-body">
+
+                                    <p> {{form.comment}} </p>
+                                    <form [formGroup]="formx">
+                                        <input type="text" class="form-control" formControlName="comments"
+                                            [attr.disabled]="disableUpdate2[i]? true : null">
+                                        <!-- <button type="submit" (click)="onChangex(i)" class="btn btn-primary btn-round"> update comment </button>
+                                    <button type="submit" (click)="onChangeUpdate(i)" class="btn btn-primary btn-round"> Edit </button> -->
+
+                                        <div class="row">
+                                            <div *ngIf="employeeID == facilityreportdetails[i].employeeid"
+                                                class="update ml-auto mr-auto">
+                                                <div *ngIf="disableUpdate2[i]" class="update ml-auto mr-auto">
+                                                    <button (click)="onChangeUpdate(i)"
+                                                        class="btn btn-primary btn-round">Edit</button>
+                                                </div>
+
+                                                <div *ngIf="!disableUpdate2[i]" class="update ml-auto mr-auto">
+                                                    <button type="submit" (click)="onChangex(i)"
+                                                        class="btn btn-success btn-round">Update</button>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </form>
+
+
+
+
+
+
+                                </section>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="update ml-auto mr-auto">
+
+
+
+    </div>
+
+</div>

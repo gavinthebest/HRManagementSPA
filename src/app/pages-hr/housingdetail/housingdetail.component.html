@@ -89,7 +89,8 @@
                       <tbody>
                         
                         <tr *ngFor="let facilityreport of facilityreports">
-                          <th scope="row"> {{facilityreport.facilityreportid}} </th>
+                          <a routerLink="/hr/housing/facilityreportdetail/{{facilityreport.facilityreportid}}" > {{facilityreport.facilityreportid}} </a>
+                          
                           <td>{{facilityreport.title}}</td>
                           <td>{{facilityreport.reportdate}}</td>
                           <td>{{facilityreport.status}}</td>
