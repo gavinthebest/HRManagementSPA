@@ -65,7 +65,7 @@ export class ReportcommentComponent implements OnInit {
             facilityreportdetailid: [''],
             facilityreportid: [''],
             employeeid: [this.employeeID],
-            comments: [''],
+            comments: null,
             createddate: [''],
             lastmodificationdate: ['']
         })
@@ -81,6 +81,7 @@ export class ReportcommentComponent implements OnInit {
         console.log("date: is " + this.facilityreportdetails[0].createddate);
       });
 
+      
 
   }
   onChangeUpdate(i){
@@ -105,6 +106,11 @@ export class ReportcommentComponent implements OnInit {
 
 
 onChangex(i) {
+  this.forms[i].patchValue({
+    lastmodificationdate: Date.now(), 
+    // formControlName2: myValue2 (can be omitted)
+  });
+  
   this.facilityReportDetailService.updateFacilityReportDetail(this.forms[i].value)
       .pipe(first())
       .subscribe(() => {

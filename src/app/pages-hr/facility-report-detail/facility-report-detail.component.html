@@ -81,7 +81,7 @@
 
                             <!-- Submit button -->
                             <div class="pl-5">
-                                <button (click)="onSubmit()" class="btn btn-primary btn-round">add comment </button>
+                                <button (click)="onSubmit()" class="btn btn-primary btn-round" [disabled]="this.form.value.comments === ''">add comment </button>
 
                             </div>
                         </form>
@@ -155,7 +155,7 @@
                                         <input type="text" class="form-control" formControlName="comments"
                                             [attr.disabled]="disableUpdate2[i]? true : null">
                                         <!-- <button type="submit" (click)="onChangex(i)" class="btn btn-primary btn-round"> update comment </button>
-                                    <button type="submit" (click)="onChangeUpdate(i)" class="btn btn-primary btn-round"> Edit </button> -->
+                                        <button type="submit" (click)="onChangeUpdate(i)" class="btn btn-primary btn-round"> Edit </button> -->
 
                                         <div class="row">
                                             <div *ngIf="employeeID == facilityreportdetails[i].employeeid"
