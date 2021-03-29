@@ -108,5 +108,13 @@ export class TableComponent implements OnInit{
         }
         // this.visaStatusService.getVisaStatusByEmployeeID(1));
     }
+
+    calculateDiff(date: string){
+        let d2:string = new Date().toISOString().split('T')[0];
+        let d1 = Date.parse(date); //time in milliseconds
+        var timeDiff = d1 - Date.parse(d2);
+        var diff = timeDiff / (1000 * 3600 * 24);
+        return Math.floor(diff);
+    }
     
 }
