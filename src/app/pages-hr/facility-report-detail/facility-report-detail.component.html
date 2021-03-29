@@ -140,8 +140,15 @@
                                                     <h4 class="media-heading">User:
                                                         {{facilityreportdetails[i].username}}
                                                     </h4>
-
-                                                    <p>{{facilityreportdetails[i].createddate}}</p>
+                                                    <div *ngIf="facilityreportdetails[i].lastmodificationdate"
+                                                        class="update ml-auto mr-auto">
+                                                        <p> updated at:
+                                                            {{facilityreportdetails[i].lastmodificationdate}}</p>
+                                                    </div>
+                                                    <div *ngIf="!facilityreportdetails[i].lastmodificationdate"
+                                                        class="update ml-auto mr-auto">
+                                                        <p> created at: {{facilityreportdetails[i].createddate}}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -155,7 +162,7 @@
                                         <input type="text" class="form-control" formControlName="comments"
                                             [attr.disabled]="disableUpdate2[i]? true : null">
                                         <!-- <button type="submit" (click)="onChangex(i)" class="btn btn-primary btn-round"> update comment </button>
-                                        <button type="submit" (click)="onChangeUpdate(i)" class="btn btn-primary btn-round"> Edit </button> -->
+                                    <button type="submit" (click)="onChangeUpdate(i)" class="btn btn-primary btn-round"> Edit </button> -->
 
                                         <div class="row">
                                             <div *ngIf="employeeID == facilityreportdetails[i].employeeid"
