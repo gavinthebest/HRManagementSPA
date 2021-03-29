@@ -15,13 +15,16 @@ export class PersonalDocumentService {
  getPersonalDocument(id: number): Observable<personalDocument> {
    return this.apiService.getOne('personalDocuments/all',id);
  }
+ getPersonalDocumentBy(id: number, doc: string): Observable<personalDocument> {
+  return this.apiService.getOneBy('personalDocuments/all',id + '/' + doc);
+ }
  createPersonalDocument(personalDocument : any): Observable<personalDocument> {
    return this.apiService.create('personalDocuments/add', personalDocument);
  }
  updatePersonalDocument(personalDocument : any): Observable<personalDocument> {
    return this.apiService.update('personalDocuments/update', personalDocument);
  }
- deletePersonalDocument(id: number): Observable<personalDocument> {
-   return this.apiService.delete('personalDocuments/delete',id);
+ deletePersonalDocument(id: number, doc: string): Observable<personalDocument> {
+   return this.apiService.deleteByString('personalDocuments/delete',id + '/' + doc);
  }
 }

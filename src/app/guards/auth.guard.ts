@@ -5,6 +5,7 @@ import {VisitorService} from '../services/visitor.service';
 import {EmployeeService} from '../services/employee.service';
 import {UserRoleService} from '../services/userrole.service';
 import {RoleService} from '../services/role.service';
+import {ApplicationWorkFlowService} from '../services/application-work-flow.service';
 
 
 @Injectable({ providedIn: 'root' })
@@ -15,7 +16,8 @@ export class AuthGuard implements CanActivate {
         private visitorService: VisitorService,
         private employeeService: EmployeeService,
         private userRoleService: UserRoleService,
-        private roleService: RoleService
+        private roleService: RoleService,
+        private applicationWorkFlowService: ApplicationWorkFlowService
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -30,19 +32,30 @@ export class AuthGuard implements CanActivate {
             }
             this.employeeService.getEmployeeByUserId(currentUserId).subscribe(employee => {
               alert('Local Token Found, Redirecting....');
-              this.cookieService.set('employeeID', '' + employee.employeeID);
-            });
-            let roleId: number;
-            this.userRoleService.getUserRoleByUserId(currentUserId).subscribe(userRole => {
-              roleId = userRole.roleID;
-            });
-            this.roleService.getRole(roleId).subscribe(role => {
-              if (role.roleName === 'HR') {
-                this.router.navigate(['/hr']);
-              } else {
-                this.router.navigate(['/employee']);
-              }
-              return false;
+              this.applicationWorkFlowService.getApplicationWorkFlowByEmployeeId(String(employee.employeeID)).subscribe(ob => {
+                this.cookieService.set('employeeID', '' + employee.employeeID);
+                if (ob.status === 'open') {
+                  this.router.navigate(['/onboarding']);
+                  return false;
+                } else {
+                  this.userRoleService.getUserRoleByUserId(currentUserId).subscribe(userRole => {
+                    if (!userRole) {
+                      alert('Your HR is still working on approving your account!');
+                      this.router.navigate(['logout']);
+                      return false;
+                    }
+                    let roleId: number = userRole.roleID;
+                    this.roleService.getRole(roleId).subscribe(role => {
+                      if (role.roleName === 'HR') {
+                        this.router.navigate(['/hr']);
+                      } else {
+                        this.router.navigate(['/employee']);
+                      }
+                      return false;
+                    });
+                  });
+                }
+              });
             });
           });
         }

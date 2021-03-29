@@ -48,12 +48,22 @@ body {
   overflow-y: hidden;
 }
 
-.form-sameline3 input[type="text"] {
+.form-sameline3 input{
   display: inline-block;
   width: 300px;
   height: auto;
 }
+.form-sameline2{
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
 
+.form-sameline2 input{
+  display: inline-block;
+  width: 450px;
+  height: auto;
+}
 .mb-3 {
   text-align: center;
 }

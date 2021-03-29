@@ -1,5 +1,5 @@
 export interface applicationWorkFlow {
-    applicationworkglowID: number;
+    applicationworkflowID: number;
     employeeID: number;
     createdate: Date;
     modificationdate: Date;

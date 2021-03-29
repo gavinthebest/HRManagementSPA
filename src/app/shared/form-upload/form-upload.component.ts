@@ -3,7 +3,8 @@ import { UploadFileService } from '../../services/upload-file.service';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import { PersonalDocumentService } from 'app/services/personal-document.service';
 import { personalDocument } from 'app/models/personalDocument';
-import { DatePipe } from '@angular/common';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'form-upload',
@@ -17,15 +18,24 @@ export class FormUploadComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
-  pd : personalDocument;
+  pdForm : FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     private uploadService: UploadFileService,
     private pdService: PersonalDocumentService,
-    private datePipe: DatePipe
+    private cookieService: CookieService
     ) { }
 
   ngOnInit() {
+    this.pdForm = this.fb.group({
+      personaldocumentID: [''],
+      employeeID: [this.employeeID],
+      path: [''],
+      title: [this.fileType],
+      comment: [''],
+      createdate: [new Date(Date.now())],
+    });
   }
 
   selectFile(event) {
@@ -35,7 +45,10 @@ export class FormUploadComponent implements OnInit {
   upload() {
     this.progress.percentage = 0;
 
+    //File Upload saved by userID
     this.currentFileUpload = this.selectedFiles.item(0);
+    const fileType: string = this.currentFileUpload.name.split('.').pop();
+    this.cookieService.set('fileType', fileType);
     this.uploadService.pushFileToStorage(this.currentFileUpload, this.userID, this.fileType).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
         this.progress.percentage = Math.round(100 * event.loaded / event.total);
@@ -44,11 +57,16 @@ export class FormUploadComponent implements OnInit {
       }
     });
 
-    this.pd.employeeID = +this.employeeID;
-    this.pd.title = this.fileType;
-    this.pd.createdate = new Date();
-    this.datePipe.transform(this.pd.createdate,"yyyy-MM-dd");
-    this.pdService.createPersonalDocument(this.pd);
+    this.pdService.deletePersonalDocument(+this.employeeID, this.fileType).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      });
+    this.pdService.createPersonalDocument(this.pdForm.value).subscribe(() => {
+      console.log('PD created in DB!')
+    });
 
     this.selectedFiles = undefined;
   }
