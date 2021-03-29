@@ -17,29 +17,27 @@
           <th>
             Visa Status
           </th>
+         
           <th>
-            Visa Detail
-          </th>
-          <th class="text-right">
           <!-- <th> -->
             # of Total
           </th>
         </thead>
         <tbody>
-          <tr *ngFor="let user of currentUsers">
+          <tr *ngFor="let user of currentUsers; let key = index;">
             <td>{{user.employeeID}}</td>
             <td>{{user.firstname}} {{user.lastname}}</td>
             <td>{{user.ssn}}</td>
             <td>{{user.startdate}}</td>
-            <td>稍后</td>
             <td>
-              <div class="update ml-auto mr-auto">
-                <button type="btn" class="btn btn-primary btn-round">display</button>
-              </div>
+              <span *ngFor="let visa of visaStatus">
+                <span *ngIf="visa.employeeid == user.employeeID">{{visa.visatype}}</span>
+              </span>
             </td>
-            <td class="text-right">
+            
+            <td>
               <!-- <td> -->
-                稍后
+                <{{key+1}} / {{ users?.length }}>
               </td>
           </tr>
           <tr *ngIf="!users">
@@ -47,56 +45,6 @@
                   <span class="spinner-border spinner-border-lg align-center"></span>
               </td>
           </tr>
-          <!-- <tr>
-            <td>
-              #001
-            </td>
-            <td>
-              Barry Yu
-            </td>
-            <td>
-              123456789
-            </td>
-            <td>
-              Jan 01, 2021
-            </td>
-            <td>
-              F1 (CPT/OPT)
-            </td>
-            <td>
-              <div class="update ml-auto mr-auto">
-                <button type="btn" class="btn btn-primary btn-round">display</button>
-              </div>
-            </td>
-            <td class="text-right">
-              <1/100>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              #002
-            </td>
-            <td>
-              AAA
-            </td>
-            <td>
-              123456789
-            </td>
-            <td>
-              Jan 01, 2020
-            </td>
-            <td>
-              H1B
-            </td>
-            <td>
-              <div class="update ml-auto mr-auto">
-                <button type="btn" class="btn btn-primary btn-round">display</button>
-              </div>
-            </td>
-            <td class="text-right">
-              <2/100>
-            </td>
-          </tr> -->
         </tbody>
       </table>
     </div>

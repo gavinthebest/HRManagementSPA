@@ -23,6 +23,7 @@ import { HousingdetailComponent } from './pages-hr/housingdetail/housingdetail.c
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReportcommentComponent } from './pages/reportcomment/reportcomment.component';
 import { FacilityReportDetailComponent } from './pages-hr/facility-report-detail/facility-report-detail.component';
+import {AdminLayoutModule} from './layouts/admin-layout/admin-layout.module';
 
 
 @NgModule({
@@ -39,24 +40,25 @@ import { FacilityReportDetailComponent } from './pages-hr/facility-report-detail
     ReportcommentComponent,
     FacilityReportDetailComponent,
   ],
-  imports: [
-    BrowserAnimationsModule,
-    RouterModule.forRoot(AppRoutes, {
-    useHash: true,
-    relativeLinkResolution: 'legacy'
-}),
-    HttpClientModule,
-    ReactiveFormsModule,
-    SidebarModule,
-    SidebarHrModule,
-    NavbarModule,
-    ToastrModule.forRoot(),
-    FixedPluginModule,
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    NgbModule
-  ],
+    imports: [
+        BrowserAnimationsModule,
+        RouterModule.forRoot(AppRoutes, {
+            useHash: true,
+            relativeLinkResolution: 'legacy'
+        }),
+        HttpClientModule,
+        ReactiveFormsModule,
+        SidebarModule,
+        SidebarHrModule,
+        NavbarModule,
+        ToastrModule.forRoot(),
+        FixedPluginModule,
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        NgbModule,
+        AdminLayoutModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

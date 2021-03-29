@@ -16,58 +16,74 @@
     <h1 class=" mb-3">Fill in Your Info</h1>
     <h3>About You</h3>
     <div class="form-sameline3">
-      <input type="text" id="firstname" class="form-control" pattern="[A-Z][a-z]{1,}" placeholder="First Name" required>
-      <input type="text" id="lastname" class="form-control" pattern="[A-Z][a-z]{1,}" placeholder="Last Name" required>
-      <input type="text" id="middlename" class="form-control" pattern="[a-zA-Z]{1,}" placeholder="Middle Name">
+      <input type="text" id="firstname" class="form-control" pattern="[A-Z][a-z]{1,}"
+             placeholder="First Name" [(ngModel)]="fname" name="fname" required>
+      <input type="text" id="lastname" class="form-control" pattern="[A-Z][a-z]{1,}"
+             placeholder="Last Name" [(ngModel)]="lname" name="lname" required>
+      <input type="text" id="middlename" class="form-control" pattern="[a-zA-Z]{1,}"
+             placeholder="Middle Name" [(ngModel)]="mname" name="mname">
     </div>
-      <input type="password" id="ssn" class="form-control" pattern="[0-9]{9}" placeholder="SSN" required>
-
+    <div class="form-sameline2">
+      <input type="text" id="preferredname" class="form-control" pattern="[a-zA-Z]{1,}"
+             placeholder="Preferred Name" [(ngModel)]="preferredname" name="preferredname" required>
+      <input type="password" id="ssn" class="form-control" pattern="[0-9]{9}"
+             placeholder="SSN" [(ngModel)]="ssn" name="ssn" required>
+    </div>
     <h3>Date of Birth</h3>
-    <input type="date" id="dob" class="form-control" placeholder="Your Date of Birth" required>
+    <input type="date" id="dob" class="form-control"
+           placeholder="Your Date of Birth" [(ngModel)]="dob" name="dob" required>
 
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Gender
-        <span class="caret"></span></button>
-      <ul class="dropdown-menu">
-        <li><a href="#">Male</a></li>
-        <li><a href="#">Female</a></li>
-        <li><a href="#">Prefer Not to Say</a></li>
-      </ul>
+    <h3>Gender</h3>
+    <div class="form-group">
+      <select class="form-control" [(ngModel)]="gender" name="gender" required>
+        <option value="">Choose ...</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="empty">Other / Prefer Not to Answer / Not Applicable</option>
+      </select>
     </div>
 
     <h3>Upload an Avatar If You Like</h3>
-    <input type="file" id="avatar" class="form-control" placeholder="Upload an Avatar">
+    <div class="card-body">
+      <a href="#/employee/user">
+        <img class="avatar border-gray" src="http://localhost:8080/api/file/user_{{picID}}_avatar.{{fileType}}" alt="No Avatar">
+      </a>
+      <form-upload [userID]='userID' [employeeID]='employeeID' fileType='avatar'></form-upload>
+      <button class="btn btn-primary btn-round" (click)="refresh()">Refresh Image</button>
+    </div>
 
     <h3>Your Contact Info</h3>
-    <input type="text" id="addressline1" class="form-control" placeholder="First Line of Your Address" required>
-    <input type="text" id="addressline2" class="form-control" placeholder="Second Line of Your Address">
+    <input type="text" id="addressline1" class="form-control"
+           placeholder="First Line of Your Address" [(ngModel)]="address1" name="address1" required>
+    <input type="text" id="addressline2" class="form-control"
+           placeholder="Second Line of Your Address" [(ngModel)]="address2" name="address2">
     <div class="form-sameline3">
-      <input type="text" id="addresscity" class="form-control" pattern="[a-z]{1,}" placeholder="City" required>
-      <input type="text" id="addressstate" class="form-control" pattern="[A-Z]{2}" placeholder="State Abbreviation" required>
-      <input type="text" id="addresszipcode" class="form-control" pattern="[0-9]{5}" placeholder="Zipcode" required>
+      <input type="text" id="addresscity" class="form-control" pattern="[a-z]{1,}"
+             placeholder="City" [(ngModel)]="city" name="city" required>
+      <input type="text" id="addressstate" class="form-control" pattern="[A-Z]{2}"
+             placeholder="State Abbreviation" [(ngModel)]="state" name="state" required>
+      <input type="text" id="addresszipcode" class="form-control" pattern="[0-9]{5}"
+             placeholder="Zipcode" [(ngModel)]="zipcode" name="zipcode" required>
     </div>
-    <input type="tel" id="cellphone" class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Your Phone Number (123-456-7890)" required>
-
+    <div class="form-sameline2">
+    <input type="tel" id="cellphone" class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+           placeholder="Your Phone Number (123-456-7890)" [(ngModel)]="phone" name="phone" required>
+    <input type="tel" id="alterphone" class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+           placeholder="Your Alternate Phone Number (123-456-7890)" [(ngModel)]="alterphone" name="alterphone" required>
+    </div>
     <h3>Your Car's Info</h3>
     <div class="form-sameline3">
-      <input type="text" id="carmaker" class="form-control" placeholder="Your Car's Maker">
-      <input type="text" id="carmodel" class="form-control" placeholder="Your Car's Model">
-      <input type="text" id="carcolor" class="form-control" placeholder="Your Car's Color">
+      <input type="text" id="carmaker" class="form-control"
+             placeholder="Your Car's Maker" [(ngModel)]="carMaker" name="carMaker">
+      <input type="text" id="carmodel" class="form-control"
+             placeholder="Your Car's Model" [(ngModel)]="carModel" name="carModel">
+      <input type="text" id="carcolor" class="form-control"
+             placeholder="Your Car's Color" [(ngModel)]="carColor" name="carColor">
     </div>
     <h3>Your Email Address</h3>
-    <input type="text" id="email" class="form-control" disabled="disabled" placeholder="NEEDS AUTO FILL NOT EDITABLE">
+    <input type="text" id="email" class="form-control" disabled="disabled" placeholder={{newUserEmail}}>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="registerAttempt()">Submit</button>
   </form>
-
-
-<!--<p class="mt-5 mb-3 text-muted">&copy; 2021</p>-->
 </body>
-
-<script>
-  $(".dropdown-menu li a").click(function(){
-    $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
-    $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-  });
-</script>
 </html>

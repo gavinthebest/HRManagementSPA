@@ -53,6 +53,18 @@ export class ApiService {
     return this.http.get(getUrl).pipe(map((resp) => resp as any));
   }
 
+  getOneByEmail(path: string, value?: string): Observable<any> {
+    let getUrl: string;
+    if (value) {
+      getUrl = `${environment.apiUrl}${path}` + '/' + value;
+    } else {
+      getUrl = `${environment.apiUrl}${path}`;
+    }
+    this.headers = new HttpHeaders();
+    this.headers.append('Content-Type', 'text/plain');
+    return this.http.get(getUrl,{ headers:this.headers, responseType: 'text' as 'json'}).pipe(map((resp) => resp as any));
+  }
+
 
   create(path: string, resource: any, options?: any): Observable<any> {
     return this.http
@@ -70,5 +82,10 @@ export class ApiService {
         .delete(`${environment.apiUrl}${path}` + '/' + id, { headers: this.headers })
         .pipe(map((response) => response));
   }
+  deleteByString(path: string, content: string): Observable<any> {
+    return this.http
+      .delete(`${environment.apiUrl}${path}` + '/' + content, { headers: this.headers })
+      .pipe(map((response) => response));
+}
 
 }
