@@ -1,181 +1,58 @@
-<h4>测试：employee ID is:  {{employeeID}}  </h4>
-<h4>测试：uer ID is:  {{userID}}  </h4>
-<h4>测试：applicaitonWorkFlow Status is:  {{workFlow.status}}  </h4>
-
-
-<div class="row">
-
-  <!-- Visa Staus 部分 -->
-  <div class="col-md-8">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Visa Status</h4>
-      </div>
-
-      <div>
-        <div class="card-body">
-          <ul class="list-unstyled team-members">
-            <li class="step_1">
-              <div class="row">
-                <div class="col-md-2 col-2">
-                  <div class="avatar">
-                    <img src="https://cms-assets.tutsplus.com/uploads/users/523/posts/32694/preview_image/tutorial-preview-small.png" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                  </div>
+  <!-- Visa Status -->
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Visa Status</h4>
+    </div>
+    <div *ngIf="this.visaStatus.visatype != 'F1/OPT'">
+      <h5 class="card-title">Hi {{this.employee.firstname + ' ' + this.employee.lastname}}, there's no available options for your visa status.</h5>
+    </div>
+    <div *ngIf="this.visaStatus.visatype == 'F1/OPT'">
+      <div class="card-body">
+        <ul class="list-unstyled team-members">
+          <li *ngFor="let item of files; let i = index">
+            <div class="row">
+              <div class="col-md-1 col-2">
+                <br>
+                <div class="avatar">
+                  <img *ngIf="this.flowNo >= i + 1" src="https://cms-assets.tutsplus.com/uploads/users/523/posts/32694/preview_image/tutorial-preview-small.png" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                  <img *ngIf="this.flowNo < i + 1" src="https://image.freepik.com/free-icon/todo-list_318-10185.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                 </div>
-                <div class="col-md-7 col-7">
-                  Step 1: OPT Receipt
-                  <br />
-                  <span class="text-success">
+              </div>
+              <div class="col-md-5 col-7">
+                Step {{i + 1}}: {{item}}
+                <br>
+                <span *ngIf="i == 2 && (this.flowNo == 2.5 || this.flowNo == 3.5); else elseBlock">
+                  <small *ngIf="this.flowNo == 2.5" class="text-danger">HR Message: {{this.workFlow.comments}}</small>
+                  <br>
+                  <small *ngIf="this.flowNo == 2.5" class="text-danger">Rejected</small>
+                  <small *ngIf="this.flowNo == 3.5" class="text-warning">Pending</small>
+                </span>
+                <ng-template #elseBlock>
+                  <br>
+                  <span *ngIf="this.flowNo >= i + 1" class="text-success">
                     <small>Completed</small>
                   </span>
-                </div>
-                <div class="update">
-                  <!-- <button type="submit" class="btn btn-primary btn-round">Select</button> -->
-                  <button type="btn" class="btn btn-primary btn-round" (click)="setPicUrl1()">View</button>  
-                </div>
-              </div>
-            </li>
-            <li class="step_2">
-              <div class="row">
-                <div class="col-md-2 col-2">
-                  <div class="avatar">
-                    <img src="https://cms-assets.tutsplus.com/uploads/users/523/posts/32694/preview_image/tutorial-preview-small.png" alt="Circle Image" class="img-circle img-no-padding img-responsive" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                  </div>
-                </div>
-                <div class="col-md-7 col-7">
-                  STEP 2: OPT EAD
-                  <br />
-                  <span class="text-success">
-                    <small>PASS</small>
+                  <span *ngIf="this.flowNo < i + 1" class="text-muted">
+                    <small>Not yet started</small>
                   </span>
+                </ng-template>
+              </div>
+              <div class="col-md-6 update">
+                <app-details-upload *ngIf="this.flowNo >= i + 1" fileUpload="user_{{this.userID}}_{{this.fileType[i]}}.pdf"></app-details-upload>
+                <div *ngIf="this.flowNo >= i && this.flowNo < i + 1 && disabled && this.flowNo != 3.5" class="update ml-auto mr-auto">
+                  <button (click)="onChange()" class="btn btn-primary btn-round">Upload</button>
                 </div>
-                <div class="update">
-                  <!-- <button type="submit" class="btn btn-primary btn-round">Select</button> -->
-                  <!-- <button type="submit" class="btn btn-primary btn-round">{{currEmployee.employeeID}}</button> -->
-                  <button type="btn" class="btn btn-primary btn-round" (click)="setPicUrl2()">View</button>   
+                <div *ngIf="this.flowNo >= i && this.flowNo < i + 1 && !disabled" class="update ml-auto mr-auto">
+                  <form-upload [userID]='this.userID' [employeeID]='this.employeeID' [fileType]='this.fileType[i]'></form-upload>
+                  <button (click)="onChange()" class="btn btn-round">Cancel</button>
                 </div>
               </div>
-            </li>
-            <li class="step_3">
-              <div class="row">
-                <div class="col-md-2 col-2">
-                  <div class="avatar">
-                    <img src="https://cms-assets.tutsplus.com/uploads/users/523/posts/32694/preview_image/tutorial-preview-small.png" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                  </div>
-                </div>
-                <div class="col-ms-7 col-7">
-                  STEP 3: I-983
-                  <br />
-                  <span class="text-success">
-                    <small>Success</small>
-                  </span>
-                </div>
-                <div class="update">
-                  <!-- <button type="submit" class="btn btn-primary btn-round">Select</button> -->
-                  <!-- <button type="submit" class="btn btn-primary btn-round">{{currEmployee.employeeID}}</button>   -->
-
-                  <button type="btn" class="btn btn-primary btn-round" (click)="setPicUrl3()">View</button> 
-                </div>
-              </div>
-            </li>
-            <li class="step_4">
-              <div class="row">
-                <div class="col-md-2 col-2">
-                  <div class="avatar">
-                    <img src="https://cms-assets.tutsplus.com/uploads/users/523/posts/32694/preview_image/tutorial-preview-small.png" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                  </div>
-                </div>
-                <div class="col-ms-7 col-7">
-                  STEP 4: I-20
-                  <br />
-                  <span class="text-success">
-                    <small>Success</small>
-                  </span>
-                </div>
-                <div class="update">
-                  <button type="submit" class="btn btn-primary btn-round">View</button>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="row">
-                <div class="col-md-2 col-2">
-                  <div class="avatar">
-                    <img src="https://image.freepik.com/free-icon/todo-list_318-10185.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                  </div>
-                </div>
-                <div class="col-ms-5 col-5">
-                  STEP 5: OPT STEM Receipt
-                  <br />
-                  <span class="text-danger">
-                    <small>Rejected</small>
-                  </span>
-                </div>
-                <div class="update">
-                  <button type="submit" class="btn btn-primary btn-round">Upload</button>
-                  <button type="submit" class="btn btn-primary btn-round">View</button>
-                </div>
-              </div>
-            </li>
-            <li class=step_6>
-              <div class="row">
-                <div class="col-md-2 col-2">
-                  <div class="avatar">
-                    <img src="https://image.freepik.com/free-icon/todo-list_318-10185.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                  </div>
-                </div>
-                <div class="col-ms-7 col-7">
-                  STEP 6: OPT STEM EAD
-                  <br />
-                  <span class="text-muted">
-                    <small>No file</small>
-                  </span>
-                </div>
-                <div class="update">
-                  <button type="submit" class="btn btn-primary btn-round">View</button>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
+            </div>
+            <hr/>
+          </li>
+        </ul>
       </div>
-      
     </div>
   </div>
-
-  <!-- ----- Document 查看部分  ---- -->
-  <!-- <div class="col-md-6">
-    <div class="card card-user">
-
-      <div class="card-header">
-        <h4 class="card-title">Document Viewer</h4>
-      </div>
-
-      <div >
-        <div class="card-body">
-          <div >
-            <img src={{picUrl}} alt="...">
-          </div>
-        </div>
-        <div class="card-footer">
-          <form>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  Comment
-                  <textarea class="form-control textarea">Oh so, your weak rhyme You doubt I'll bother, reading into it</textarea>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="update ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary btn-round">Download</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-  </div> -->
 </div>

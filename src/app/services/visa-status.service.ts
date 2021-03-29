@@ -24,7 +24,7 @@ export class VisaStatusService {
    return this.apiService.delete('visaStatus/delete',id);
  }
  getVisaStatusByEmployeeID(id: number): Observable<visaStatus> {
-  return this.apiService.getOne('visaStatus/visaStatusEmployeeId', id );
+  return this.apiService.getOne('visaStatus/find', id);
 }
 
 }

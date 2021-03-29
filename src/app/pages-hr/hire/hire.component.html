@@ -106,29 +106,26 @@
         </div>
         <div *ngIf="isDocApp">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">I-983</h5>
-                  <button class="btn btn-outline-info col-md-12" (click)="showi983()">Show PDF below</button>
+                  <button class="btn btn-outline-info col-md-12" (click)="showi983()">Show / Hide PDF</button>
+                  <a class="btn btn-outline-primary col-md-12" href="http://localhost:8080/api/file/user_{{this.employee.userID}}_I-983.pdf">Download</a>
+                  <div *ngIf="i983" class="row">
+                    <div class="col-md-12">
+                      <pdf-viewer src="http://localhost:8080/api/file/user_{{this.employee.userID}}_I-983.pdf"
+                      [render-text]="true"
+                      [fit-to-page]="true"
+                      style="display: block;">
+                      </pdf-viewer>
+                    </div>
+                  </div>
+
                   <form [formGroup]='pdForm'>
                     <div class="form-outline">
-                      <label class="form-label" for="comment1">Comment(Optional for approval)</label>
+                      <label class="form-label" for="comment1">Comment for rejection</label>
                       <textarea class="form-control" id="comment1" name="comment1" rows="4" formControlName="comment"></textarea>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">I-20</h5>
-                  <button class="btn btn-outline-info col-md-12" (click)="showi20()">Show PDF below</button>
-                  <form [formGroup]='pdForm2'>
-                    <div class="form-outline">
-                      <label class="form-label" for="comment2">Comment(Optional for approval)</label>
-                      <textarea class="form-control" id="comment2" name="comment2" rows="4" formControlName="comment"></textarea>
                     </div>
                   </form>
                 </div>
@@ -136,31 +133,22 @@
             </div>
           </div>
           <div class="row">
-            <div class="update ml-auto mr-auto">
-              <button (click)="approveDoc()" class="btn btn-success btn-round">Approve</button>
+            <div *ngIf="disabled1" class="update ml-auto mr-auto">
+              <button (click)="onChange()" class="btn btn-success btn-round">Upload signed pdf and approve</button>
             </div>
+            <div *ngIf="!disabled1" class="update ml-auto mr-auto">
+              <form-upload [userID]='this.employee.userID' [employeeID]='this.employee.employeeID' fileType='I-983'></form-upload>
+                <button (click)="onChange()" class="btn btn-round">Cancel</button>
+            </div>
+            <!-- <div class="update ml-auto mr-auto">
+              <button (click)="approveDoc()" class="btn btn-success btn-round">Approve</button>
+            </div> -->
             <div class="update ml-auto mr-auto">
-              <button [disabled]="this.pdForm.value.comment === ''|| this.pdForm2.value.comment === ''" (click)="rejectDoc()" class="btn btn-danger btn-round">Reject</button>
+              <button [disabled]="this.pdForm.value.comment === ''" (click)="rejectDoc()" class="btn btn-danger btn-round">Reject</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<div *ngIf="i983" class="row">
-  <div class="col-md-12">
-    <pdf-viewer src="https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf"
-    [render-text]="true"
-    style="display: block;">
-    </pdf-viewer>
-  </div>
-</div>
-<div *ngIf="i20" class="row">
-  <div class="col-md-12">
-    <pdf-viewer src="http://localhost:8080/api/file/user_{{this.employee.userID}}_opti20.pdf"
-    [render-text]="true"
-    style="display: block;">
-    </pdf-viewer>
   </div>
 </div>
