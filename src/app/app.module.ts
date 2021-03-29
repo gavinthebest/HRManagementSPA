@@ -22,6 +22,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HousingdetailComponent } from './pages-hr/housingdetail/housingdetail.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReportcommentComponent } from './pages/reportcomment/reportcomment.component';
+import { FacilityReportDetailComponent } from './pages-hr/facility-report-detail/facility-report-detail.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { ReportcommentComponent } from './pages/reportcomment/reportcomment.comp
     RegisterComponent,
     HousingdetailComponent,
     ReportcommentComponent,
+    FacilityReportDetailComponent,
   ],
   imports: [
     BrowserAnimationsModule,

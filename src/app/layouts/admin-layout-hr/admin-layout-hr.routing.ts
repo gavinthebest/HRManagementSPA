@@ -6,6 +6,7 @@ import { TableComponent } from '../../pages-hr/table/table.component';
 import { HousingComponent } from 'app/pages-hr/housing/housing.component';
 import { HireComponent } from 'app/pages-hr/hire/hire.component';
 import { HousingdetailComponent } from 'app/pages-hr/housingdetail/housingdetail.component';
+import { FacilityReportDetailComponent } from 'app/pages-hr/facility-report-detail/facility-report-detail.component';
 
 
 export const AdminLayoutHrRoutes: Routes = [
@@ -14,5 +15,6 @@ export const AdminLayoutHrRoutes: Routes = [
     { path: 'table',          component: TableComponent },
     { path: 'hire',          component: HireComponent },
     { path: 'housing',          component: HousingComponent },
-    { path: 'housing/housingdetail/:houseID',          component: HousingdetailComponent }
+    { path: 'housing/housingdetail/:houseID',          component: HousingdetailComponent },
+    { path: 'housing/facilityreportdetail/:facilityreportID',      component: FacilityReportDetailComponent}
 ];
