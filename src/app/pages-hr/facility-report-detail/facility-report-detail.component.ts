@@ -47,7 +47,7 @@ export class FacilityReportDetailComponent implements OnInit {
       employeeid: [this.employeeID],
       comments: [''],
       createddate: [Date.now()],
-      lastmodificationdate: [Date.now()]
+      lastmodificationdate: ['']
   });
     this.form2 = this.formBuilder.group({
       facilityreportid: [''],
@@ -132,6 +132,12 @@ export class FacilityReportDetailComponent implements OnInit {
   }
 
   onChangex(i) {
+    this.forms[i].patchValue({
+      lastmodificationdate: Date.now(), 
+      // formControlName2: myValue2 (can be omitted)
+    });
+
+
     this.facilityReportDetailService.updateFacilityReportDetail(this.forms[i].value)
         .pipe(first())
         .subscribe(() => {

@@ -126,8 +126,13 @@
                                                     <h4 class="media-heading">User:
                                                         {{facilityreportdetails[i].username}}
                                                     </h4>
-                                                    
-                                                    <div class="update ml-auto mr-auto">                                                       
+                                                    <div *ngIf="facilityreportdetails[i].lastmodificationdate"
+                                                        class="update ml-auto mr-auto">
+                                                        <p> updated at:
+                                                            {{facilityreportdetails[i].lastmodificationdate}}</p>
+                                                    </div>
+                                                    <div *ngIf="!facilityreportdetails[i].lastmodificationdate"
+                                                        class="update ml-auto mr-auto">
                                                         <p> created at: {{facilityreportdetails[i].createddate}}</p>
                                                     </div>
 
