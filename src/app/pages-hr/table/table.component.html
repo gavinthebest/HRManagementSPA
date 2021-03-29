@@ -43,7 +43,11 @@
                 </td>
                 <td>{{user.enddate}}</td>
                 <!-- <td>{{user.enddate|  date:'MM/dd/yyyy'}}</td> -->
-                <td>没想好</td>
+                <td>
+                  <span *ngFor="let visa of visaStatus">
+                    <span *ngIf="visa.employeeid == user.employeeID">{{calculateDiff(visa.visaenddate)}}</span>
+                  </span
+                ></td>
 
                 <!-- <td>{{user.enddate.timestamp| }}</td> -->
 

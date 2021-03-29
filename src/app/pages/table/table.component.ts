@@ -1,41 +1,50 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployeeService } from 'app/services/employee.service';
+import { employee } from 'app/models/employee';
+import {CookieService} from 'ngx-cookie-service';
+import { VisaStatusService } from "app/services/visa-status.service";
+import { applicationWorkFlow } from "app/models/applicationWorkFlow";
+import { ApplicationWorkFlowService } from "app/services/application-work-flow.service";
+import { data } from 'jquery';
 
-declare interface TableData {
-    headerRow: string[];
-    dataRows: string[][];
-}
+
+// declare interface TableData {
+//     headerRow: string[];
+//     dataRows: string[][];
+// }
 
 @Component({
     selector: 'table-cmp',
     moduleId: module.id,
-    templateUrl: 'table.component.html'
+    templateUrl: 'table.component.html',
+    styleUrls: ['./table.component.css']
 })
 
 export class TableComponent implements OnInit{
-    public tableData1: TableData;
-    public tableData2: TableData;
+
+    userID: string;
+    employee : employee;
+    employeeID: string;
+    // visaStatus!:visaStatus;
+    workFlow!:applicationWorkFlow;
+
+    constructor(
+        private cookieService: CookieService,
+        private employeeservice : EmployeeService,
+        private visaStatusService: VisaStatusService,
+        private applicationWorkFlow: ApplicationWorkFlowService
+        ){}   
+
     ngOnInit(){
-        this.tableData1 = {
-            headerRow: [ 'ID', 'Name', 'Country', 'City', 'Salary'],
-            dataRows: [
-                ['1', 'Dakota Rice', 'Niger', 'Oud-Turnhout', '$36,738'],
-                ['2', 'Minerva Hooper', 'Curaçao', 'Sinaai-Waas', '$23,789'],
-                ['3', 'Sage Rodriguez', 'Netherlands', 'Baileux', '$56,142'],
-                ['4', 'Philip Chaney', 'Korea, South', 'Overland Park', '$38,735'],
-                ['5', 'Doris Greene', 'Malawi', 'Feldkirchen in Kärnten', '$63,542'],
-                ['6', 'Mason Porter', 'Chile', 'Gloucester', '$78,615']
-            ]
-        };
-        this.tableData2 = {
-            headerRow: [ 'ID', 'Name',  'Salary', 'Country', 'City' ],
-            dataRows: [
-                ['1', 'Dakota Rice','$36,738', 'Niger', 'Oud-Turnhout' ],
-                ['2', 'Minerva Hooper', '$23,789', 'Curaçao', 'Sinaai-Waas'],
-                ['3', 'Sage Rodriguez', '$56,142', 'Netherlands', 'Baileux' ],
-                ['4', 'Philip Chaney', '$38,735', 'Korea, South', 'Overland Park' ],
-                ['5', 'Doris Greene', '$63,542', 'Malawi', 'Feldkirchen in Kärnten', ],
-                ['6', 'Mason Porter', '$78,615', 'Chile', 'Gloucester' ]
-            ]
-        };
+
+        this.employeeID = this.cookieService.get('employeeID');
+        this.userID = this.cookieService.get('userID');
+
+
+        // this.visaStatusService.getVisaStatusByEmployeeID(+this.employeeID).subscribe(data=>{this.visaStatus = data;});
+        this.applicationWorkFlow.getApplicationWorkFlowByEmployeeId(this.employeeID).subscribe(data=>{this.workFlow =data});
+
     }
+
+    
 }

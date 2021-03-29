@@ -1,7 +1,12 @@
+<h4>测试：employee ID is:  {{employeeID}}  </h4>
+<h4>测试：uer ID is:  {{userID}}  </h4>
+<h4>测试：applicaitonWorkFlow Status is:  {{workFlow.status}}  </h4>
+
+
 <div class="row">
 
   <!-- Visa Staus 部分 -->
-  <div class="col-md-6">
+  <div class="col-md-8">
     <div class="card">
       <div class="card-header">
         <h4 class="card-title">Visa Status</h4>
@@ -9,29 +14,8 @@
 
       <div>
         <div class="card-body">
-          <!-- <div class="row">
-            <div class="col-md-3 pr-1">
-              <div class="form-group">
-                <label>Employee ID</label>
-                <input type="text" class="form-control" disabled="" value={{currEmployee.employeeID}}>
-              </div>
-            </div>
-            <div class="col-md-5 px-1">
-              <div class="form-group">
-                <label>Name</label>
-                <input type="text" class="form-control" disabled="" value={{currEmployee.firstname}}>
-              </div>
-            </div>
-            <div class="col-md-4 pl-1">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Visa Type</label>
-                <input type="email" class="form-control" disabled="" value="稍后连接数据">
-              </div>
-            </div>
-          </div>
-          <hr> -->
           <ul class="list-unstyled team-members">
-            <li>
+            <li class="step_1">
               <div class="row">
                 <div class="col-md-2 col-2">
                   <div class="avatar">
@@ -41,8 +25,8 @@
                 <div class="col-md-7 col-7">
                   Step 1: OPT Receipt
                   <br />
-                  <span class="text-muted">
-                    <small>No file</small>
+                  <span class="text-success">
+                    <small>Completed</small>
                   </span>
                 </div>
                 <div class="update">
@@ -51,7 +35,7 @@
                 </div>
               </div>
             </li>
-            <li>
+            <li class="step_2">
               <div class="row">
                 <div class="col-md-2 col-2">
                   <div class="avatar">
@@ -72,7 +56,7 @@
                 </div>
               </div>
             </li>
-            <li>
+            <li class="step_3">
               <div class="row">
                 <div class="col-md-2 col-2">
                   <div class="avatar">
@@ -82,8 +66,8 @@
                 <div class="col-ms-7 col-7">
                   STEP 3: I-983
                   <br />
-                  <span class="text-danger">
-                    <small>Rejected</small>
+                  <span class="text-success">
+                    <small>Success</small>
                   </span>
                 </div>
                 <div class="update">
@@ -94,7 +78,7 @@
                 </div>
               </div>
             </li>
-            <li>
+            <li class="step_4">
               <div class="row">
                 <div class="col-md-2 col-2">
                   <div class="avatar">
@@ -104,8 +88,8 @@
                 <div class="col-ms-7 col-7">
                   STEP 4: I-20
                   <br />
-                  <span class="text-danger">
-                    <small>Rejected</small>
+                  <span class="text-success">
+                    <small>Success</small>
                   </span>
                 </div>
                 <div class="update">
@@ -120,19 +104,20 @@
                     <img src="https://image.freepik.com/free-icon/todo-list_318-10185.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                   </div>
                 </div>
-                <div class="col-ms-7 col-7">
+                <div class="col-ms-5 col-5">
                   STEP 5: OPT STEM Receipt
                   <br />
-                  <span class="text-success">
-                    <small>Completed</small>
+                  <span class="text-danger">
+                    <small>Rejected</small>
                   </span>
                 </div>
                 <div class="update">
+                  <button type="submit" class="btn btn-primary btn-round">Upload</button>
                   <button type="submit" class="btn btn-primary btn-round">View</button>
                 </div>
               </div>
             </li>
-            <li>
+            <li class=step_6>
               <div class="row">
                 <div class="col-md-2 col-2">
                   <div class="avatar">
@@ -142,8 +127,8 @@
                 <div class="col-ms-7 col-7">
                   STEP 6: OPT STEM EAD
                   <br />
-                  <span class="text-success">
-                    <small>Pending</small>
+                  <span class="text-muted">
+                    <small>No file</small>
                   </span>
                 </div>
                 <div class="update">
@@ -159,7 +144,7 @@
   </div>
 
   <!-- ----- Document 查看部分  ---- -->
-  <div class="col-md-6">
+  <!-- <div class="col-md-6">
     <div class="card card-user">
 
       <div class="card-header">
@@ -174,14 +159,14 @@
         </div>
         <div class="card-footer">
           <form>
-            <!-- <div class="row">
+            <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
                   Comment
                   <textarea class="form-control textarea">Oh so, your weak rhyme You doubt I'll bother, reading into it</textarea>
                 </div>
               </div>
-            </div> -->
+            </div>
             <div class="row">
               <div class="update ml-auto mr-auto">
                 <button type="submit" class="btn btn-primary btn-round">Download</button>
@@ -192,6 +177,5 @@
       </div>
     </div>
 
-  </div>
-  
+  </div> -->
 </div>
