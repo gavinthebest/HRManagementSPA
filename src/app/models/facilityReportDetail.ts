@@ -5,4 +5,5 @@ export interface facilityReportDetail {
     comments: string;
     createddate: Date;
     lastmodificationdate: Date;
+    username: string;
 }
