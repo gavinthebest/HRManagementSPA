@@ -50,7 +50,7 @@ export class UserComponent implements OnInit{
             driverlicense: [''],
             driverlicense_expirationdate: [''],
             employeeID: [''],
-            houseID: [''],
+            houseid: [''],
             userID: [''],
             email: [''],
             managerID: [''],
