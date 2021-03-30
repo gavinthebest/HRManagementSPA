@@ -174,14 +174,15 @@
                               <div class="update ml-auto mr-auto">
                                 <h5>
                                   <span [ngSwitch]="ap.status">
-                                    <p *ngSwitchCase="1">STEP 1: OPT Receipt</p>
-                                    <p *ngSwitchCase="2">STEP 2: OPT EAD</p>
-                                    <p *ngSwitchCase="2.5">OPT Pending (Re-jected)</p>
-                                    <p *ngSwitchCase="3">STEP 3: I-983</p>
-                                    <p *ngSwitchCase="3.5">OPT Pending (Re-sumbmit)</p>
-                                    <p *ngSwitchCase="4">STEP 4: I-20</p>
-                                    <p *ngSwitchCase="5">STEP 5: OPT STEM EAD</p>
-                                    <p *ngSwitchDefault>{{ap.status}}</p>
+                                    <p *ngSwitchCase="'pending'">STEP 1: OPT Receipt</p>
+                                    <p *ngSwitchCase="1">STEP 2: OPT EAD</p>
+                                    <p *ngSwitchCase="2.5">Re-upload STEP 3: I-983</p>
+                                    <p *ngSwitchCase="2">STEP 3: I-983</p>
+                                    <p *ngSwitchCase="'optpending'">Pending for HR Approval</p>
+                                    <p *ngSwitchCase="3">STEP 4: I-20</p>
+                                    <p *ngSwitchCase="4">STEP 5: OPT STEM Receipt</p>
+                                    <p *ngSwitchCase="5">STEP 6: OPT STEM EAD</p>
+                                    <p *ngSwitchDefault>No action needed</p>
                                   </span>
                                 </h5>
                               </div>
