@@ -55,8 +55,7 @@ export class DashboardComponent implements OnInit{
     .pipe(first())
     .subscribe(applicationWorkFlow=>this.applicationWorkFlows = applicationWorkFlow);
 
-    this.uploadService.getFilesById(this.expand_employeeId)
-    .subscribe(x => this.fileUploads = x);
+    
   }
 
   constructor(
@@ -117,7 +116,8 @@ export class DashboardComponent implements OnInit{
         } else {
             this.expand_employeeId = e;
         }
-        // this.visaStatusService.getVisaStatusByEmployeeID(1));
+        this.uploadService.getFilesById(this.expand_employeeId)
+        .subscribe(x => this.fileUploads = x);
     }
 
     calculateDiff(date: string){

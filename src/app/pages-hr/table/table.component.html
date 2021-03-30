@@ -41,10 +41,16 @@
                       </span>
                     </span>
                 </td>
-                <td>{{user.enddate}}</td>
                 <td>
                   <span *ngFor="let visa of visaStatus">
-                    <span *ngIf="visa.employeeid == user.employeeID">{{calculateDiff(visa.visaenddate)}}</span>
+                    <span *ngIf="visa.employeeid == user.employeeID">{{visa.visaenddate}}</span>
+                  </span>
+                </td>
+                <td>
+                  <span *ngFor="let visa of visaStatus">
+                    <span *ngIf="visa.employeeid == user.employeeID">
+                      {{calculateDiff(visa.visaenddate)}}
+                    </span>
                   </span>
                 </td>
               </tr>
@@ -78,17 +84,18 @@
                         <td>
                           <div class="card">
                             <div class="table-responsive">
-                              <table class="table" style="display: inline-block; overflow-y: scroll;max-height:200px;">
+                              <table class="table" style="display: inline-block; overflow-y: scroll;max-height:500px;">
                                 <!---开始--- 连接 S3 拿文件 -------->
                                 <tr *ngFor="let file of fileUploads">
                                   <td> 
                                     <!-- 文件名 -->
                                     <tr>
-                                      <td>
+                                      <td colspan="2">
                                         <div class="update ml-auto mr-auto">
-                                          {{file}}
+                                          <b>{{file}}</b>
                                         </div>
                                       </td>
+                                      <td></td>
                                     </tr>
                                     <tr>
                                       <!-- 本地观看 -->
@@ -100,14 +107,14 @@
                                       <!-- 下载文件 -->
                                       <td>
                                         <div class="update ml-0 mr-0">
-                                          <a class="btn btn-primary btn-round" href="http://localhost:8080/api/file/{{fileUpload}}">Download</a>
+                                          <a class="btn btn-primary btn-round" href="http://localhost:8080/api/file/{{file}}">Download</a>
                                         </div>
                                       </td>
                                     </tr>
                                     <!-- 观看 PDF 的视窗 -->
                                     <tr *ngIf="file_on_view == file">
-                                      <td>
-                                        <div class="col-md-8">
+                                      <td colspan="2">
+                                        <div class="col-md-12" style="max-height:800px; zoom:30%">
                                           <pdf-viewer src="http://localhost:8080/api/file/{{file}}"
                                             [render-text]="true"
                                             [fit-to-page]="true"
@@ -115,6 +122,7 @@
                                           </pdf-viewer>
                                         </div>
                                       </td>
+                                      <td></td>
                                     </tr>
                                   </td>
                                 
