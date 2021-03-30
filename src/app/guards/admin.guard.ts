@@ -15,12 +15,8 @@ export class AdminGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return true;
     let currentUserId: string = this.cookieService.get('userID');
     this.userRoleService.getUserRoleByUserId(currentUserId).subscribe(userRole => {
-      if (!userRole) {
-        return false;
-      }
       let roleId: number = userRole.roleID;
       this.roleService.getRole(roleId).subscribe(role => {
         if (role.roleName === 'HR') {
