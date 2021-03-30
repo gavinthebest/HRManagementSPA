@@ -16,6 +16,7 @@ import { HireComponent } from 'app/pages-hr/hire/hire.component';
 import { ShowUsersComponent } from 'app/pages-hr/user/show-users/show-users.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { FormUploadComponent } from 'app/shared/form-upload/form-upload.component';
+import { DetailsUploadComponent } from 'app/pages/user/details-upload/details-upload.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { FormUploadComponent } from 'app/shared/form-upload/form-upload.componen
     HireComponent,
     HousingComponent,
     ShowUsersComponent,
-    FormUploadComponent
+    FormUploadComponent,
+    DetailsUploadComponent
   ]
 })
 
