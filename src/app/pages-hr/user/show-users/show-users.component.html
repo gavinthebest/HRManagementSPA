@@ -31,7 +31,10 @@
             <td>{{user.startdate}}</td>
             <td>
               <span *ngFor="let visa of visaStatus">
-                <span *ngIf="visa.employeeid == user.employeeID">{{visa.visatype}}</span>
+                <span *ngIf="visa.employeeid == user.employeeID">
+                  {{visa.visatype}}
+                </span>
+                
               </span>
             </td>
             

@@ -38,6 +38,7 @@ export class TableComponent implements OnInit{
     todayDate = new Date();
 
     fileUploads: string[];
+    file_on_view:any;
 
     ngOnInit(){
         this.employeeService.getEmployees()
@@ -129,6 +130,14 @@ export class TableComponent implements OnInit{
         return Math.floor(diff);
     }
 
-    
+    viewPdf(e){
+        if (e == this.file_on_view) {
+            this.file_on_view = null;
+        } else {
+            this.file_on_view = e;
+        }
+        this.uploadService.getFilesById(this.expand_employeeId)
+        .subscribe(x => this.fileUploads = x);
+    }
     
 }

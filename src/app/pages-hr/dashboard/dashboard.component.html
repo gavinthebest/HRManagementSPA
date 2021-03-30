@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
   <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card card-stats">
       <div class="card-body ">
@@ -20,7 +20,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="row">
   <div class="col-md-12">
@@ -53,29 +53,36 @@
                 <th>
                   Day Left
                 </th>
-                <th></th>
+                <th>
+                  Action
+                </th>
               </tr>
             </thead>
             
             <tbody *ngFor="let user of users" >
               <tr *ngFor="let visa of visaStatus" (click)="trExpand(user.employeeID)" (click)="setCurrEmployee(user)">
-                <!-- <span *ngIf="calculateDiff(visa.visaenddate)<100 && visa.employeeid == user.employeeID"> -->
-                    <td *ngIf="calculateDiff(visa.visaenddate)<100 && visa.employeeid == user.employeeID">
-                      {{user.employeeID}}
-                    </td>
-                    <td *ngIf="calculateDiff(visa.visaenddate)<100 && visa.employeeid == user.employeeID">
-                      {{user.firstname}} {{user.lastname}}
-                    </td>
-                    <td *ngIf="calculateDiff(visa.visaenddate)<100 && visa.employeeid == user.employeeID">{{visa.visatype}}</td>
-                    <td *ngIf="calculateDiff(visa.visaenddate)<100 && visa.employeeid == user.employeeID">{{user.enddate}}</td>
-                    <td *ngIf="calculateDiff(visa.visaenddate)<100 && visa.employeeid == user.employeeID">
-                      <span *ngFor="let visa of visaStatus">
-                        <span *ngIf="visa.employeeid == user.employeeID">{{calculateDiff(visa.visaenddate)}}</span>
-                      </span>
-                    </td>
-                <!-- </span> -->
-              </tr>
-            
+                <td *ngIf="calculateDiff(visa.visaenddate)<100 && calculateDiff(visa.visaenddate)>0 && visa.employeeid == user.employeeID">
+                  {{user.employeeID}}
+                </td>
+                <td *ngIf="calculateDiff(visa.visaenddate)<100 && calculateDiff(visa.visaenddate)>0 && visa.employeeid == user.employeeID">
+                  {{user.firstname}} {{user.lastname}}
+                </td>
+                <td *ngIf="calculateDiff(visa.visaenddate)<100 && calculateDiff(visa.visaenddate)>0 && visa.employeeid == user.employeeID">{{visa.visatype}}</td>
+                <td *ngIf="calculateDiff(visa.visaenddate)<100 && calculateDiff(visa.visaenddate)>0 && visa.employeeid == user.employeeID">
+                  <span *ngFor="let visa of visaStatus">
+                    <span *ngIf="visa.employeeid == user.employeeID">{{visa.visaenddate}}</span>
+                  </span>
+                </td>
+                <td *ngIf="calculateDiff(visa.visaenddate)<100 && calculateDiff(visa.visaenddate)>0 && visa.employeeid == user.employeeID">
+                  <span *ngFor="let visa of visaStatus">
+                    <span *ngIf="visa.employeeid == user.employeeID">{{calculateDiff(visa.visaenddate)}}</span>
+                  </span>
+                </td>
+                <td *ngIf="calculateDiff(visa.visaenddate)<100 && calculateDiff(visa.visaenddate)>0 && visa.employeeid == user.employeeID">
+                  <button type="btn" (click)="notify(user.email)" class="btn btn-primary btn-round">Send Notification</button>
+                </td>
+            <!-- </span> -->
+            </tr>
               <!-- ------ 展开部分（开始）------ -->
               <tr *ngIf="expand_employeeId == user.employeeID" >
                 <td></td>
@@ -102,28 +109,61 @@
                     <td *ngIf="visa.employeeid == user.employeeID"></td>
                     <td *ngIf="visa.employeeid == user.employeeID" colspan="1">
                       <tr><td><b>Document Received:</b></td></tr>
-                      <!---开始--- 连接 S3 拿文件 -------->
-                      <tr *ngFor="let fileUpload of fileUploads">
-                        <td> 
-                          <!-- 文件名 -->
-                          <tr>
-                            <td>
-                              <div class="update ml-auto mr-auto">
-                                {{fileUpload}}
-                              </div>
-                            </td>
-                            <!-- 下载文件 -->
-                            <td>
-                              <div class="update ml-5 mr-5">
-                                <app-details-upload [fileUpload]='fileUpload'></app-details-upload>
-                              </div>
-                            </td>
-                          </tr>
+                      <tr>
+                        <td>
+                          <div class="card">
+                            <div class="table-responsive">
+                              <table class="table" style="display: inline-block; overflow-y: scroll;max-height:500px;">
+                                <!---开始--- 连接 S3 拿文件 -------->
+                                <tr *ngFor="let file of fileUploads">
+                                  <td> 
+                                    <!-- 文件名 -->
+                                    <tr>
+                                      <td colspan="2">
+                                        <div class="update ml-auto mr-auto">
+                                          <b>{{file}}</b>
+                                        </div>
+                                      </td>
+                                      <td></td>
+                                    </tr>
+                                    <tr>
+                                      <!-- 本地观看 -->
+                                      <td>
+                                        <div class="update ml-0 mr-0">
+                                          <a class="btn btn-primary btn-round" href="javascript:void(0);" (click)="viewPdf(file)">View</a>
+                                        </div>
+                                      </td>
+                                      <!-- 下载文件 -->
+                                      <td>
+                                        <div class="update ml-0 mr-0">
+                                          <a class="btn btn-primary btn-round" href="http://localhost:8080/api/file/{{file}}">Download</a>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <!-- 观看 PDF 的视窗 -->
+                                    <tr *ngIf="file_on_view == file">
+                                      <td colspan="2">
+                                        <div class="col-md-12" style="max-height:800px; zoom:30%">
+                                          <pdf-viewer src="http://localhost:8080/api/file/{{file}}"
+                                            [render-text]="true"
+                                            [fit-to-page]="true"
+                                            style="display: block;">
+                                          </pdf-viewer>
+                                        </div>
+                                      </td>
+                                      <td></td>
+                                    </tr>
+                                  </td>
+                                
+                                <!---结束--- 连接 S3 拿文件 ------->    
+                              </table>
+                            </div>
+                          </div>
                         </td>
                       </tr>
-                      <!---结束--- 连接 S3 拿文件 ------->                        
+                                          
                     </td>
-                    <td *ngIf="visa.employeeid == user.employeeID" colspan="1">
+                    <td *ngIf="visa.employeeid == user.employeeID">
                       <tr><td><b>Next Step:</b></td></tr>
                       <!---开始--- 拿下一步状态 -------->
                       <tr *ngFor="let ap of applicationWorkFlows">
@@ -132,14 +172,24 @@
                             <!-- 文件名 -->
                             <td>
                               <div class="update ml-auto mr-auto">
-                                {{ap.status}}
+                                <h5>
+                                  <span [ngSwitch]="ap.status">
+                                    <p *ngSwitchCase="1">STEP 1: OPT Receipt</p>
+                                    <p *ngSwitchCase="2">STEP 2: OPT EAD</p>
+                                    <p *ngSwitchCase="2.5">OPT Pending (Re-jected)</p>
+                                    <p *ngSwitchCase="3">STEP 3: I-983</p>
+                                    <p *ngSwitchCase="3.5">OPT Pending (Re-sumbmit)</p>
+                                    <p *ngSwitchCase="4">STEP 4: I-20</p>
+                                    <p *ngSwitchCase="5">STEP 5: OPT STEM EAD</p>
+                                    <p *ngSwitchDefault>{{ap.status}}</p>
+                                  </span>
+                                </h5>
                               </div>
                             </td>
+                          </tr>
+                          <tr>
                             <!-- 下载文件 -->
                             <td>
-                              <!-- <div class="update ml-5 mr-5">
-                                <app-details-upload [fileUpload]='fileUpload'></app-details-upload>
-                              </div> -->
                               <button type="btn" (click)="notify(user.email)" class="btn btn-primary btn-round">Send Notification</button>
                             </td>
                           </tr>
