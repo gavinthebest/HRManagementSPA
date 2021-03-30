@@ -25,12 +25,11 @@ export class HireComponent implements OnInit{
     comment: string = '';
     formOrDocs: applicationWorkFlow[];
     pdForm : FormGroup;
-    pdForm2 : FormGroup;
     awfForm : FormGroup;
     employee: employee;
     awfID : any;
-    i20: boolean = false;
     i983: boolean = false;
+    disabled1 = true;
 
     constructor(
         private fb: FormBuilder,
@@ -47,14 +46,6 @@ export class HireComponent implements OnInit{
             console.log(this.formOrDocs);
         });
         this.pdForm = this.fb.group({
-            personaldocumentID: [''],
-            employeeID: [''],
-            path: [''],
-            title: [''],
-            comment: [''],
-            createdate: ['']
-        });
-        this.pdForm2 = this.fb.group({
             personaldocumentID: [''],
             employeeID: [''],
             path: [''],
@@ -84,8 +75,8 @@ export class HireComponent implements OnInit{
 
     approve(): void {
         this.awfForm.patchValue({
-            status: 'completed',
-            modificationdate: Date.now(),
+            status: 'approved',
+            modificationdate: new Date(Date.now()),
             comments: this.comment
         });
         this.updateAWF(this.awfForm.value);
@@ -95,37 +86,35 @@ export class HireComponent implements OnInit{
     reject(): void {
         this.awfForm.patchValue({
             status: 'rejected',
-            modificationdate: Date.now(),
+            modificationdate: new Date(Date.now()),
             comments: this.comment
         });
         this.updateAWF(this.awfForm.value);
         alert('Application is rejected.');
         location.reload();
     }
-    approveDoc(): void {
-        this.updatePD(this.pdForm.value);
-        this.updatePD(this.pdForm2.value);
-        this.awfForm.patchValue({
-            status: 'opti20',
-            modificationdate: Date.now()
-        });
-        this.updateAWF(this.awfForm.value);
-        alert('Application is approved.');
-        location.reload();
-    }
+    // approveDoc(): void {
+    //     this.updatePD(this.pdForm.value);
+    //     this.awfForm.patchValue({
+    //         status: '3',
+    //         modificationdate: Date.now()
+    //     });
+    //     this.updateAWF(this.awfForm.value);
+    //     alert('Application is approved.');
+    //     location.reload();
+    // }
     rejectDoc(): void {
         this.updatePD(this.pdForm.value);
-        this.updatePD(this.pdForm2.value);
         this.awfForm.patchValue({
-            status: 'optead',
-            modificationdate: Date.now()
+            status: '2.5',
+            modificationdate: new Date(Date.now()),
+            comments: this.pdForm.value.comment
         });
         this.updateAWF(this.awfForm.value);
         alert('Application is rejected.');
         location.reload();
     }
     showDetailForm(awf: applicationWorkFlow) {
-        this.i20 = false;
         this.i983 = false;
         this.isDocApp = false;
         this.isFormApp = true;
@@ -140,7 +129,6 @@ export class HireComponent implements OnInit{
     }
     showDetailDoc(awf: applicationWorkFlow) {
         this.i983 = false;
-        this.i20 = false;
         this.isDocApp = true;
         this.isFormApp = false;
         this.awfForm.patchValue({
@@ -148,26 +136,17 @@ export class HireComponent implements OnInit{
             employeeID: awf.employeeID,
             createdate: awf.createdate
         });
-        console.log(this.awfForm.value);
 
         this.employeeService.getEmployee(awf.employeeID).subscribe( 
             data => {this.employee = data;});
         
 
-        this.pdService.getPersonalDocumentBy(awf.employeeID, 'opti983').subscribe(
+        this.pdService.getPersonalDocumentBy(awf.employeeID, 'I-983').subscribe(
             response => {
                 this.pdForm.patchValue(response)
             },
             error => {
               console.log(error);
-            }
-        );
-        this.pdService.getPersonalDocumentBy(awf.employeeID, 'opti20').subscribe(
-            response => {
-                this.pdForm2.patchValue(response)
-            },
-            error => {
-                console.log(error);
             }
         );
     }
@@ -192,11 +171,9 @@ export class HireComponent implements OnInit{
         );
     }
     showi983() {
-        this.i20 = false;
-        this.i983 = true;
+        this.i983 = !this.i983;
     }
-    showi20() {
-        this.i20 = true;
-        this.i983 = false;
+    onChange() {
+        this.disabled1 = !this.disabled1;
     }
 }

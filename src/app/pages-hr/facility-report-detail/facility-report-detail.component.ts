@@ -9,18 +9,22 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import {CookieService} from 'ngx-cookie-service';
 import { filter, first, map } from 'rxjs/operators';
 
+
 @Component({
-  selector: 'app-reportcomment',
-  templateUrl: './reportcomment.component.html',
-  styleUrls: ['./reportcomment.component.css']
+  selector: 'app-facility-report-detail',
+  templateUrl: './facility-report-detail.component.html',
+  styleUrls: ['./facility-report-detail.component.css']
 })
-export class ReportcommentComponent implements OnInit {
+
+export class FacilityReportDetailComponent implements OnInit {
 
   facilityreport: facilityReport;
   form: FormGroup;
+  form2: FormGroup;
+  forms: FormGroup[] = [];
   facilityreportdetails : facilityReportDetail[];
   employeeID: string;
-  forms: FormGroup[] = [];
+  disableUpdate : boolean[] = [];
   disableUpdate2 :Array<boolean> = new Array();
   
   
@@ -33,6 +37,7 @@ export class ReportcommentComponent implements OnInit {
               private formBuilder: FormBuilder,
               private cookieService: CookieService) {}
 
+
   ngOnInit() {
     
     this.employeeID = this.cookieService.get('employeeID');
@@ -44,6 +49,18 @@ export class ReportcommentComponent implements OnInit {
       createddate: [Date.now()],
       lastmodificationdate: ['']
   });
+    this.form2 = this.formBuilder.group({
+      facilityreportid: [''],
+      title: [''],
+      employeeid: [''],
+      reportdate: [''],
+      description: [''],
+      status: ['']
+  });
+  
+  this.facilityreportservice.getFacilityReport(this.route.snapshot.params['facilityreportID'])
+        .pipe(first())
+        .subscribe(x => this.form2.patchValue(x));
 
     this.facilityreportservice.getFacilityReport(this.route.snapshot.params['facilityreportID'])
         .subscribe( data => {
@@ -60,12 +77,14 @@ export class ReportcommentComponent implements OnInit {
         this.facilityreportdetails = data;
         this.facilityreportdetails.forEach(element => {
 
+          this.disableUpdate.push(false);
           this.disableUpdate2.push(true);
+
           let x: FormGroup = this.formBuilder.group({
             facilityreportdetailid: [''],
             facilityreportid: [''],
             employeeid: [this.employeeID],
-            comments: null,
+            comments: [''],
             createddate: [''],
             lastmodificationdate: ['']
         })
@@ -81,7 +100,6 @@ export class ReportcommentComponent implements OnInit {
         console.log("date: is " + this.facilityreportdetails[0].createddate);
       });
 
-      
 
   }
   onChangeUpdate(i){
@@ -89,7 +107,6 @@ export class ReportcommentComponent implements OnInit {
     console.log("disabled: " + i + ":"+ this.disableUpdate2[i]);
     //location.reload();
   }
-
 
   onChange() {
     this.hide = !this.hide;
@@ -104,21 +121,31 @@ export class ReportcommentComponent implements OnInit {
     console.warn('Your info has been updated', this.form.value);
 }
 
+  onChange1() {
+    this.facilityreportservice.updateFacilityReport(this.form2.value)
+        .pipe(first())
+        .subscribe(() => {
+          console.log("update status");
+           location.reload();
+        });           
+   
+  }
 
-onChangex(i) {
-  this.forms[i].patchValue({
-    lastmodificationdate: Date.now(), 
-    // formControlName2: myValue2 (can be omitted)
-  });
-  
-  this.facilityReportDetailService.updateFacilityReportDetail(this.forms[i].value)
-      .pipe(first())
-      .subscribe(() => {
-        console.log("update status");
-         location.reload();
-      });           
- 
-}
+  onChangex(i) {
+    this.forms[i].patchValue({
+      lastmodificationdate: Date.now(), 
+      // formControlName2: myValue2 (can be omitted)
+    });
+
+
+    this.facilityReportDetailService.updateFacilityReportDetail(this.forms[i].value)
+        .pipe(first())
+        .subscribe(() => {
+          console.log("update status");
+           location.reload();
+        });           
+   
+  }
   
 }
 

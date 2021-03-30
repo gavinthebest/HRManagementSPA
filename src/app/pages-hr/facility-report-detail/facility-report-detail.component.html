@@ -38,7 +38,19 @@
                                     {{facilityreport.reportdate}}
                                 </td>
                                 <td>
-                                    {{facilityreport.status}}
+                                    <form [formGroup]="form2">
+                                        <select value="{{facilityreport.status}}" formControlName="status"
+                                            class='form-control'>
+                                            <option value="open">Open</option>
+                                            <option value="processing">In Progress</option>
+                                            <option value="closed">Closed</option>
+                                        </select>
+
+                                        <button (click)="onChange1()" class="btn btn-primary btn-round">update
+                                            status</button>
+
+                                    </form>
+
                                 </td>
                             </tr>
 
@@ -49,10 +61,12 @@
 
 
                             </tr>
+
                         </tbody>
                     </table>
                 </div>
-
+                
+                
 
                 <div *ngIf="hide" class="card">
                     <div class="card-body">
@@ -61,15 +75,14 @@
 
                             <!-- Message input -->
                             <div class="form-outline mb-4 pl-5 pr-5">
-                                <input type="text" id="form6Example2" class="form-control" formControlName="comments" required/>
-                                
-
+                                <input type="text" id="form6Example2" class="form-control" formControlName="comments" />
                                 <label class="form-label" for="form6Example7">Comment</label>
                             </div>
 
                             <!-- Submit button -->
                             <div class="pl-5">
-                                <button [disabled]="this.form.value.comments === ''" (click)="onSubmit()" class="btn btn-primary btn-round">add comment </button>
+                                <button (click)="onSubmit()" class="btn btn-primary btn-round" [disabled]="this.form.value.comments === ''">add comment </button>
+
                             </div>
                         </form>
                     </div>
@@ -78,7 +91,7 @@
                 <!-- <div class="container">
                     <div class="col-md-12">
                         <div class="panel panel-default">
-                            <div class="panel-body" *ngFor="let facilityreportdetail of facilityreportdetails">                             
+                            <div class="panel-body" *ngFor="let facilityreportdetail of facilityreportdetails">
 
                                 <section class="post-heading">
                                     <div class="row">
@@ -87,8 +100,9 @@
                                                 <div class="media-left">
                                                 </div>
                                                 <div class="media-body">
-                                                    <h4 class="media-heading">User:  {{facilityreportdetail.username}}</h4>
-                                                    
+                                                    <h4 class="media-heading">User: {{facilityreportdetail.username}}
+                                                    </h4>
+
                                                     <p>{{facilityreportdetail.createddate}}</p>
                                                 </div>
                                             </div>
@@ -96,14 +110,14 @@
                                     </div>
                                 </section>
 
-                                <section class="post-body" >
-                                    
+                                <section class="post-body">
+
                                     <p> {{facilityreportdetail.comments}} </p>
                                     <button type="submit" class="btn btn-primary btn-round"> update comment </button>
                                 </section>
 
 
-                                
+
 
 
                             </div>
@@ -135,7 +149,6 @@
                                                         class="update ml-auto mr-auto">
                                                         <p> created at: {{facilityreportdetails[i].createddate}}</p>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -170,6 +183,11 @@
 
                                     </form>
 
+
+
+
+
+
                                 </section>
                             </div>
 
@@ -178,14 +196,16 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="update ml-auto mr-auto">
-
-
 
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="update ml-auto mr-auto">
+
+
 
     </div>
+
+</div>

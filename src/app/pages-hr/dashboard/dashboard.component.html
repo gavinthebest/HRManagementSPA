@@ -1,4 +1,4 @@
-<!-- <div class="row">
+<div class="row">
   <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card card-stats">
       <div class="card-body ">
@@ -20,7 +20,7 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
 <div class="row">
   <div class="col-md-12">
@@ -76,22 +76,6 @@
                 <!-- </span> -->
               </tr>
             
-              <!-- <tr (click)="trExpand(user.employeeID)" (click)="setCurrEmployee(user)">
-                <td>{{user.employeeID}}</td>
-                <td>{{user.firstname}} {{user.lastname}}</td>
-                <td>
-                  <span *ngFor="let visa of visaStatus">
-                      <span *ngIf="visa.employeeid == user.employeeID">{{visa.visatype}}
-                      </span>
-                    </span>
-                </td>
-                <td>{{user.enddate}}</td>
-                <td>
-                  <span *ngFor="let visa of visaStatus">
-                    <span *ngIf="visa.employeeid == user.employeeID">{{calculateDiff(visa.visaenddate)}}</span>
-                  </span>
-                </td>
-              </tr> -->
               <!-- ------ 展开部分（开始）------ -->
               <tr *ngIf="expand_employeeId == user.employeeID" >
                 <td></td>

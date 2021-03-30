@@ -4,5 +4,8 @@ export interface facility {
     houseid: number;
     type: string;
     numberofbeds: number;
+    numberofmattress: number;
+    numberofchairs: number;
+    numberoftables: number;
 
 }

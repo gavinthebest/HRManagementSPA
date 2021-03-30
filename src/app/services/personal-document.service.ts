@@ -16,7 +16,7 @@ export class PersonalDocumentService {
    return this.apiService.getOne('personalDocuments/all',id);
  }
  getPersonalDocumentBy(id: number, doc: string): Observable<personalDocument> {
-  return this.apiService.getOneBy('personalDocuments/all',id + '/' + doc);
+  return this.apiService.getOneBy('personalDocuments/find',id + '/' + doc);
  }
  createPersonalDocument(personalDocument : any): Observable<personalDocument> {
    return this.apiService.create('personalDocuments/add', personalDocument);

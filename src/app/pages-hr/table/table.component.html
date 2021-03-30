@@ -83,11 +83,27 @@
                               <div class="update ml-auto mr-auto">
                                 {{fileUpload}}
                               </div>
+                              
                             </td>
                             <!-- 下载文件 -->
                             <td>
                               <div class="update ml-5 mr-5">
-                                <app-details-upload [fileUpload]='fileUpload'></app-details-upload>
+                                <!-- <app-details-upload [fileUpload]='fileUpload'></app-details-upload> -->
+
+                              <!-- <button formaction="https://www.google.com" type="btn" class="btn btn-primary btn-round">Download</button> -->
+
+                              <a class="btn btn-primary btn-round" href="http://localhost:8080/api/file/{{fileUpload}}">Download</a>
+
+                              <!-- <form action="https://google.com">
+                                <input type="submit" value="Go to Google" />Download
+                              </form> -->
+
+                              <pdf-viewer src="http://localhost:8080/api/file/{{fileUpload}}"
+                              [render-text]="true"
+                              [fit-to-page]="true"
+                              style="display: block;">preview
+                              </pdf-viewer>
+
                               </div>
                             </td>
                           </tr>
@@ -95,7 +111,7 @@
                       </tr>
                       <!---结束--- 连接 S3 拿文件 ------->                        
                     </td>
-                    <td *ngIf="visa.employeeid == user.employeeID" colspan="1">
+                    <td *ngIf="visa.employeeid == user.employeeID">
                       <tr><td><b>Next Step:</b></td></tr>
                       <!---开始--- 拿下一步状态 -------->
                       <tr *ngFor="let ap of applicationWorkFlows">

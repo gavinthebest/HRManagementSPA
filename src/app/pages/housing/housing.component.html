@@ -82,11 +82,9 @@
                 Description
               </th>
               <th>
-                CreatedBy
-              </th>
-              <th>
                 Report Date
               </th>
+              
               <th>
                 Status
               </th>
@@ -108,11 +106,8 @@
                  <td>
                   {{facilityreport.status}}
                 </td>
-                <td>
-                  {{facilityreport.title}}
-                </td>
-                 <td class="text-right">
-                  <p>Solved by bcd on 09/01/2021</p>
+                
+                 <td class="text-right">                 
                   <!-- <a routerLink="housingdetail/{{ house.houseID }}" > <h5 class="title">House {{ house.houseID }}</h5> </a> -->
                   <a routerLink="reportcomment/{{ facilityreport.facilityreportid }}" class = "btn btn-primary btn-sm" role = "button">Details</a>
                  </td>  
@@ -125,7 +120,7 @@
         <div *ngIf="hide" class="row">
           <div class="update ml-auto mr-auto">
             
-            <a class = "btn btn-primary btn-round" (click)="onChange()" role = "bbutton"> add new report </a>
+            <a class = "btn btn-primary btn-round" (click)="onChange()" role = "bbutton" > add new report </a>
           </div>
         </div>  
 
@@ -157,7 +152,7 @@
             
               <!-- Submit button -->
               <div class="pl-5">
-                <button (click)="onSubmit()" class="btn btn-primary btn-round">add</button>
+                <button (click)="onSubmit()" class="btn btn-primary btn-round" [disabled]="this.form.value.description === '' || this.form.value.title === ''">add</button>
                 
               </div>
             </form>

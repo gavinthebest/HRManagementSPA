@@ -127,18 +127,6 @@ export class DashboardComponent implements OnInit{
         var diff = timeDiff / (1000 * 3600 * 24);
         return Math.floor(diff);
     }
-
-    // lessThanHundredDaysIds(){
-    // //   var employeeIdArray<employee> = null;
-
-    //   for (let key in arry) {
-    //     // if (calculateDiff(arryKey.visaenddate) <100) {
-    //     //     employeeIdArray.push(arrKey.employeeid);
-    //         let obj = JSON.parse(key);
-    //         console.log(obj.visatype);
-    //     // }
-    //   }
-    // }
 }
 
 

@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   loginAttempt() {
     this.disabled = true;
     this.router.navigate(['logout'], {skipLocationChange: true});
-    if (!this.username || !this.password){
+    if (!this.username || !this.password) {
       alert('Please enter all fields');
       this.disabled = false;
     } else {

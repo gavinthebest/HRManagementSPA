@@ -115,6 +115,8 @@ export class TableComponent implements OnInit{
             this.expand_employeeId = null;
         } else {
             this.expand_employeeId = e;
+            this.uploadService.getFilesById(this.expand_employeeId)
+            .subscribe(x => this.fileUploads = x);
         }
         // this.visaStatusService.getVisaStatusByEmployeeID(1));
     }
@@ -126,5 +128,7 @@ export class TableComponent implements OnInit{
         var diff = timeDiff / (1000 * 3600 * 24);
         return Math.floor(diff);
     }
+
+    
     
 }
