@@ -4,7 +4,7 @@
       <h4 class="card-title">Visa Status</h4>
     </div>
     <div *ngIf="this.visaStatus.visatype != 'F1/OPT'">
-      <h5 class="card-title">Hi {{this.employee.firstname + ' ' + this.employee.lastname}}, there's no available options for your visa status.</h5>
+      <h5 class="card-body">Hello, there's no available options for your visa status.</h5>
     </div>
     <div *ngIf="this.visaStatus.visatype == 'F1/OPT'">
       <div class="card-body">
