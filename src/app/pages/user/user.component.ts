@@ -32,6 +32,9 @@ export class UserComponent implements OnInit{
     disabled4: boolean = true;
     disabled5: boolean = true;
     disabled6: boolean = true;
+    age: number;
+    placeholder: string = null;
+
     ngOnInit(){
         this.id = +this.cookieService.get('employeeID');
         this.userID = +this.cookieService.get('userID');
@@ -79,16 +82,20 @@ export class UserComponent implements OnInit{
         });
         this.employeeService.getEmployee(this.id)
         .pipe(first())
-        .subscribe(x => this.form.patchValue(x));
-        this.addressService.getAddress(this.id)
+        .subscribe(x => {
+            this.form.patchValue(x);
+            var timeDiff = Math.abs(Date.now() - new Date(this.form.value.dob).getTime());
+            this.age = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
+        });
+        this.addressService.getAddressByEmployeeId(this.id)
         .pipe(first())
         .subscribe(x => this.form2.patchValue(x));
-        this.visaStatusService.getVisaStatus(this.id)
+        this.visaStatusService.getVisaStatusByEmployeeID(this.id)
         .pipe(first())
         .subscribe(x => this.form3.patchValue(x));
         this.contactService.getContactByEmployeeId(this.id)
         .subscribe(x => this.contacts = x);
-        this.uploadService.getFilesById(this.id)
+        this.uploadService.getFilesById(this.userID)
         .subscribe(x => this.fileUploads = x);
     }
     constructor(
@@ -107,6 +114,7 @@ export class UserComponent implements OnInit{
         this.disabled2 = !this.disabled2;
     }
     onChange3() {
+        if (this.disabled3) this.placeholder = "Waiting for re-calculation...";
         this.disabled3 = !this.disabled3;
     }
     onChange4() {
