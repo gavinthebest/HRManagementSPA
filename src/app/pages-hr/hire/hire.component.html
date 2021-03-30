@@ -114,7 +114,7 @@
                   <button class="btn btn-outline-info col-md-12" (click)="showi983()">Show / Hide PDF</button>
                   <a class="btn btn-outline-primary col-md-12" href="http://localhost:8080/api/file/user_{{this.employee.userID}}_I-983.pdf">Download</a>
                   <div *ngIf="i983" class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                       <pdf-viewer src="http://localhost:8080/api/file/user_{{this.employee.userID}}_I-983.pdf"
                       [render-text]="true"
                       [fit-to-page]="true"
