@@ -136,6 +136,8 @@ export class TableComponent implements OnInit{
         } else {
             this.file_on_view = e;
         }
+        this.uploadService.getFilesById(this.expand_employeeId)
+        .subscribe(x => this.fileUploads = x);
     }
     
 }
