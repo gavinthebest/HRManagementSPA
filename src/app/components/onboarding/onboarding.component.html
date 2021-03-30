@@ -36,7 +36,6 @@
     <h3>Gender</h3>
     <div class="form-group">
       <select class="form-control" [(ngModel)]="gender" name="gender" required>
-        <option value="">Choose ...</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
         <option value="empty">Other / Prefer Not to Answer / Not Applicable</option>
@@ -46,7 +45,8 @@
     <h3>Upload an Avatar If You Like</h3>
     <div class="card-body">
       <a href="#/employee/user">
-        <img class="avatar border-gray" src="http://localhost:8080/api/file/user_{{picID}}_avatar.{{fileType}}" alt="No Avatar">
+        <img class="avatar border-gray" width="100" height="100"
+             [src]="avatar" alt="No Avatar">
       </a>
       <form-upload [userID]='userID' [employeeID]='employeeID' fileType='avatar'></form-upload>
       <button class="btn btn-primary btn-round" (click)="refresh()">Refresh Image</button>
@@ -71,14 +71,115 @@
     <input type="tel" id="alterphone" class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
            placeholder="Your Alternate Phone Number (123-456-7890)" [(ngModel)]="alterphone" name="alterphone" required>
     </div>
-    <h3>Your Car's Info</h3>
+
+    <h3>Your Working Authorization</h3>
+    <input type="checkbox" id="visaStatus" name="visaStatus" [(ngModel)]="citiResi">
+    <label for="visaStatus"> I am a U.S. citizen / permanent resident</label><br>
+    <div *ngIf="citiResi">
+      <h4>I am ...</h4>
+      <div class="form-group">
+        <select class="form-control" [(ngModel)]="auth" name="auth" required>
+          <option value="Greencard">a Permanent Resident (Greencard Holder)</option>
+          <option value="Citizen">an U.S. Citizen</option>
+        </select>
+      </div>
+    </div>
+    <div *ngIf="!citiResi">
+      <h4>What is your work authorization?</h4>
+      <div class="form-group">
+        <select class="form-control" [(ngModel)]="auth2" name="auth2" required>
+          <option value="H1B">H1-B</option>
+          <option value="L2">L2</option>
+          <option value="F1/OPT">F1/OPT</option>
+          <option value="H4">L2</option>
+          <option value="Others">Others</option>
+        </select>
+      </div>
+      <div *ngIf="auth === 'Others'">
+        <input type="text" id="explainAuth" class="form-control"
+               placeholder="Please specify your work authorization" [(ngModel)]="explainAuth" name="explainAuth">
+      </div>
+      <div>
+        <h4>Your Work Authorization Start Date</h4>
+        <input type="date" id="authstart" class="form-control"
+               placeholder="Start Date" [(ngModel)]="authstart" name="authstart" required>
+        <h4>Your Work Authorization End Date</h4>
+        <input type="date" id="authend" class="form-control"
+               placeholder="End Date" [(ngModel)]="authend" name="authend" required>
+      </div>
+    </div>
+    <h3>Your Car Information</h3>
+    <input type="checkbox" id="carcheck" name="carcheck" [(ngModel)]="carcheck">
+    <label for="carcheck"> I will be driving to work</label><br>
+    <div *ngIf="carcheck">
+      <div class="form-sameline3">
+        <input type="text" id="carmaker" class="form-control"
+               placeholder="Your Car's Maker" [(ngModel)]="carMaker" name="carMaker">
+        <input type="text" id="carmodel" class="form-control"
+               placeholder="Your Car's Model" [(ngModel)]="carModel" name="carModel">
+        <input type="text" id="carcolor" class="form-control"
+               placeholder="Your Car's Color" [(ngModel)]="carColor" name="carColor">
+      </div>
+      <input type="text" id="dlid" class="form-control"
+             placeholder="Your Driver's License's Number" [(ngModel)]="dlid" name="dlid" required>
+      <h4>Your Driver's License's Expiration Date</h4>
+      <input type="date" id="dlexp" class="form-control"
+             placeholder="Your Driver's License's Expiration Date" [(ngModel)]="dlexp" name="dlexp" required>
+      <h4>Please Upload a Photo Copy of Your Driver's License</h4>
+      <div class="card-body">
+        <a>
+          <img class="avatar border-gray" width="256" height="164"
+               [src]= "dlphoto" alt="No DL">
+        </a>
+        <form-upload [userID]='userID' [employeeID]='employeeID' fileType='dl'></form-upload>
+        <button class="btn btn-primary btn-round" (click)="refresh2()">Refresh Image</button>
+      </div>
+    </div>
+    <h3>Your Reference Person</h3>
     <div class="form-sameline3">
-      <input type="text" id="carmaker" class="form-control"
-             placeholder="Your Car's Maker" [(ngModel)]="carMaker" name="carMaker">
-      <input type="text" id="carmodel" class="form-control"
-             placeholder="Your Car's Model" [(ngModel)]="carModel" name="carModel">
-      <input type="text" id="carcolor" class="form-control"
-             placeholder="Your Car's Color" [(ngModel)]="carColor" name="carColor">
+      <input type="text" id="firstnameref" class="form-control" pattern="[A-Z][a-z]{1,}"
+             placeholder="First Name" [(ngModel)]="fnameref" name="fnameref" required>
+      <input type="text" id="lastnameref" class="form-control" pattern="[A-Z][a-z]{1,}"
+             placeholder="Last Name" [(ngModel)]="lnameref" name="lnameref" required>
+      <input type="text" id="middlenameref" class="form-control" pattern="[a-zA-Z]{1,}"
+             placeholder="Middle Name" [(ngModel)]="mnameref" name="mnameref">
+    </div>
+    <div class="form-sameline3">
+      <input type="tel" id="cellphoneref" class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+             placeholder="Phone Number (123-456-7890)" [(ngModel)]="phoneref" name="phoneref" required>
+      <input type="text" id="emailref" class="form-control" placeholder="Email"
+             [(ngModel)]="emailref" name="emailref" required>
+      <input type="text" id="relationshipref" class="form-control" placeholder="Relationship to You"
+             [(ngModel)]="relationshipref" name="relationshipref" required>
+    </div>
+    <input type="text" id="addressline1ref" class="form-control"
+           placeholder="First Line of Address" [(ngModel)]="address1ref" name="address1ref" required>
+    <input type="text" id="addressline2ref" class="form-control"
+           placeholder="Second Line of Address" [(ngModel)]="address2ref" name="address2ref">
+    <div class="form-sameline3">
+      <input type="text" id="addresscityref" class="form-control" pattern="[a-z]{1,}"
+             placeholder="City" [(ngModel)]="cityref" name="cityref" required>
+      <input type="text" id="addressstateref" class="form-control" pattern="[A-Z]{2}"
+             placeholder="State Abbreviation" [(ngModel)]="stateref" name="stateref" required>
+      <input type="text" id="addresszipcoderef" class="form-control" pattern="[0-9]{5}"
+             placeholder="Zipcode" [(ngModel)]="zipcoderef" name="zipcoderef" required>
+    </div>
+    <h3>Your Emergency Contact Person</h3>
+    <div class="form-sameline3">
+      <input type="text" id="firstnameem" class="form-control" pattern="[A-Z][a-z]{1,}"
+             placeholder="First Name" [(ngModel)]="fnameem" name="fnameem" required>
+      <input type="text" id="lastnameem" class="form-control" pattern="[A-Z][a-z]{1,}"
+             placeholder="Last Name" [(ngModel)]="lnameem" name="lnameem" required>
+      <input type="text" id="middlenameem" class="form-control" pattern="[a-zA-Z]{1,}"
+             placeholder="Middle Name" [(ngModel)]="mnameem" name="mnameem">
+    </div>
+    <div class="form-sameline3">
+      <input type="tel" id="cellphoneem" class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+             placeholder="Phone Number (123-456-7890)" [(ngModel)]="phoneem" name="phoneem" required>
+      <input type="text" id="emailem" class="form-control" placeholder="Email"
+             [(ngModel)]="emailem" name="emailem" required>
+      <input type="text" id="relationshipem" class="form-control" placeholder="Relationship to You"
+             [(ngModel)]="relationshipem" name="relationshipem" required>
     </div>
     <h3>Your Email Address</h3>
     <input type="text" id="email" class="form-control" disabled="disabled" placeholder={{newUserEmail}}>

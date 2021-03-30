@@ -1,6 +1,7 @@
 // tslint:disable-next-line:class-name
 export interface userrole {
-  userRoleID: number;
+  userroleid: number;
+  user_roleid: number;
   userID: number;
   roleID: number;
   activeFlag: string;
