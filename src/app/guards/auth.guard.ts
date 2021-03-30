@@ -37,13 +37,12 @@ export class AuthGuard implements CanActivate {
                 if (ob.status === 'open') {
                   this.router.navigate(['/onboarding']);
                   return false;
-                } else {
-                  this.userRoleService.getUserRoleByUserId(currentUserId).subscribe(userRole => {
-                    if (!userRole) {
+                } else if (ob.status === 'pending') {
                       alert('Your HR is still working on approving your account!');
                       this.router.navigate(['logout']);
                       return false;
-                    }
+                } else {
+                  this.userRoleService.getUserRoleByUserId(currentUserId).subscribe(userRole => {
                     let roleId: number = userRole.roleID;
                     this.roleService.getRole(roleId).subscribe(role => {
                       if (role.roleName === 'HR') {

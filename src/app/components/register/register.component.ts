@@ -11,6 +11,8 @@ import {employee} from '../../models/employee';
 import {applicationWorkFlow} from '../../models/applicationWorkFlow';
 import {Observable} from 'rxjs';
 import {registrationtoken} from '../../models/registrationtoken';
+import {UserRoleService} from '../../services/userrole.service';
+import {userrole} from '../../models/userrole';
 
 @Component({
   selector: 'app-register',
@@ -30,7 +32,8 @@ export class RegisterComponent implements OnInit {
               private cookieService: CookieService,
               private router: Router,
               private employeeService: EmployeeService,
-              private applicationWorkFlowService: ApplicationWorkFlowService) {}
+              private applicationWorkFlowService: ApplicationWorkFlowService,
+              private userRoleService: UserRoleService) {}
   ngOnInit(): void {
   }
   validate(form: NgForm): void {
@@ -59,18 +62,23 @@ export class RegisterComponent implements OnInit {
     this.userService.createUser(user).subscribe(ob => {
       this.userService.getUserByUsername(this.username).subscribe(user2 => {
         let userID: number = user2.userID;
-        let employee: employee = {employeeID: null, userID: userID, firstname: null, lastname: null,
-          middlename: null, email: null, cellphone: null, gender: null, ssn: null, dob: null,
-          avatar: null, car: null, alternatephone: null, title: null, managerID: null, preferredname: null,
-          driverlicense: null, driverlicense_expirationdate: null, startdate: null, enddate: null, houseid: null};
-        this.employeeService.createEmployee(employee).subscribe(ob => {
-          console.log('uid: ' + userID);
-          this.employeeService.getEmployeeByUserId(String(userID)).subscribe(employee2 => {
-            let employeeID: number = employee2.employeeID;
-            console.log('eid: ' + employeeID);
-            let applicationWorkFlow: applicationWorkFlow = {applicationworkflowID: null, comments: null, createdate: thisDate,
-              employeeID: employeeID, modificationdate: thisDate, status: 'open'};
-            this.applicationWorkFlowService.updateApplicationWorkFlow(applicationWorkFlow).subscribe();
+        let userRole: userrole = {userroleid: null, roleID: 2, activeFlag: 'c', createDate: thisDate, lastModificationDate: thisDate,
+        lastModificationUserID: 1, userID: userID, user_roleid: null};
+        this.userRoleService.createUserRole(userRole).subscribe(ur => {
+          console.log('userrole: ' + userRole);
+          let employee: employee = {employeeID: null, userID: userID, firstname: null, lastname: null,
+            middlename: null, email: null, cellphone: null, gender: null, ssn: null, dob: null,
+            avatar: null, car: null, alternatephone: null, title: null, managerID: null, preferredname: null,
+            driverlicense: null, driverlicense_expirationdate: null, startdate: null, enddate: null, houseid: null};
+          this.employeeService.createEmployee(employee).subscribe(ob => {
+            console.log('uid: ' + userID);
+            this.employeeService.getEmployeeByUserId(String(userID)).subscribe(employee2 => {
+              let employeeID: number = employee2.employeeID;
+              console.log('eid: ' + employeeID);
+              let applicationWorkFlow: applicationWorkFlow = {applicationworkflowID: null, comments: null, createdate: thisDate,
+                employeeID: employeeID, modificationdate: thisDate, status: 'open'};
+              this.applicationWorkFlowService.updateApplicationWorkFlow(applicationWorkFlow).subscribe();
+            });
           });
         });
       });
