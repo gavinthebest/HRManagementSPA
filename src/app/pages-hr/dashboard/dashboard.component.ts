@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit{
   currEmployee:employee = null;
   // picUrl:string = null;
   expand_employeeId:number;
+  file_on_view:any;
 
   picUrl:string = "https://www.exoffender.org/wp-content/uploads/2016/09/empty-profile.png";
   todayDate = new Date();
@@ -126,6 +127,16 @@ export class DashboardComponent implements OnInit{
         var timeDiff = d1 - Date.parse(d2);
         var diff = timeDiff / (1000 * 3600 * 24);
         return Math.floor(diff);
+    }
+
+    viewPdf(e){
+        if (e == this.file_on_view) {
+            this.file_on_view = null;
+        } else {
+            this.file_on_view = e;
+        }
+        this.uploadService.getFilesById(this.expand_employeeId)
+        .subscribe(x => this.fileUploads = x);
     }
 }
 
