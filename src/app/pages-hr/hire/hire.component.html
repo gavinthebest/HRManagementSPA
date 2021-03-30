@@ -81,12 +81,13 @@
           <p class="card-category">Please click detail button to view.</p>
         </div>
         <div *ngIf="isFormApp">
-          <p class="card-category">This is form to show.</p>
+          <p class="card-category">Please click button and refer to the form at the end of this page.</p>
           <div class="row">
             <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">Registration Form For {{this.employee.firstname}} {{this.employee.lastname}}</h5>
+                  <button class="btn btn-outline-info col-md-12" (click)="showForm()">Show / Hide Form</button>
                   <div class="form-outline">
                     <label class="form-label" for="comment">Comment(Optional for approval)</label>
                     <textarea class="form-control" id="comment" name="comment" [(ngModel)]="comment" rows="4"></textarea>
@@ -150,5 +151,173 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div *ngIf="form" class="row">
+  <div class="col-md-12">
+    <div class="card">
+    <form class="form">
+      <div class="card-header">
+        <h5 class="card-title">Profile</h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4 pr-1">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" class="form-control" disabled [value]="this.employee.firstname">
+            </div>
+          </div>
+          <div class="col-md-4 pl-1">
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" class="form-control" disabled [value]="this.employee.lastname">
+            </div>
+          </div>
+          <div class="col-md-4 pl-1">
+            <div class="form-group">
+              <label>Middle Name</label>
+              <input type="text" class="form-control" disabled [value]="this.employee.middlename">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 pl-1">
+            <div class="form-group">
+              <label>Preferred Name</label>
+              <input type="text" class="form-control" disabled [value]="this.employee.preferredname">
+            </div>
+          </div>
+          <div class="col-md-6 pl-1">
+            <div class="form-group">
+              <label>SSN</label>
+              <input type="text" class="form-control" disabled [value]="this.employee.ssn">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 pl-1">
+            <div class="form-group">
+              <label>Date of Birth</label>
+              <input type="date" class="form-control" disabled [value]="this.employee.dob">
+            </div>
+          </div>
+          <div class="col-md-6 pl-1">
+            <div class="form-group">
+              <label>Gender</label>
+              <input type="text" class="form-control" disabled [value]="this.employee.gender">
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="author">
+          <label>Avatar</label>
+          <a>
+            <img class="avatar border-gray" width="200" height="200"
+            src="http://localhost:8080/api/file/user_{{this.employee.userID}}_avatar.png" alt="No Avatar">
+          </a>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Address Line 1</label>
+              <input type="text" class="form-control" disabled [value]="this.address.addressLine1">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Address Line 2</label>
+              <input type="text" class="form-control" disabled [value]="this.address.addressLine2">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 pr-1">
+            <div class="form-group">
+              <label>City</label>
+              <input type="text" class="form-control" disabled [value]="this.address.city">
+            </div>
+          </div>
+          <div class="col-md-4 pl-1">
+            <div class="form-group">
+              <label>State</label>
+              <input type="text" class="form-control" disabled [value]="this.address.stateName">
+            </div>
+          </div>
+          <div class="col-md-4 pl-1">
+            <div class="form-group">
+              <label>Zip Code</label>
+              <input type="text" class="form-control" disabled [value]="this.address.zipcode">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 pl-1">
+            <div class="form-group">
+              <label>Cell Phone</label>
+              <input type="text" class="form-control" disabled [value]="this.employee.cellphone">
+            </div>
+          </div>
+          <div class="col-md-6 pl-1">
+            <div class="form-group">
+              <label>Alternate Phone</label>
+              <input type="text" class="form-control" disabled [value]="this.employee.alternatephone">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 pr-1">
+            <div class="form-group">
+              <label>Visa Type</label>
+              <input type="text" class="form-control" disabled [value]="this.vs.visatype">
+            </div>
+          </div>
+          <div class="col-md-4 pl-1">
+            <div class="form-group">
+              <label>Visa Start Date</label>
+              <input type="text" class="form-control" disabled [value]="this.vs.visastartdate">
+            </div>
+          </div>
+          <div class="col-md-4 pl-1">
+            <div class="form-group">
+              <label>Visa End Date</label>
+              <input type="text" class="form-control" disabled [value]="this.vs.visaenddate">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 pr-1">
+            <div class="form-group">
+              <label>Car</label>
+              <input type="text" class="form-control" disabled [value]="this.employee.car">
+            </div>
+          </div>
+          <div class="col-md-4 pr-1">
+            <div class="form-group">
+              <label>Car</label>
+              <input type="date" class="form-control" disabled [value]="this.employee.driverlicense_expirationdate">
+            </div>
+          </div>
+        </div>
+        <div class="author">
+          <label>Driver's License</label>
+          <a>
+            <img class="border-gray" width="256" height="164"
+            src="http://localhost:8080/api/file/user_{{this.employee.userID}}_dl.png" alt="No Driver's License">
+          </a>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" class="form-control" disabled [value]="this.employee.email">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
 </div>

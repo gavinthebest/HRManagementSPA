@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { address } from 'app/models/address';
 import { applicationWorkFlow } from 'app/models/applicationWorkFlow';
 import { employee } from 'app/models/employee';
+import { visaStatus } from 'app/models/visaStatus';
+import { AddressService } from 'app/services/address.service';
 import { ApplicationWorkFlowService } from 'app/services/application-work-flow.service';
 import { EmployeeService } from 'app/services/employee.service';
 import { PersonalDocumentService } from 'app/services/personal-document.service';
 import { RegistrationtokenService } from 'app/services/registrationtoken.service';
+import { VisaStatusService } from 'app/services/visa-status.service';
 
 @Component({
     selector: 'hire-cmp',
@@ -30,13 +34,18 @@ export class HireComponent implements OnInit{
     awfID : any;
     i983: boolean = false;
     disabled1 = true;
+    form: boolean = false;
+    address: address;
+    vs: visaStatus;
 
     constructor(
         private fb: FormBuilder,
         private employeeService: EmployeeService,
         private awfService: ApplicationWorkFlowService,
         private pdService: PersonalDocumentService,
-        private registrationTokenService: RegistrationtokenService
+        private registrationTokenService: RegistrationtokenService,
+        private addressService: AddressService,
+        private vsService: VisaStatusService
         ) {}
 
     ngOnInit(){
@@ -116,6 +125,7 @@ export class HireComponent implements OnInit{
     }
     showDetailForm(awf: applicationWorkFlow) {
         this.i983 = false;
+        this.form = false;
         this.isDocApp = false;
         this.isFormApp = true;
         this.awfForm.patchValue({
@@ -125,10 +135,19 @@ export class HireComponent implements OnInit{
         });
 
         this.employeeService.getEmployee(awf.employeeID).subscribe( 
-            data => {this.employee = data;});
+            data => {this.employee = data;}
+        );
+        this.addressService.getAddressByEmployeeId(awf.employeeID).subscribe( 
+            data => {this.address = data;}
+        );
+        this.vsService.getVisaStatusByEmployeeID(awf.employeeID).subscribe(
+            data => {this.vs = data;}
+        );
+        
     }
     showDetailDoc(awf: applicationWorkFlow) {
         this.i983 = false;
+        this.form = false;
         this.isDocApp = true;
         this.isFormApp = false;
         this.awfForm.patchValue({
@@ -172,6 +191,9 @@ export class HireComponent implements OnInit{
     }
     showi983() {
         this.i983 = !this.i983;
+    }
+    showForm() {
+        this.form = !this.form;
     }
     onChange() {
         this.disabled1 = !this.disabled1;
