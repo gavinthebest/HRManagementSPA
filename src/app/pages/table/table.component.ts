@@ -5,14 +5,8 @@ import {CookieService} from 'ngx-cookie-service';
 import { VisaStatusService } from "app/services/visa-status.service";
 import { applicationWorkFlow } from "app/models/applicationWorkFlow";
 import { ApplicationWorkFlowService } from "app/services/application-work-flow.service";
-import { data } from 'jquery';
 import { visaStatus } from 'app/models/visaStatus';
 
-
-// declare interface TableData {
-//     headerRow: string[];
-//     dataRows: string[][];
-// }
 
 @Component({
     selector: 'table-cmp',

@@ -14,6 +14,9 @@ export class AddressService {
   getAddress(id: number): Observable<address> {
     return this.apiService.getOne('addresses/all', id);
   }
+  getAddressByEmployeeId(id: number): Observable<address> {
+    return this.apiService.getOne('addresses/find',id);
+  }
   createAddress(address: any): Observable<address> {
     return this.apiService.create('addresses/add', address);
   }
