@@ -6,13 +6,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { employee } from 'app/models/employee';
 import { VisaStatusService } from "app/services/visa-status.service";
 import { visaStatus } from "app/models/visaStatus";
+import { applicationWorkFlow } from "app/models/applicationWorkFlow";
+import { ApplicationWorkFlowService} from "app/services/application-work-flow.service";
 import { RegistrationtokenService } from 'app/services/registrationtoken.service';
+import { UploadFileService } from 'app/services/upload-file.service';
 
-declare interface TableData {
-    headerRow: string[];
-    dataRows: string[][];
-}
-
+// declare interface TableData {
+//     headerRow: string[];
+//     dataRows: string[][];
+// }
 
 @Component({
     selector: 'table-cmp',
@@ -25,7 +27,7 @@ export class TableComponent implements OnInit{
     employee: any;
     users!: employee[];
     visaStatus!:visaStatus[];
-    // visaStat:visaStatus;
+    applicationWorkFlows!:applicationWorkFlow[];
     
     currEmployId:number;
     currEmployee:employee = null;
@@ -35,19 +37,12 @@ export class TableComponent implements OnInit{
     picUrl:string = "https://www.exoffender.org/wp-content/uploads/2016/09/empty-profile.png";
     todayDate = new Date();
 
-    constructor(
-        private employeeService: EmployeeService,
-        private formBuilder: FormBuilder,
-        private registrationTokenService: RegistrationtokenService,
-        private visaStatusService: VisaStatusService
-        // private httpClient: HttpClient
-        ) {}
-   
+    fileUploads: string[];
+
     ngOnInit(){
         this.employeeService.getEmployees()
         .pipe(first())
         .subscribe(users => this.users = users);
-
 
         // this.visaStatusService.getVisaStatusByEmployeeID(this.route.snapshot.params['employeeID'])
         // .pipe(first())
@@ -58,19 +53,34 @@ export class TableComponent implements OnInit{
         this.visaStatusService.getAllVisaStatus()
         .pipe(first())
         .subscribe(visaStatus=>this.visaStatus = visaStatus);
+
+        this.uploadService.getFilesById(this.expand_employeeId)
+        .subscribe(x => this.fileUploads = x);
+
+        this.applicationWorkFlowService.getApplicationWorkFlows()
+        .pipe(first())
+        .subscribe(applicationWorkFlow=>this.applicationWorkFlows = applicationWorkFlow);
     }
+
+    constructor(
+        private employeeService: EmployeeService,
+        private formBuilder: FormBuilder,
+        private registrationTokenService: RegistrationtokenService,
+        private visaStatusService: VisaStatusService,
+        private uploadService: UploadFileService,
+        private applicationWorkFlowService: ApplicationWorkFlowService
+        // private httpClient: HttpClient
+        ) {}
 
     setCurrEmployId(e){
         // alert(e);
         this.currEmployId = e;
-
     }
 
     setCurrEmployee(e){
         this.currEmployee = e;
         // this.picUrl = "https://www.exoffender.org/wp-content/uploads/2016/09/empty-profile.png";
         this.picUrl = "";
-
     }
 
     // resetPicUrl(){

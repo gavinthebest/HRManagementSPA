@@ -40,9 +40,11 @@ export class TableComponent implements OnInit{
         this.employeeID = this.cookieService.get('employeeID');
         this.userID = this.cookieService.get('userID');
 
-
         // this.visaStatusService.getVisaStatusByEmployeeID(+this.employeeID).subscribe(data=>{this.visaStatus = data;});
-        this.applicationWorkFlow.getApplicationWorkFlowByEmployeeId(this.employeeID).subscribe(data=>{this.workFlow =data});
+        this.applicationWorkFlow
+        .getApplicationWorkFlowByEmployeeId(this.employeeID)
+        .subscribe(data=>{this.workFlow =data});
+
 
     }
 
