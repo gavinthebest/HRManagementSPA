@@ -22,17 +22,20 @@
   </div>
 </div>
 
-
-
 <div class="row">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h2 class="card-title" style="color: red;"> Danger - Flowing Visa Valid less than 100 days:</h2>
+        <div class="alert alert-danger alert-dismissible fade show">
+          <h5><b> Employees Whose Visa will expires in 100 days!!! </b></h5>
+          <br>
+          <h5>Notify your employee ASAP!</h5>
+        </div>
       </div>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table">
+
             <thead class=" text-primary">
               <tr>
                 <th>
@@ -50,115 +53,105 @@
                 <th>
                   Day Left
                 </th>
-                <!-- <th>
-                   Action
-                </th> -->
+                <th></th>
               </tr>
             </thead>
             
             <tbody *ngFor="let user of users" >
-              <!-- <span *ngIf="calculateDiff(visa.visaenddate) <=100">
-                <h1>测试</h1>
-              </span> -->
+              <tr *ngFor="let visa of visaStatus" (click)="trExpand(user.employeeID)" (click)="setCurrEmployee(user)">
+                <!-- <span *ngIf="calculateDiff(visa.visaenddate)<100 && visa.employeeid == user.employeeID"> -->
+                    <td *ngIf="calculateDiff(visa.visaenddate)<100 && visa.employeeid == user.employeeID">
+                      {{user.employeeID}}
+                    </td>
+                    <td *ngIf="calculateDiff(visa.visaenddate)<100 && visa.employeeid == user.employeeID">
+                      {{user.firstname}} {{user.lastname}}
+                    </td>
+                    <td *ngIf="calculateDiff(visa.visaenddate)<100 && visa.employeeid == user.employeeID">{{visa.visatype}}</td>
+                    <td *ngIf="calculateDiff(visa.visaenddate)<100 && visa.employeeid == user.employeeID">{{user.enddate}}</td>
+                    <td *ngIf="calculateDiff(visa.visaenddate)<100 && visa.employeeid == user.employeeID">
+                      <span *ngFor="let visa of visaStatus">
+                        <span *ngIf="visa.employeeid == user.employeeID">{{calculateDiff(visa.visaenddate)}}</span>
+                      </span>
+                    </td>
+                <!-- </span> -->
+              </tr>
             
-              <tr (click)="trExpand(user.employeeID)" (click)="setCurrEmployee(user)">
-                <td>{{user.employeeID}}</td>
-                <td>{{user.firstname}} {{user.lastname}}</td>
-                <td>
-                  <span *ngFor="let visa of visaStatus">
-                    <span *ngIf="visa.employeeid == user.employeeID">{{visa.visatype}}</span>
-                  </span>
-                </td>
-                <td>{{user.enddate}}</td>
-                <td>
-                  <span *ngFor="let visa of visaStatus">
-                    <span *ngIf="visa.employeeid == user.employeeID">{{calculateDiff(visa.visaenddate)}}</span>
-                  </span
-                ></td>
-
-                <!-- <td>{{user.enddate.timestamp| }}</td> -->
-
-                <!-- <td>
-                  <div class="update ml-auto mr-auto">
-                    <button type="btn" class="btn btn-primary btn-round" (click)="setCurrEmployee(user)">Select</button>    
-                  </div>
-                </td> -->
-              </tr>
-
+              <!-- ------ 展开部分（开始）------ -->
               <tr *ngIf="expand_employeeId == user.employeeID" >
-                  <!-- <td></td> -->
-                  <td></td>
-                  <td colspan="3">
-                    <tr *ngFor="let visa of visaStatus" style="background-color:lavender">
-                      <td *ngIf="visa.employeeid == user.employeeID" colspan="2">
-                        <tr><td><b>Name:</b> {{user.firstname}} {{user.lastname}}</td></tr>
-                        <tr><td><b>Visa:</b> {{visa.visatype}}</td></tr>
-                        <tr><td><b>Start Date:</b> {{visa.visastartdate}}</td></tr>
-                        <tr><td><b>End Date:</b> {{visa.visaenddate}}</td></tr>
-                      </td>
-                      <td *ngIf="visa.employeeid == user.employeeID" >
-                        <tr><td><b>Document Received:</b></td></tr>
-                        <tr><td>未接上 S3 数据库</td>
-                          <button type="btn" class="btn btn-sm btn-outline-success btn-round" (click)="setPicUrl1()">Open</button>
-                        </tr>
-                        <tr><td>未接上 S3 数据库</td>
-                          <button type="btn" class="btn btn-sm btn-outline-success btn-round" (click)="setPicUrl2()">Open</button>
-                        </tr>
-                        <tr><td>未接上 S3 数据库</td>
-                          <button type="btn" class="btn btn-sm btn-outline-success btn-round" (click)="setPicUrl3()">Open</button>
-                        </tr>
-                      </td>
-                      <td *ngIf="visa.employeeid == user.employeeID" >
-                        <tr><td><b>Next Step:</b></td></tr>
-                        <tr><td>未接上 S3 数据库&nbsp;&nbsp;</td><button type="btn" (click)="notify(user.email)" class="btn btn-primary btn-round">Send Notification</button></tr>
-                      </td>  
-                      
-                    </tr>
-                    
-                  </td>
-                  <td></td>
-                  
-                  <!-- 不需要 picture viewer，改成用 API下载 -->
-                  <!-- <td  class="text-right" colspan="2">
-                    <div class="card card-user">
-                      <div *ngIf="currEmployee">
-                        <div class="card-body">
-                          <div >
-                            <img class="documnet-viewer"src={{picUrl}} alt="...">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td> -->
-                  
+                <td></td>
+                <td colspan="4">
+                  <tr *ngFor="let visa of visaStatus" style="background-color:lavender">
+                    <td *ngIf="visa.employeeid == user.employeeID" >
+                      <tr>
+                        <td><b>Name:</b></td>
+                        <td>{{user.firstname}} {{user.lastname}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>Visa:</b> </td>
+                        <td>{{visa.visatype}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>Start Date:</b></td>
+                        <td>{{visa.visastartdate}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>End Date:</b></td>
+                        <td>{{visa.visaenddate}}</td>
+                      </tr>
+                    </td>
+                    <td *ngIf="visa.employeeid == user.employeeID"></td>
+                    <td *ngIf="visa.employeeid == user.employeeID" colspan="1">
+                      <tr><td><b>Document Received:</b></td></tr>
+                      <!---开始--- 连接 S3 拿文件 -------->
+                      <tr *ngFor="let fileUpload of fileUploads">
+                        <td> 
+                          <!-- 文件名 -->
+                          <tr>
+                            <td>
+                              <div class="update ml-auto mr-auto">
+                                {{fileUpload}}
+                              </div>
+                            </td>
+                            <!-- 下载文件 -->
+                            <td>
+                              <div class="update ml-5 mr-5">
+                                <app-details-upload [fileUpload]='fileUpload'></app-details-upload>
+                              </div>
+                            </td>
+                          </tr>
+                        </td>
+                      </tr>
+                      <!---结束--- 连接 S3 拿文件 ------->                        
+                    </td>
+                    <td *ngIf="visa.employeeid == user.employeeID" colspan="1">
+                      <tr><td><b>Next Step:</b></td></tr>
+                      <!---开始--- 拿下一步状态 -------->
+                      <tr *ngFor="let ap of applicationWorkFlows">
+                        <td *ngIf="expand_employeeId == ap.employeeID">
+                          <tr>
+                            <!-- 文件名 -->
+                            <td>
+                              <div class="update ml-auto mr-auto">
+                                {{ap.status}}
+                              </div>
+                            </td>
+                            <!-- 下载文件 -->
+                            <td>
+                              <!-- <div class="update ml-5 mr-5">
+                                <app-details-upload [fileUpload]='fileUpload'></app-details-upload>
+                              </div> -->
+                              <button type="btn" (click)="notify(user.email)" class="btn btn-primary btn-round">Send Notification</button>
+                            </td>
+                          </tr>
+                        </td>
+                      </tr>
+                      <!---结束--- 拿下一步状态 ------->    
+                    </td>  
+                    <!-- 这个scope 不能多加任何 td -->
+                  </tr>
+                </td>
               </tr>
-
-              <!-- <tr *ngIf="expand_employeeId == user.employeeID" >
-                <div class="card card-user">
-                  <div *ngIf="currEmployee">
-                    <div class="card-body">
-                      <div >
-                        <img src={{picUrl}} alt="...">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </tr> -->
-
-              <!-- <tr *ngFor="let visa of visaStatus"  style="border-bottom:solid;background-color:lightgrey" >
-                <td *ngIf="visa.employeeid == user.employeeID"></td>
-                <td  *ngIf="visa.employeeid == user.employeeID">haha </td>
-                <td  *ngIf="visa.employeeid == user.employeeID">haha </td>
-                <td  *ngIf="visa.employeeid == user.employeeID">haha </td>
-                <td  *ngIf="visa.employeeid == user.employeeID">haha </td>
-                <td  *ngIf="visa.employeeid == user.employeeID"></td>
-              </tr> -->
-              <tr *ngIf="!users">
-                  <td colspan="4" class="text-center">
-                      <span class="spinner-border spinner-border-lg align-center"></span>
-                  </td>
-              </tr>
-              
+              <!-- ------- 展开部分（结束）------- -->
             </tbody>
           </table>
         </div>
@@ -166,5 +159,3 @@
     </div>
   </div>
 </div>
-
-

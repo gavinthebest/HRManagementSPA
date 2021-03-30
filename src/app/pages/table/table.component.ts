@@ -65,6 +65,7 @@ export class TableComponent implements OnInit{
                      } 
                 });
 
+
     }
     onChange() {
         this.disabled = !this.disabled;

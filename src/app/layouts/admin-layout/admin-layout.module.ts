@@ -12,6 +12,8 @@ import { TableComponent }           from '../../pages/table/table.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HousingComponent } from 'app/pages/housing/housing.component';
 import { DetailsUploadComponent } from 'app/pages/user/details-upload/details-upload.component';
+// import { DetailsUploadComponent_hr } from 'app/pages-hr/table/details-upload/details-upload.component';
+
 import { FormUploadComponent } from 'app/shared/form-upload/form-upload.component';
 
 @NgModule({
@@ -31,7 +33,8 @@ import { FormUploadComponent } from 'app/shared/form-upload/form-upload.componen
         TableComponent,
         HousingComponent,
         DetailsUploadComponent,
-        FormUploadComponent
+        FormUploadComponent,
+        // DetailsUploadComponent_hr
     ]
 })
 
