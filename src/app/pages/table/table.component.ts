@@ -11,8 +11,7 @@ import { visaStatus } from 'app/models/visaStatus';
 @Component({
     selector: 'table-cmp',
     moduleId: module.id,
-    templateUrl: 'table.component.html',
-    styleUrls: ['./table.component.css']
+    templateUrl: 'table.component.html'
 })
 
 export class TableComponent implements OnInit{
